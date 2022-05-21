@@ -1,5 +1,106 @@
-content{
-    .cafe-box{
-        // background-color: #666666;
+main{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .search-box{
+        margin: 3rem auto 4rem auto;
+        width: 600px;
+        font-size: 2rem;
+        font-weight: bold;
+        #search-word{
+            
+            text-align: center;
+        }
+
+    }
+ 
+    content{
+        width: 1300px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(250px, 1fr));
+        justify-content: center;
+        gap:15px;
+        
+        .cafe-box{
+            position:relative;
+            width: 300px;
+            height: 200px;
+            background-color: rgb(136, 136, 136);
+            color: white;
+            border-radius: 5%;
+            border-bottom: 0ch;
+           
+            
+            div{
+                padding: 10px;
+            }
+            .cafe-name{
+                position: absolute;;
+                z-index:1;
+                top:50%;
+                transform:translateY(-50%);
+                text-align: center;
+                width: 100%;
+               font-size: 2rem;
+            }
+            img{
+     
+                object-fit: cover;
+                width: 100%;
+                aspect-ratio: 3/2;
+                border-radius: 5%;
+                filter: brightness(60%);
+            }
+            .card-one{
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index:1;
+            }
+              
+            .card-two{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 150px;
+                height: 45px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: white;
+                img{
+                    width: 15px;
+                    height: 15px;
+                    
+                    filter: brightness(100%);
+                }
+                
+            }
+            .card-three{
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 150px;
+                height: 45px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: white;
+                img{
+                    width: 15px;
+                    height: 15px;
+                    
+                    filter: brightness(100%);
+                }
+                
+            }
+
+        }
+        .cafe-box:hover{
+            cursor: pointer;
+        }
     }
 }

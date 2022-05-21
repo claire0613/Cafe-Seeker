@@ -1,1 +1,136 @@
-/* No CSS *//*# sourceMappingURL=search.css.map */
+main {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .search-box {
+  margin: 3rem auto 4rem auto;
+  width: 600px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+main .search-box #search-word {
+  text-align: center;
+}
+
+main content {
+  width: 1300px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(250px, 1fr))[4];
+      grid-template-columns: repeat(4, minmax(250px, 1fr));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 15px;
+}
+
+main content .cafe-box {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-color: #888888;
+  color: white;
+  border-radius: 5%;
+  border-bottom: 0ch;
+}
+
+main content .cafe-box div {
+  padding: 10px;
+}
+
+main content .cafe-box .cafe-name {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+  font-size: 2rem;
+}
+
+main content .cafe-box img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  aspect-ratio: 3/2;
+  border-radius: 5%;
+  -webkit-filter: brightness(60%);
+          filter: brightness(60%);
+}
+
+main content .cafe-box .card-one {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+main content .cafe-box .card-two {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 150px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+main content .cafe-box .card-two img {
+  width: 15px;
+  height: 15px;
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
+}
+
+main content .cafe-box .card-three {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+main content .cafe-box .card-three img {
+  width: 15px;
+  height: 15px;
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
+}
+
+main content .cafe-box:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=search.css.map */

@@ -264,7 +264,8 @@ class Cafes(db.Model):
         db.session.commit()
         
         
-Index('cafe_id_name_index', Cafes.id, Cafes.name)    
+Index('cafe_id_name_index', Cafes.id, Cafes.name) 
+   
 
 
             

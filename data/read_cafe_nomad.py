@@ -70,7 +70,7 @@ def main():
                 if latitude and longitude:
                     insert_data=Cafes(name=result.get("name"),area=result.get("city"),city=result.get("city"),address=result.get("address"),\
                         transport=result.get("mrt"),latitude=latitude,longitude=longitude,open_time=result.get("open_time"),wifi=result.get('wifi'),\
-                        vacancy=result.get("seat"),quiet=result.get("quiet"),food=result.get("tasty"),drinks=result.get("tasty"),price=result.get("chaep"),\
+                        vacancy=result.get("seat"),comfort=result.get('music'),quiet=result.get("quiet"),food=result.get("tasty"),drinks=result.get("tasty"),price=result.get("cheap"),\
                         socket=result.get('socket'),limited_time=result.get('limited_time'),\
                         music=check_music_i(result.get('music')),standing_tables=check_standing_desk_i(result.get('standing_desk')),facebook=check_url(result.get('url'),'fb'),\
                         instagram=check_url(result.get('url'),'ig'),website=check_url(result.get('url'),'web'),\
@@ -80,7 +80,7 @@ def main():
                     if query_id:
                         cafe_id=query_id[-1].id
                         record=Score_rec(cafe_id=cafe_id,wifi=listing_nomad(result.get('wifi')),\
-                            speed=json.dumps([]),vacancy=listing_nomad(result.get('seat')),comfort=json.dumps([]),quiet=listing_nomad(result.get('quiet')),\
+                            speed=json.dumps([]),vacancy=listing_nomad(result.get('seat')),comfort=listing_nomad(result.get('music')),quiet=listing_nomad(result.get('quiet')),\
                             food=listing_nomad(result.get('tasty')),drinks=listing_nomad(result.get('tasty')),price=listing_nomad(result.get('cheap')),\
                             view=json.dumps([]),toilets=json.dumps([]))
                         record.insert()

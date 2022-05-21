@@ -16,29 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `city_ref`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `city_ref`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `city_ref` (
-  `city` varchar(100) NOT NULL,
-  `city_id` int DEFAULT NULL,
-  `city_tw` varchar(100) NOT NULL,
-  PRIMARY KEY (`city`),
-  UNIQUE KEY `city_id` (`city_id`)
+CREATE TABLE `users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `pwd_hash` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`),
+  KEY `email_name_index` (`email`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `city_ref`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `city_ref` WRITE;
-/*!40000 ALTER TABLE `city_ref` DISABLE KEYS */;
-INSERT INTO `city_ref` VALUES ('changhua',8,'彰化'),('chiayi',10,'嘉義'),('hsinchu',4,'新竹'),('hualien',15,'花蓮'),('kaohsiung',12,'高雄'),('keelung',2,'基隆'),('kinmen',19,'金門'),('lienchiang',18,'連江'),('miaoli',5,'苗栗'),('nantou',7,'南投'),('penghu',16,'澎湖'),('pingtung',13,'屏東'),('taichung',6,'台中'),('tainan',11,'台南'),('taipei',1,'台北'),('taitung',17,'台東'),('taoyuan',3,'桃園'),('yilan',14,'宜蘭'),('yunlin',9,'雲林');
-/*!40000 ALTER TABLE `city_ref` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
