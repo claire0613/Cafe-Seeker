@@ -1,0 +1,252 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "NotoSansTC-Regular",sans-serif;
+}
+
+body {
+  background-color: #ECDEC4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #353333;
+}
+
+header div.topic {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 5;
+      -ms-flex: 5 1 400px;
+          flex: 5 1 400px;
+}
+
+header div > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  font-family: 'my Smooch',sans-serif;
+  text-decoration: none;
+  margin: 10px;
+  font-size: 2rem;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+header nav {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 1 400px;
+          flex: 2 1 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+header nav .ham {
+  display: none;
+}
+
+header nav ul {
+  margin-right: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+}
+
+header nav ul li {
+  margin: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+header nav ul :hover {
+  color: wheat;
+}
+
+header nav ul :is(#signin-up-btn, #signout-btn, #member-page) {
+  display: none;
+  margin: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+header nav ul :is(#signin-up-btn, #signout-btn, #member-page).show {
+  display: block;
+}
+
+header nav ul :is(#signin-up-btn, #signout-btn, #member-page):hover {
+  color: wheat;
+}
+
+@font-face {
+  font-family: 'my Smooch';
+  src: url(./Smooch-Regular.ttf);
+}
+
+@font-face {
+  font-family: "NotoSansTC-Regular";
+  src: url(./NotoSansTC-Regular.otf);
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  margin-top: 50px;
+  background-color: #353333;
+  color: white;
+}
+
+footer .footer-head {
+  width: 700px;
+  font-size: 2rem;
+  font-family: "my Smooch",sans-serif;
+  margin-top: 20px;
+}
+
+footer ul {
+  width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100px;
+  height: 50px;
+  margin: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  color: white;
+  width: 100px;
+}
+
+footer ul li a img {
+  width: 2rem;
+  margin-right: 0.5rem;
+}
+
+footer .reference {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 150px;
+  width: 400px;
+  margin: auto;
+}
+
+footer .reference div {
+  width: 90%;
+  font-size: 1.2rem;
+}
+
+footer .reference li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+footer .reference li a {
+  color: white;
+  text-decoration: none;
+  width: 150px;
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  footer ul {
+    width: 70%;
+  }
+  footer ul li {
+    width: 40%;
+  }
+  footer .reference {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  footer .reference a {
+    width: 45%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  footer .footer-head {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  footer ul {
+    width: 80%;
+  }
+  footer ul li {
+    width: 45%;
+  }
+  footer .reference {
+    width: 90%;
+    margin: 1.5rem;
+  }
+}
+/*# sourceMappingURL=nav.css.map */

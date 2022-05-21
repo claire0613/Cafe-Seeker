@@ -1,0 +1,203 @@
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "NotoSansTC-Regular",sans-serif;
+    
+}
+body{
+    background-color: #ECDEC4;
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: normal;
+}
+
+header{
+    display: flex;
+    background-color: #353333;
+    div.topic{
+        align-items: center;
+        flex:5 1 400px;
+    }
+    div>a{
+        display: flex;
+        color: white;
+        font-family:'my Smooch',sans-serif;
+        text-decoration: none;
+        margin: 10px;
+        font-size: 2rem;;
+        transition: all 0.25s ease; 
+
+    }
+    nav{
+        flex: 2 1 400px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .ham{
+            display: none;
+        }
+        ul{
+            margin-right: 0.5rem;
+            display: flex;
+            list-style-type: none;
+            li{
+                margin: 10px;
+                color: white;
+                cursor: pointer;
+                font-size: 1rem;;
+                transition: all 0.25s ease; 
+                
+            }
+            :hover{
+                color: wheat;
+            }
+            :is(#signin-up-btn,#signout-btn,#member-page){
+                display: none;
+                margin: 10px;
+                color: white;
+                cursor: pointer;
+                font-size: 1rem; 
+                transition: all 0.25s ease; 
+            }
+            :is(#signin-up-btn,#signout-btn,#member-page).show{
+                display: block;
+            }
+            :is(#signin-up-btn,#signout-btn,#member-page):hover{
+                color: wheat;
+            }
+            
+        }
+    }
+
+}
+
+@font-face{
+    font-family:'my Smooch';
+    src: url(./Smooch-Regular.ttf)
+}
+@font-face {
+    font-family:"NotoSansTC-Regular";
+    src:url(./NotoSansTC-Regular.otf);
+}
+
+
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
+   
+    background-color: #353333;
+    color: white;
+    .footer-head{
+        width: 700px;
+        font-size: 2rem;
+        font-family: "my Smooch",sans-serif;
+        margin-top: 20px;
+    }
+    ul{
+        width:500px ;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        // margin-top: 20px;
+        
+       
+        li{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 10px;
+            justify-content: center;
+            a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: white;
+                width: 100px;
+                img{
+                    width: 2rem;
+                    margin-right: 0.5rem;
+                
+                
+            }
+        }
+        }
+    }
+    .reference{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 150px;
+        width: 400px;
+        margin: auto;
+        div{
+            width: 90%;
+            font-size: 1.2rem;
+        }
+        li{
+            display: flex;
+            justify-content: space-around;
+            a{  
+            
+                color: white;
+                text-decoration: none;
+                width: 150px;
+                text-align: center;
+            }
+        }
+
+    }
+   
+}
+@media screen and (max-width:1200px){
+    footer{
+        ul{
+            width: 70%;
+            li{
+                width:40%;
+            }
+        }
+        .reference{
+            flex-wrap: wrap;
+           
+          
+            a{
+                width: 45%;
+                margin: auto;
+            }
+       
+        }
+
+    }
+}
+@media screen and (max-width:800px){
+    footer{
+        .footer-head{
+            width: 90%;
+        }
+    }
+}
+@media screen and (max-width:600px){
+    footer{
+        ul{
+            width: 80%;
+        
+            li{
+                width: 45%;
+            }
+        }
+        .reference{
+            width: 90%;
+            margin: 1.5rem;
+           
+        }
+
+    }
+        
+    
+}

@@ -1,0 +1,254 @@
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main section.background {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+main section.background .description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main section.background .description h2, main section.background .description p {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+main section.background .description form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main section.background .description form input {
+  width: 400px;
+  height: 46px;
+  padding-left: 15px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 13px;
+  background: #d0b28cd6;
+  color: #3c2d08;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+main section.background .description form #page {
+  display: none;
+}
+
+main section.background .description form .btn {
+  background-color: #805612db;
+  width: 60px;
+  height: 46px;
+  color: #ffffff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  font-size: large;
+}
+
+main section.background .back-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 375px;
+  height: 300px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 50px;
+}
+
+main section.background .back-img img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  border-radius: 5%;
+}
+
+main content {
+  width: 1200px;
+  padding-top: 50px;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  gap: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  -ms-grid-columns: (minmax(250px, 1fr))[4];
+      grid-template-columns: repeat(4, minmax(250px, 1fr));
+}
+
+main content .city-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 250px;
+  height: 150px;
+  background-color: #d9b68c;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid #ae9b6899;
+}
+
+main content .city-box .cityname {
+  -webkit-box-flex: 3;
+      -ms-flex: 3 1 250px;
+          flex: 3 1 250px;
+  font-size: 2rem;
+  text-align: center;
+  width: 200px;
+  font-weight: bolder;
+  color: #573A03;
+}
+
+main content .city-box .navigation {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 1 250px;
+          flex: 2 1 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main content .city-box .navigation a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100px;
+  text-decoration: none;
+  background-color: #be9152;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  color: #000;
+  border: 1px solid #a7a6a499;
+}
+
+main content .city-box .navigation a img {
+  width: 30px;
+  margin-right: 0.25rem;
+}
+
+main .load-more {
+  margin-top: 50px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 1200px;
+  font-size: 1.5rem;
+}
+
+main .load-more.hide {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  main section.background {
+    position: relative;
+  }
+  main section.background .description {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    color: white;
+  }
+  main section.background .description form input {
+    width: 275px;
+    height: 46px;
+  }
+  main section.background .back-img {
+    margin: 0px;
+    width: 450px;
+    height: 300px;
+    -webkit-filter: brightness(60%);
+            filter: brightness(60%);
+  }
+  main content {
+    width: 90%;
+    -ms-grid-columns: (minmax(45%, 1fr))[2];
+        grid-template-columns: repeat(2, minmax(45%, 1fr));
+  }
+  main content .city-box {
+    width: 100%;
+  }
+  main content .city-box .navigation {
+    width: 100%;
+  }
+  main content .city-box .navigation a {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  main section.background .description p {
+    width: 300px;
+    text-align: center;
+  }
+  main section.background .back-img {
+    width: 100%;
+  }
+  main section.background .back-img img {
+    width: 100%;
+    height: 300px;
+    border-radius: 0px;
+  }
+  main content {
+    -ms-grid-columns: (minmax(90%, 1fr))[1];
+        grid-template-columns: repeat(1, minmax(90%, 1fr));
+  }
+}
+/*# sourceMappingURL=index.css.map */
