@@ -9,6 +9,7 @@ def key_search(page, keyword=None):
     if not keyword:
         result = Cafes.query.limit(20).offset(page*20).all()
         all_count = Cafes.query.limit(20).offset(page*20).count()
+        total_count=Cafes.query.count()
        
     else:
      
@@ -19,11 +20,16 @@ def key_search(page, keyword=None):
             city_en=key_city.city
             all_count=Cafes.query.filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'),\
                         Cafes.city==city_en)).limit(20).offset(page*20).count()
+            total_count=Cafes.query.filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'),\
+                        Cafes.city==city_en)).count()
+            
+            
             result=Cafes.query.filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'),\
                         Cafes.city==city_en)).limit(20).offset(page*20).all()
         else: 
             all_count= Cafes.query.filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'))).\
                 limit(20).offset(page*20).count()
+            total_count= Cafes.query.filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'))).count()
             result=Cafes.query.filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%')))\
                 .limit(20).offset(page*20).all()
                 
@@ -32,28 +38,32 @@ def key_search(page, keyword=None):
     for cafe in result:
         cafe_dict = {c.name: getattr(cafe, c.name) for c in cafe.__table__.columns}
         cafe_list.append(cafe_dict)
+  
+    return {'cafe_list':cafe_list,'all_count':all_count,'total_count':total_count}
 
-    return {'cafe_list':cafe_list,'all_count':all_count}
     
 def city_search_cafe(page,city=None):
     if not  city:
             result = Cafes.query.limit(20).offset(page*20).all()
             all_count = Cafes.query.limit(20).offset(page*20).count()
-        
-    else:
-            all_count=Cafes.query.filter(Cafes.city==city).limit(20).offset(page*20).count()
-            result=Cafes.query.filter(Cafes.city==city).limit(20).offset(page*20).all()
+            total_count= Cafes.query.count()
             
         
-   
-    
-                  
+    else:
+            city_search=City_ref.query.filter_by(city=city).first()
+            if city_search:
+                all_count=Cafes.query.filter(Cafes.city==city).limit(20).offset(page*20).count()
+                result=Cafes.query.filter(Cafes.city==city).limit(20).offset(page*20).all()
+                total_count= Cafes.query.filter(Cafes.city==city).count()
+            else:
+                return None
+                    
     cafe_list=[]
     for cafe in result:
         cafe_dict = {c.name: getattr(cafe, c.name) for c in cafe.__table__.columns}
         cafe_list.append(cafe_dict)
 
-    return {'cafe_list':cafe_list,'all_count':all_count}
+    return {'cafe_list':cafe_list,'all_count':all_count,'city_tw':city_search.city_tw,'total_count':total_count}
     
 
 # @api.route('/cafes', methods=['GET'])
@@ -109,7 +119,7 @@ def city_search_cafe(page,city=None):
 
     
 #     else:
-#         all_count=Cafes().query..count()
+#         all_count=Cafes().query.count()
 
 
 # @api.route('/cafe/city', methods=['GET'])
@@ -149,19 +159,43 @@ def get_city():
         return  jsonify({'data':result_list,'nextPage':nextpage})
     except:
         return jsonify({"error": True, "message": "伺服器內部錯誤"})
+    
+    
 @api.route('/search',methods=['GET'])
 def get_shop_key():
-    page = int(request.args.get('page'))
-    keyword=request.args.get('keyword')
-    result=key_search(page=page,keyword=keyword)
-    surplus=result['all_count']
+    try:
+        page = int(request.args.get('page'))
+        keyword=request.args.get('keyword')
+        result=key_search(page=page,keyword=keyword)
+        surplus=result['all_count']
+        if surplus<20:
+            next_page=None
+        else:
+            next_page=page+1
+    
+        return jsonify({"nextPage": next_page, "data": result['cafe_list'],'totalPage':result['total_count']//20,'totalCount':result['total_count']}) 
+    except:
+        return jsonify({"error": True, "message": "伺服器內部錯誤"})
 
-    if surplus==0:
-        next_page=None
-    else:
-        next_page=page+1
-    return jsonify({"nextPage": next_page, "data": result['cafe_list']}) 
-         
-         
+
+@api.route('/city/list', methods=['GET'])
+def get_city_list():
+    try:
+        page = int(request.args.get('page'))
+        city=request.args.get('city')
+        result=city_search_cafe(city=city,page=page)
+        if result:
+            surplus=result['all_count']
+            if surplus<20:
+                next_page=None
+            else:
+                next_page=page+1
+            return  jsonify({"city_tw":result['city_tw'],"nextPage": next_page, "data": result['cafe_list'],'totalCount':result['total_count']})
+        else:
+            return  jsonify({"error": True, "message": 'no City'})
+    except:
+        return jsonify({"error": True, "message": "伺服器內部錯誤"})
+    
+
      
      

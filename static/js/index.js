@@ -60,7 +60,7 @@ function keyFormSubmit(e){
     e.preventDefault();
     let keyword=document.querySelector('input[name="keyword"]').value;
  
-    location.replace(`/search?keyword=${keyword}`)
+    location.replace(`/search?page=0&keyword=${keyword}`)
  
 
 

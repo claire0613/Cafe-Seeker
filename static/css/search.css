@@ -18,11 +18,28 @@ main {
 main .search-box {
   margin: 3rem auto 4rem auto;
   width: 600px;
-  font-size: 2rem;
-  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
 }
 
 main .search-box #search-word {
+  text-align: center;
+  width: 100%;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+main .search-box #search-total {
+  color: #7f7f7e;
   text-align: center;
 }
 
@@ -35,17 +52,22 @@ main content {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  justify-items: center;
+  margin: 20px 50px 20px 50px;
   gap: 15px;
 }
 
 main content .cafe-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
   width: 300px;
   height: 200px;
-  background-color: #888888;
   color: white;
   border-radius: 5%;
   border-bottom: 0ch;
+  background-color: #c0b9b9;
 }
 
 main content .cafe-box div {
@@ -101,6 +123,7 @@ main content .cafe-box .card-two {
 main content .cafe-box .card-two img {
   width: 15px;
   height: 15px;
+  background-color: transparent;
   -webkit-filter: brightness(100%);
           filter: brightness(100%);
 }
@@ -126,11 +149,84 @@ main content .cafe-box .card-three {
 main content .cafe-box .card-three img {
   width: 15px;
   height: 15px;
+  background-color: transparent;
   -webkit-filter: brightness(100%);
           filter: brightness(100%);
 }
 
 main content .cafe-box:hover {
   cursor: pointer;
+}
+
+main .pagination {
+  margin: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.5rem;
+  background-color: rgba(82, 65, 44, 0.58);
+  border-radius: 5px;
+}
+
+main .pagination li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30px;
+  margin: 5px;
+  background-color: #d6c18e;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+main .pagination li a {
+  text-decoration: none;
+  color: #3a3a3a;
+}
+
+main .pagination li span {
+  cursor: not-allowed;
+}
+
+main .pagination li.disable {
+  cursor: not-allowed;
+}
+
+main .pagination li.active {
+  background-color: #8dcece;
+}
+
+@media screen and (max-width: 1350px) {
+  main .search-box {
+    width: 90%;
+  }
+  main content {
+    -ms-grid-columns: (minmax(45%, 1fr))[2];
+        grid-template-columns: repeat(2, minmax(45%, 1fr));
+    width: 90%;
+  }
+  main content .cafe-box {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  main content {
+    -ms-grid-columns: (minmax(90%, 1fr))[1];
+        grid-template-columns: repeat(1, minmax(90%, 1fr));
+  }
 }
 /*# sourceMappingURL=search.css.map */

@@ -8,10 +8,20 @@ main{
     .search-box{
         margin: 3rem auto 4rem auto;
         width: 600px;
-        font-size: 2rem;
-        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
         #search-word{
+            text-align: center;
             
+            width:100% ;
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
+        #search-total{
+        color: #7f7f7e;
             text-align: center;
         }
 
@@ -22,23 +32,25 @@ main{
         display: grid;
         grid-template-columns: repeat(4, minmax(250px, 1fr));
         justify-content: center;
+        justify-items: center;
+        margin: 20px 50px 20px 50px;
         gap:15px;
         
         .cafe-box{
+            display: flex;
             position:relative;
             width: 300px;
             height: 200px;
-            background-color: rgb(136, 136, 136);
+            
             color: white;
             border-radius: 5%;
             border-bottom: 0ch;
-           
-            
+            background-color: rgb(192, 185, 185);
             div{
                 padding: 10px;
             }
             .cafe-name{
-                position: absolute;;
+                position: absolute;
                 z-index:1;
                 top:50%;
                 transform:translateY(-50%);
@@ -48,11 +60,13 @@ main{
             }
             img{
      
-                object-fit: cover;
+                object-fit:cover;
                 width: 100%;
                 aspect-ratio: 3/2;
                 border-radius: 5%;
                 filter: brightness(60%);
+                
+                
             }
             .card-one{
                 position: absolute;
@@ -74,6 +88,7 @@ main{
                 img{
                     width: 15px;
                     height: 15px;
+                    background-color: transparent;
                     
                     filter: brightness(100%);
                 }
@@ -92,7 +107,7 @@ main{
                 img{
                     width: 15px;
                     height: 15px;
-                    
+                    background-color: transparent;
                     filter: brightness(100%);
                 }
                 
@@ -103,4 +118,77 @@ main{
             cursor: pointer;
         }
     }
+        .pagination{
+            margin: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 1.5rem;
+            background-color: rgba(82, 65, 44, 0.58);
+            border-radius: 5px;
+            li{
+                display: flex;
+                width: 30px;
+                margin: 5px;
+                background-color: #d6c18e;;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                border-radius: 5px;
+                cursor: pointer;
+                
+                a{
+                    text-decoration: none;
+                    color: rgb(58, 58, 58);
+                
+                }
+                span{
+                    cursor: not-allowed;
+                }
+                
+            }
+            li.disable{
+                cursor: not-allowed;
+            }
+            li.active{
+                background-color: rgb(141, 206, 206);
+            }
+            
+
+        
+
+
+    
+    }
+}
+
+@media screen and (max-width:1350px){
+    main{
+        .search-box{
+            width: 90%;
+        }
+        content{
+            grid-template-columns: repeat(2, minmax(45%, 1fr));
+            width: 90%;
+            .cafe-box{
+                width: 100%;
+            }
+     
+            
+        }
+    }
+
+
+}
+@media screen and (max-width:600px){
+    main{
+    
+        content{
+            grid-template-columns: repeat(1, minmax(90%, 1fr));
+     
+            
+        }
+    }
+
+
 }
