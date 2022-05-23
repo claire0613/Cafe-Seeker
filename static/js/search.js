@@ -27,13 +27,15 @@ async function keySearch(){
         
         let box = document.createElement('div');
         box.classList.add('cafe-box')
+    
 
         let img=document.createElement('img')
-        if (cafe.images){
+        if (cafe.images!=='[]'){
             let url=JSON.parse(cafe.images)[0]
             url=encodeURI(url)
             img.src=url;
-            img.alt='';
+            img.alt='no pic';
+            box.append(img)
         }
 
 
@@ -60,7 +62,7 @@ async function keySearch(){
             star(wifiImg,0,card3)
         }
         
-        box.append(img,name,card1,card2,card3)
+        box.append(name,card1,card2,card3)
         keySearchContent.append(box)
     }
     if(result.nextPage!==null){
