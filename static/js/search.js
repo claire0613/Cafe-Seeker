@@ -21,6 +21,7 @@ async function keySearch(){
     const response=await fetch(keySearchApi,{method:"GET"});
     const result=await response.json();
     const data=result.data;
+    console.log(data)
 
     searchTotal.innerText=`共找到 ${result.totalCount} 間咖啡廳`;
     for(let cafe of data){
@@ -30,13 +31,27 @@ async function keySearch(){
     
 
         let img=document.createElement('img')
+        // if (cafe.images){
+        //     let url=JSON.parse(cafe.images)[0]
+        //     url=encodeURI(url)
+        //     img.src=url;
+        //     img.alt='no pic';
+        //     box.append(img)
+        // }
+
         if (cafe.images!=='[]'){
-            let url=JSON.parse(cafe.images)[0]
-            url=encodeURI(url)
-            img.src=url;
-            img.alt='no pic';
-            box.append(img)
+            let url=JSON.parse(cafe.images)
+            console.log(url)
+            if(url!==null){
+                url=encodeURI(url[0])
+                img.src=url;
+                img.alt='no pic';
+                box.append(img)
+
+            }
+    
         }
+
 
 
         let name = document.createElement('div');
