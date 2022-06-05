@@ -7,7 +7,7 @@ from api.users import api
 from api.rating import api
 from api.photo import api
 from api.message import api
-import redis
+
 
 app=Flask(__name__)
 app.register_blueprint(api, url_prefix="/api")
