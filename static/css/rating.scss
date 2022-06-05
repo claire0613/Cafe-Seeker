@@ -1,0 +1,147 @@
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 50px auto 50px auto;
+        width: 1200px;
+        background-color: #fff;
+        border-radius: 15px;
+        position: relative;
+        padding:30px 0px 75px 0px;
+        .shop-name{
+            min-width: 90%;
+            display: flex;
+            min-width: 200px;
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 15px;
+            a{
+                text-decoration: none;
+                padding: 0 15px 0 15px ;
+            }
+        }
+        .rating-box{
+            min-width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            
+            div.score{
+                min-width: 100px;
+                font-size: 1.25rem;
+                text-align: center;
+            }
+            .rating-label{
+                min-width: 100px;
+                font-size: 1.5rem;
+                text-align: center;
+                margin: 15px;
+            }
+            .rating{
+                display: flex; 
+                flex-flow: row-reverse;
+                min-width: 300px;
+                justify-content: center;
+                position: relative;
+                margin: 10px;
+                input { display:none; }
+                label{
+                    font-size: 50px;
+                   
+                    color:gray;
+                    &:checked ~ label[name="rating"]{
+                        color: rgb(255, 216, 60);
+                    }
+                    &:hover,
+                    &:hover ~ label[name="rating"]{
+                        color: rgb(255, 216, 60);
+                    }
+                }
+                label.checked{ color: rgb(255, 216, 60);}
+                label.disabled{ 
+                    color: rgb(225, 223, 223); 
+                    cursor: not-allowed;
+                    &:hover,
+                    &:hover ~ label[name="rating"]{
+                        color:rgb(225, 223, 223); 
+                    }
+                }
+                input[name=speed-rating]{
+                    display:block;
+                    width: 250px;
+                    min-height: 40px;
+                    padding-right:10px ;
+                }
+                input.disabled{
+                    color: rgb(225, 223, 223); 
+                    cursor: not-allowed;
+                }
+                .unit{
+                    position: absolute;
+                    right: -30px;
+                    top: 5px;
+                    font-size: 1.25rem;
+                }
+            }
+            .unit-div{
+                display: flex;
+                flex-direction: column;
+                label{
+                   
+                    text-align: center;
+                }
+            }
+            .comment{
+                display: flex;
+                align-items: center;
+                align-content: center;
+                position: absolute;
+                right: -10px;
+                top:20px;
+                #ignore-speed{
+                    width: 15px;
+                    margin: 5px;
+                }
+                #ignore-wifi{
+                    width: 15px;
+                    height: 15px;
+                    margin: 5px;
+                }
+            }
+            input[name=speed-rating]{
+                display: block;
+                width: 90%;
+                height: 34px;
+                padding: 6px 12px;
+                font-size: 14px;
+                color: #555;
+                background-color: #fff;
+                background-image: none;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+        .score-btn{
+            position: absolute;
+            right: 45%;
+            bottom: 10px;
+            width: 150px;
+            height: 35px;
+            font-size: 1.5rem;
+            border:none;
+            background-color: rgba(220, 145, 65, 0.731);
+            border-radius: 15px;
+            color: rgb(62, 39, 3);
+            cursor: pointer;
+        }
+    
+    }
+}
+

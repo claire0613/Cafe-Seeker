@@ -3,6 +3,7 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 90vh;
     .description-container{
         display: flex;
         height: 200px;
@@ -18,31 +19,114 @@ main{
 
     .scroll-wrapper{
         // display: flex;
+        
         width: 1200px;
-        // flex-direction: column;
-        input.search-filter{
-                width: 100%;
-            }
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px ;
        
+        // flex-direction: column;
+        form{
+           
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+           
+            .select-group{
+                display: flex;
+                justify-content: space-around;
+                margin: 5px;
+                .form-select{
+                    background: #95e2e581;
+                    font-size: 14px;
+                    border-radius: 0.25rem;
+                    height: 30px;
+                    min-width: 130px;
+               
+                    border: 1px solid #874602cf;
+    
+                    option{
+                        
+                    }
+                }
+                .form-select{
+    
+                }
 
+            }
+
+            
+            
+            }
+            .input-div{
+                display: flex;
+                border-radius: 5px;
+                background:#d0b28cd6;
+                color: #3c2d08;
+                justify-content: space-around;
+                min-height: 50px;
+               
+                .btn{
+                    border:none;
+                    background: #9c641ba8;
+                    font-size: large;
+                    padding: 5px;
+                    border-radius: 5px;
+                    min-width: 50px;
+                    img{
+                        width: 30px;
+                        height: 30px;
+                        color: rgb(91, 57, 2);
+                        
+                    }
+                }
+                input.search-filter{
+                    width: 100%;
+                    min-height: 50px;
+                    background-color: #d0b28cd6;
+                    font-family: "Noto Sans TC", sans-serif;
+                    font-weight: bold;
+                    border:none;
+                    font-size: 1.25rem;
+                    border-radius: 5px ;
+                    padding-left: 15px;
+                
+            }
+
+        }
+        
+       table{
+        width: 100%;
         thead{
+            
+           
             tr{
                 height: 50px;
                 display: flex;
                 justify-content: space-around;
-                width: 100%;
+                
+                margin:20px 0px 20px 0px;
+                border-bottom: 2px solid rgb(117, 97, 65);
                 th{
                     min-width:40px;   
                 }
                 .name{
-                    min-width: 200px;
+                    min-width: 175px;
                 }
                 .transport{
                     min-width: 150px;
                 }
                 .open-hours{
-                    min-width: 100px;
+                    min-width: 115px;
                 }
+                .vacancy{
+                    min-width: 75px;
+                }
+                }
+                :is(.quiet,.comfort){
+                    min-width: 50px;
+                }
+                :is(.open_hours,.limited-time,.selling-meal){
+                    min-width: 65px;
                 }
             }
 
@@ -57,30 +141,48 @@ main{
                 display: flex;
                 width: 1200px;
                 justify-content: space-around;
+                border-bottom: 2px solid rgb(117, 97, 65);
+                min-height: 60px;
                 td{
                     display: flex;
-                    width: 40px;
+                    width: 50px;
                     align-items: center;
+                    justify-content: center;
                     span{
-                       
-                        
-                        min-height: 20px;
+                            
+                        min-height: 30px;
                         width: 100%;
+                        text-align: center;
+                      
                         
                     }
+                    a{
+                        text-decoration: none;
+                        color: black;
+                        text-align: center;
+                    }
+                    
 
                     
             }
+            td.tb-vaca{
+                min-width: 75px;
+            }
             td.tb-name{
-                min-width: 200px;
+                min-width: 175px;
             }
             td.tb-mrt{
                 min-width: 150px;
             }
             td.tb-open{
-                min-width: 100px;
+                min-width: 115px;
             }
-            
+            :is(td.tb-quiet,td.tb-comfort){
+                min-width: 50px;
+            }
+            :is(td.tb-open,td.tb-limited_time,td.tb-mealing){
+                min-width: 65px;
+            }
         
                 
                 
@@ -88,6 +190,9 @@ main{
             
             }
         
+       }
+
+       
 
     
 }

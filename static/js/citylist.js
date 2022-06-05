@@ -1,12 +1,27 @@
 const listDescription=document.querySelector('.description')
 const cityListTbody=document.querySelector('tbody')
 const queryListCity=document.URL.split('/').at(3)
+import  {getValueColor,scoreRender} from './datahelper.js'
 let cityListPage=0;
+let fKeyword='';
+let fRating=0
+let fPrice=0
+let fWifi=0
+let fVaca=0
+let fDrinks=0
+let fQuiet=0
+let fComfort=0
+let fLimted_time='';
+let fMeal_selling='';
+
+
+
 let isfetching=false;
+
 
 async function cityListSearch(){
     isfetching=true;
-    let cityListApi=`/api/city/list?city=${queryListCity}&page=${cityListPage}`
+    let cityListApi=`/api/city/list/filter?city=${queryListCity}&page=${cityListPage}&keyword=${fKeyword}&rating=${fRating}&price=${fPrice}&wifi=${fWifi}&vacancy=${fVaca}&drinks=${fDrinks}&quiet=${fQuiet}&comfort=${fComfort}&limited_time=${fLimted_time}&meal_selling=${fMeal_selling}`
     if (cityListPage== null){
         return 
     }
@@ -45,16 +60,22 @@ async function cityListSearch(){
         console.log(today)
         
         for (let cafe of data){
-            let score = avg([cafe.price,cafe.wifi, cafe.vacancy, cafe.food, cafe.quiet,cafe.comfort, cafe.toilets])
-            ratingScroe=(Math.max(0, Math.min(score, 5))).toFixed(1)
+ 
             const tr=document.createElement('tr')
             tr.classList.add('tr-box') 
-           
-
+         
             const rating_td=document.createElement('td')
             rating_td.classList.add('tb-rating')
             const rating=document.createElement('span')
-            rating.innerText=ratingScroe
+            rating.innerText=scoreRender(cafe.rating)
+            if (cafe.rating ===0){
+                rating.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                rating.style.backgroundRepeat='no-repeat'
+                rating.style.backgroundSize='contain'
+                rating.style.backgroundPosition='top'
+            }
+
+            rating.style.color=getValueColor(cafe.rating)
             rating_td.append(rating)
 
             const name_td=document.createElement('td')
@@ -63,54 +84,98 @@ async function cityListSearch(){
             cafe_link.innerText=cafe.name
             cafe_link.href=`/shop/${cafe.id}`
             name_td.append(cafe_link)
+            
 
             const price_td=document.createElement('td')
             price_td.classList.add('tb-price')
             const price=document.createElement('span')
-            price.innerText=cafe.price
+            price.innerText=scoreRender(cafe.price)
+            if (cafe. price ===0){
+                price.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                price.style.backgroundRepeat='no-repeat'
+                price.style.backgroundSize='contain'
+                price.style.backgroundPosition='top'
+            }
+            price.style.color=getValueColor(cafe.price)
             price_td.append(price)
             
 
             const wifi_td=document.createElement('td')
             wifi_td.classList.add('tb-wifi')
             const wifi=document.createElement('span')
-            wifi.innerText=cafe.wifi
+            wifi.innerText=scoreRender(cafe.wifi)
+            if (cafe. wifi ===0){
+                wifi.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                wifi.style.backgroundRepeat='no-repeat'
+                wifi.style.backgroundSize='contain'
+                wifi.style.backgroundPosition='top'
+            }
+            wifi.style.color=getValueColor(cafe.wifi)
             wifi_td.append(wifi)
 
             const vaca_td=document.createElement('td')
             vaca_td.classList.add('tb-vaca')
             const vaca=document.createElement('span')
-            vaca.innerText=cafe.vacancy
+            vaca.innerText=scoreRender(cafe.vacancy)
+            if (cafe.vacancy ===0){
+                vaca.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                vaca.style.backgroundRepeat='no-repeat'
+                vaca.style.backgroundSize='contain'
+                vaca.style.backgroundPosition='top'
+            }
+            vaca.style.color=getValueColor(cafe.wifi)
             vaca_td.append(vaca)
             
-            const food_td=document.createElement('td')
-            food_td.classList.add('tb-food')
-            const food=document.createElement('span')
-            food.innerText=cafe.food
-            food_td.append(food)
+            const drinks_td=document.createElement('td')
+            drinks_td.classList.add('tb-food')
+            const drinks=document.createElement('span')
+            drinks.innerText=scoreRender(cafe.drinks)
+            if (cafe.drinks ===0){
+                drinks.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                drinks.style.backgroundRepeat='no-repeat'
+                drinks.style.backgroundSize='contain'
+                drinks.style.backgroundPosition='top'
+            }
+            drinks.style.color=getValueColor(cafe.drinks)
+            drinks_td.append(drinks)
 
             const quiet_td=document.createElement('td')
             quiet_td.classList.add('tb-quiet')
             const quiet=document.createElement('span')
-            quiet.innerText=cafe.quiet
+            quiet.innerText=scoreRender(cafe.quiet)
+            if (cafe.quiet ===0){
+                quiet.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                quiet.style.backgroundRepeat='no-repeat'
+                quiet.style.backgroundSize='contain'
+                quiet.style.backgroundPosition='top'
+            }
+            quiet.style.color=getValueColor(cafe.quiet)
             quiet_td.append(quiet)
 
             const comfort_td=document.createElement('td')
             comfort_td.classList.add('tb-comfort')
             const comfort=document.createElement('span')
-            comfort.innerText=cafe.comfort
+            comfort.innerText=scoreRender(cafe.comfort)
+            if (cafe.comfort ===0){
+                comfort.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                comfort.style.backgroundRepeat='no-repeat'
+                comfort.style.backgroundSize='contain'
+                comfort.style.backgroundPosition='top'
+            }
+            comfort.style.color=getValueColor(cafe.comfort)
             comfort_td.append(comfort)
-
-            const toilets_td=document.createElement('td')
-            toilets_td.classList.add('tb-toilets')
-            const toilets=document.createElement('span')
-            toilets.innerText=cafe.toilets
-            toilets_td.append(toilets)
 
             const mrt_td=document.createElement('td')
             mrt_td.classList.add('tb-mrt')
             const mrt=document.createElement('span')
             mrt.innerText=cafe.transport
+        
+            if (cafe.transport === null){
+                comfort.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                comfort.style.backgroundRepeat='no-repeat'
+                comfort.style.backgroundSize='contain'
+                comfort.style.backgroundPosition='top'
+            }
             mrt_td.append(mrt)
 
             const open_td=document.createElement('td')
@@ -121,7 +186,12 @@ async function cityListSearch(){
                 open.innerText=day[today]
             }else{
                 open.innerText=null
-            }
+                open.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                open.style.backgroundRepeat='no-repeat'
+                open.style.backgroundSize='contain'
+                open.style.backgroundPosition='top'
+                }
+            
            
             open_td.append(open)
 
@@ -129,15 +199,29 @@ async function cityListSearch(){
             limited_time_td.classList.add('tb-limited_time')
             const limited_time=document.createElement('span')
             limited_time.innerText=cafe.limited_time
+            if (cafe.limited_time === null){
+                limited_time.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                limited_time.style.backgroundRepeat='no-repeat'
+                limited_time.style.backgroundSize='contain'
+                limited_time.style.backgroundPosition='top'
+            }
+
+
             limited_time_td.append(limited_time)
             
             const meal_selling_td=document.createElement('td')
-            meal_selling_td.classList.add('tb-open')
+            meal_selling_td.classList.add('tb-mealing')
             const meal_selling=document.createElement('span')
             meal_selling.innerText=cafe.meal_selling
+            if (cafe.meal_selling === null){
+                meal_selling.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
+                meal_selling.style.backgroundRepeat='no-repeat'
+                meal_selling.style.backgroundSize='contain'
+                meal_selling.style.backgroundPosition='top'
+            }
             meal_selling_td.append(meal_selling)
             
-            tr.append(rating_td,name_td,price_td,wifi_td,vaca_td,food_td,quiet_td,comfort_td,toilets_td,mrt_td,open_td,limited_time_td,meal_selling_td)
+            tr.append(rating_td,name_td,price_td,wifi_td,vaca_td,drinks_td,quiet_td,comfort_td,limited_time_td,meal_selling_td,open_td,mrt_td)
             cityListTbody.append(tr)
             
 
@@ -145,8 +229,14 @@ async function cityListSearch(){
         
     }
     console.log(result["nextPage"])
-    cityListPage=result["nextPage"]
-    isnextpage=false;
+   
+    if(result.nextPage!==null){
+       
+        cityListPage=result["nextPage"]
+       
+    }
+    
+    
     if(cityListTbody.innerHTML === ''){
         const nodata = document.createElement('h3')   
         nodata.innerText = `沒有此城市的咖啡店`
@@ -172,7 +262,7 @@ function avg(arr) {
 
 
 
-
+cityListSearch()
 
 const options = {
     rootMargin: "0px 0px 100px 0px",
@@ -190,9 +280,123 @@ let callback = ([entry]) => {
 
 
 // 設定觀察對象：告訴 observer 要觀察哪個目標元素
-const footer = document.querySelector('footer')
-console.log(footer)
+const footer = document.querySelector('#footer-p')
 // 製作鈴鐺：建立一個 intersection observer，帶入相關設定資訊
 let observer = new IntersectionObserver(callback, options)
 // // 設定觀察// 觀察目標元素
 observer.observe(footer)
+
+
+
+
+
+
+
+
+
+
+const filterForm=document.querySelector('form')
+filterForm.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    console.log('key')
+    cityListPage=0;
+    cityListTbody.innerText='';
+   
+    fKeyword=document.querySelector('input[name="keyword"]').value
+    fRating=document.querySelector('select[name="rating"]').value
+    fPrice=document.querySelector('select[name="price"]').value
+    fWifi=document.querySelector('select[name="wifi"]').value
+    fVaca=document.querySelector('select[name="vacancy"]').value
+    fDrinks=document.querySelector('select[name="drinks"]').value
+    fQuiet=document.querySelector('select[name="quiet"]').value
+    fComfort=document.querySelector('select[name="comfort"]').value
+    fLimted_time=document.querySelector('select[name="limted_time"]').value
+    fMeal_selling=document.querySelector('select[name="meal_selling"]').value
+    cityListSearch()
+   
+    
+
+
+
+})
+
+
+const filterKeyword=document.querySelector('input[name="keyword"]')
+const filterRating=document.querySelector('select[name="rating"]')
+const filterPrice=document.querySelector('select[name="price"]')
+const filterWifi=document.querySelector('select[name="wifi"]')
+const filterVaca=document.querySelector('select[name="vacancy"]')
+const filterDrinks=document.querySelector('select[name="drinks"]')
+const filterQuiet=document.querySelector('select[name="quiet"]')
+const filterComfort=document.querySelector('select[name="comfort"]')
+const filterlimted_time=document.querySelector('select[name="limted_time"]')
+const filtermeal_selling=document.querySelector('select[name="meal_selling"]')
+filterRating.addEventListener('change',async(e)=>{
+    e.preventDefault();
+    filter()
+
+})
+filterPrice.addEventListener('change',async(e)=>{
+    e.preventDefault();
+    filter()
+
+})
+
+filterWifi.addEventListener('change',async(e)=>{
+    e.preventDefault();
+    filter()
+
+})
+filterVaca.addEventListener('change',async(e)=>{
+    e.preventDefault();
+    filter()
+
+})
+filterDrinks.addEventListener('change',async(e)=>{
+    e.preventDefault();
+    filter()
+
+})
+filterQuiet.addEventListener('change',async(e)=>{
+    e.preventDefault();
+    filter()
+
+})
+
+filterComfort.addEventListener('change',async(e)=>{
+    e.preventDefault();
+    filter()
+
+})
+filterlimted_time.addEventListener('change',async(e)=>{
+    e.preventDefault();
+    filter()
+})
+filtermeal_selling.addEventListener('change',async(e)=>{
+    e.preventDefault();
+
+    filter()
+
+})
+
+
+
+
+
+
+function filter(){
+    cityListPage=0;
+    cityListTbody.innerText='';
+    fKeyword=document.querySelector('input[name="keyword"]').value
+    fRating=document.querySelector('select[name="rating"]').value
+    fPrice=document.querySelector('select[name="price"]').value
+    fWifi=document.querySelector('select[name="wifi"]').value
+    fVaca=document.querySelector('select[name="vacancy"]').value
+    fDrinks=document.querySelector('select[name="drinks"]').value
+    fQuiet=document.querySelector('select[name="quiet"]').value
+    fComfort=document.querySelector('select[name="comfort"]').value
+    fLimted_time=document.querySelector('select[name="limted_time"]').value
+    fMeal_selling=document.querySelector('select[name="meal_selling"]').value
+    cityListSearch()
+
+}

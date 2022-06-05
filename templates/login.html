@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe-Seeker | Login</title>
+    <link rel="stylesheet" href="../static/css/nav.css" />
+    <link rel="stylesheet" href="../static/css/login.css" />
+</head>
+<body>
+    <header>
+        <div class="topic"><a href="/">Cafe-Seeker</a></div>
+        <nav>
+            <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
+            <ul class="nav-link">
+                <!-- <li id="discussion">討論區</li> -->
+                <li id="member-page">會員專區</li>
+                <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
+                <li id="signout-btn">登出系統</li>
+            </ul>
+        </nav>
+    </header>
+    <section class="signpage">
+        <div class="sign-container show">
+            <div class="topbar">Cafe-Seeker</div>
+            <!-- <div class="google-signin btn ">
+                <div class="google-icon ">
+                    <img src="/static/icons/icons8-google.svg" alt="">
+                </div>
+                <div class="">Google 註冊 / 登入&nbsp;&nbsp;</div>
+            </div> -->
+            <div class="form-content">
+                <form id="signin">
+                    <h3 class="form-title">登入會員
+                    </h3>
+                    <div class="input-content">
+                        <p> 信箱 : </p>
+                        <div class="verify"input-type="signin">
+                            <input type="email" placeholder="輸入電子信箱" name="email" >
+                            <div class="user-input-msg">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p> 密碼 : </p>
+                        <div class="verify"input-type="signin">
+                            <input type="password" placeholder="輸入密碼" name="password">
+                            <div class="user-input-msg">
+                                <span></span>
+                            </div>
+                        </div>
+                        <button type="submit">登入帳戶</button>
+                    </div>
+                    <p class="message"></p>
+                    <p class="convert-sign">還沒有帳戶？點此註冊</p>
+                </form>
+            </div>
+        </div>
+     
+        <div class="sign-container">
+            <div class="topbar"></div>
+            <div class="form-content">
+                <form id="signup">
+                    <h3 class="form-title">註冊會員
+                    </h3>
+                    <div class="input-content">
+                        <div class="verify" input-type="signup">
+                            <input type="text" placeholder="輸入姓名" name="username" >
+                            <div class="user-input-msg">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="verify" input-type="signup">
+                            <input type="email" placeholder="輸入電子信箱" name="email" >
+                            <div class="user-input-msg">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="verify"input-type="signup">
+                            <input type="password" placeholder="輸入密碼" name="password">
+                            <div class="user-input-msg">
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <button type="submit">註冊帳戶</button>
+                        
+                    </div>
+                    <p class="message"></p>
+                    <p class="convert-sign">已經有帳戶了？點此登入</p>
+                </form>
+            </div>
+        </div> 
+    </section>
+    <footer>
+        <div>
+            <h2 class="footer-head">Cafe-Seeker</h2>
+            <ul>
+                <li><a href="#"><img src="../static/icons/home_w.png">Home</a></li>
+                <li><a href="#"><img src="../static/icons/user_w 1.png">About</a></li>
+                <li><a href="#"><img src="../static/icons/mail _w.png">Contact</a></li>
+                <li><a href="#"><img src="../static/icons/Git_w.png">GitHub</a></li>
+    
+            </ul>
+            <div class="reference">
+                <div>References:</div>
+                <li><a href="#"> Cafe Nomad</a></li>
+                <li><a href="#">Cafe and Coword</a></li>
+            </div>
+            <p id="footer-p">COPYRIGHT © 2022</p>
+        </div>
+
+    </footer>
+    <script src="../static/js/login.js"></script>
+    <script src="../static/js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+
+main{
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        width: 1200px;
+        margin-top: 50px;
+        padding: 10px;
+        border-radius: 15px;
+        .cafe-header{
+            display: flex;
+            width: 95%;
+            margin: 10px;
+            padding: 10px;
+            border-bottom: 1px solid rgba(167, 164, 164, 0.482);
+            .shop-name{
+                flex:5 1 400px;
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            .favor-div{
+                flex:1 1 400px;
+                text-align: center;
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                button{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100px;
+                    border:none;
+                    padding-right: 10px;
+                    background-color: rgba(231, 189, 209, 0.833);
+                    border-radius: 15px;
+                    color: rgb(66, 41, 3);
+                    font-size: 1.25rem;
+                    cursor: pointer;
+                    img{
+                        width: 25px;
+                        height: 25px;
+                        margin: 10px;
+                    }
+                }
+                span{
+                    margin: 10px;
+                }
+            }
+        
+        }
+        .rating-div{
+            width:95%;
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            color: rgb(35, 34, 34);
+            position: relative;
+            padding: 10px 10px 40px 10px;
+            border-bottom: 1px solid rgba(167, 164, 164, 0.482);
+            justify-content: center;
+            div{
+                width: 40%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 3px;
+                min-height: 35px;
+                p{
+                    width: 30%;
+                    
+                }
+                span{
+                    width: 30%;
+                    text-align:center;
+                    margin: 5px;
+                }
+            }
+            .rating-btn{
+                position: absolute;
+                bottom: 5px;
+                right: 10px;
+                width: 150px;
+                height: 35px;
+                font-size: 1rem;
+                border:none;
+                background-color: rgba(220, 145, 65, 0.731);
+                border-radius: 15px;
+                color: rgb(62, 39, 3);
+                cursor: pointer;
+
+            }
+        }
+        .shop-detail{
+            width: 95%;
+            font-size: 1.5rem;
+            padding: 5px 10px 10px 10px;
+        }
+        .shop-detail-div{
+            width: 95%;
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(167, 164, 164, 0.482);
+            color: rgb(35, 34, 34);
+            justify-content: center;
+            div{
+                width: 40%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 3px;
+                min-height: 35px;
+                p{
+                    width: 30%;
+                    
+                }
+                span{
+                    width: 30%;
+                    text-align:center;
+                    margin: 5px;
+                    
+                }
+            }
+
+        }
+        .time-web-div{
+            width: 95%;
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(167, 164, 164, 0.482);
+            color: rgb(35, 34, 34);
+            justify-content: center;
+            padding: 10px 10px 10px 10px;
+            .time{
+                width: 50%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                
+                div{
+                    width: 80%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 3px;
+                    margin-left: 110px;  
+                    min-height: 35px;              
+                    p{
+                        width: 30%;
+                      
+                    }
+                    span{
+                        width: 30%;
+                        text-align:center;
+                        margin: 5px;
+                    }
+                }
+
+            }
+            .web{
+                width: 50%;
+                display: flex;
+                flex-wrap: wrap;
+                position: relative;
+               
+                div{
+                    width: 90%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 3px;
+                    min-height: 35px;
+                  
+                    p{
+                        width: 40%;
+                      
+                    }
+                    span{
+                        width: 75%;
+                        text-align:center;
+                        margin: 5px;
+                    }
+                    a{
+                        width: 75%;
+                        text-align:center;
+                        margin: 5px;
+                        text-decoration: none;
+                    }
+                    button{
+                        position: absolute;
+                        bottom: -5px;
+                        right: 0px;
+                        width: 100px;
+                        height: 35px;
+                        font-size: 1rem;
+                        border:none;
+                        background-color: rgba(220, 145, 65, 0.731);
+                        border-radius: 15px;
+                        color: rgb(62, 39, 3);
+                        cursor: pointer;
+                    }
+
+                }
+            
+    
+            }
+        }
+        .message{
+            width: 95%;
+            font-size: 1.5rem;
+            padding: 5px 10px 10px 10px;
+        }
+        .msg-div{
+            width:95%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: 10px 10px 10px 10px;
+            border-bottom: 1px solid rgba(167, 164, 164, 0.482);
+            
+            border-radius: 5px;
+          
+            .msg{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 10px;
+                .msg-box{
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    width: 95%;
+                    min-height: 80px;
+                    position: relative;
+                    padding-right:50px ;
+                    border:1px solid rgba(120, 120, 120, 0.582) ;
+                    background-color: rgba(233, 233, 233, 0.511);
+                    border-radius: 5px;
+                    margin: 2px;
+                    
+                    .user-box{
+                        display: flex;
+                        width: 125px;
+                        overflow: hidden;
+                        margin: 5px;
+                        align-items: center;
+                        justify-content: center;
+                        
+          
+                        .img-container{
+                            display: flex;
+                            justify-content: center;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 5px;
+                            
+                            margin:5px;
+                            img{
+                                width: 90%;
+                                object-fit:cover;
+                                border-radius: 15px;
+                            }
+                        }
+    
+                    }
+                    .content{
+                        display: flex;
+                        align-items: center;
+                        flex: 5 1 400px;
+                        border-left: 1px solid rgba(116, 115, 115, 0.589);
+                        padding-left: 10px;
+                        min-height: 80px;
+                        
+                        
+                        
+                        
+
+                    }
+                    .msgfavor-div{
+                        display: flex;
+                        align-items: center;
+                        position: absolute;
+                        top: 0;
+                        right:30px;
+                        border: none;
+                        button{
+                            display: flex;
+                            background-color: transparent;
+                            border: none;
+                            margin: 3px;
+                            cursor: pointer;
+                            img{
+                                margin: 5px;
+                            }
+                        }
+
+                    }
+                    .delete-icon{
+                        width: 30px;
+                        position: absolute;
+                        bottom: -2px;
+                        background-color: transparent;
+                        right:0;
+                        border: none;
+                        cursor: pointer;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .time{
+                        flex: 1 1 120px;
+                        // position: absolute;
+                        // bottom: -2px;
+                        // left:50px;
+                    }
+    
+            }
+            }
+
+         .msg-form{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                textarea{
+                    width: 80%;
+                    height: 75px;
+                    border-radius: 5px;
+                    border: 1px solid rgb(154, 154, 154);
+                }
+                #msg-btn{
+                    margin-top: 10px;
+                    width: 100px;
+                    height: 35px;
+                    font-size: 1rem;
+                    border:none;
+                    background-color: rgba(220, 145, 65, 0.731);
+                    border-radius: 15px;
+                    color: rgb(62, 39, 3);
+                    cursor: pointer;
+                }
+            }
+    }
+        .photo{
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 10px 10px 10px 10px;
+            margin-bottom: 30px;
+            .photo-header{
+                width: 95%;
+                font-size: 1.5rem;
+                padding: 5px 10px 10px 10px;
+            }
+            .image{
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 10px 10px 10px 10px;
+                margin-bottom: 50px;
+                .img-container{
+                    margin-top:20px;
+                    display: flex;
+                    width: 315px;
+                    height: 315px;
+                    overflow: hidden;
+                    margin: 5px;
+                    img{
+                        width: 100%;
+                        object-fit:cover;
+                        border-radius: 15px;
+                         
+                    }
+            }
+
+            }
+            .upload-cover {
+                position: absolute;
+                bottom: -5px;
+                left: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100px;
+                height: 40px;
+                text-align: center;
+                cursor: pointer;
+                font-size: 1rem;
+                border:none;
+                background-color: rgba(220, 145, 65, 0.731);
+                border-radius: 15px;
+                color: rgb(62, 39, 3);
+            input{
+                display: none;
+                }
+            }
+            .msg{
+                position: absolute;
+                bottom: -5px;
+                left: 175px;
+                height: 30px;
+            }
+
+        }
+    }
+}

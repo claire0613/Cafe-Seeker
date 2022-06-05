@@ -6,7 +6,7 @@
     
 }
 body{
-    background-color: #ECDEC4;
+    background-color: #f3eada;
 }
 h1,h2,h3,h4,h5,h6{
     font-weight: normal;
@@ -47,6 +47,10 @@ header{
                 cursor: pointer;
                 font-size: 1rem;;
                 transition: all 0.25s ease; 
+                a{
+                    color: white;
+                    text-decoration: none;
+                }
                 
             }
             :hover{
@@ -83,61 +87,64 @@ header{
 
 
 footer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin-top: 50px;
    
     background-color: #353333;
-    color: white;
-    .footer-head{
-        width: 700px;
-        font-size: 2rem;
-        font-family: "my Smooch",sans-serif;
-        margin-top: 20px;
-    }
-    ul{
-        width:500px ;
+    div{
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: center;
-        // margin-top: 20px;
-        
-       
-        li{
+        align-items: center;
+        position: relative;
+        margin-top: 50px;
+        font-size: 1.25rem;
+        color:white;
+        .footer-head{
+            width: 700px;
+            font-size: 2rem;
+            font-family: "my Smooch",sans-serif;
+            margin-top: 20px;
+
+        }
+        ul{
+            width:500px ;
             display: flex;
-            width: 100px;
-            height: 50px;
-            margin: 10px;
+            flex-wrap: wrap;
             justify-content: center;
-            a {
+            // margin-top: 20px;
+            
+        
+            li{
                 display: flex;
-                align-items: center;
-                text-decoration: none;
-                color: white;
                 width: 100px;
-                img{
-                    width: 2rem;
-                    margin-right: 0.5rem;
-                
-                
+                height: 50px;
+                margin: 10px;
+                justify-content: center;
+                a {
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    color: white;
+                    width: 100px;
+                    img{
+                        width: 2rem;
+                        margin-right: 0.5rem;
+                    
+                    
+                }
             }
-        }
-        }
+            }
     }
     .reference{
         display: flex;
         justify-content: center;
         align-items: center;
-
+        font-size: 1rem;
         height: 150px;
         width: 400px;
         margin: auto;
         div{
             width: 90%;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
         li{
             display: flex;
@@ -152,6 +159,9 @@ footer{
         }
 
     }
+
+    }
+    
    
 }
 @media screen and (max-width:1200px){

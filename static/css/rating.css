@@ -1,0 +1,208 @@
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 50px auto 50px auto;
+  width: 1200px;
+  background-color: #fff;
+  border-radius: 15px;
+  position: relative;
+  padding: 30px 0px 75px 0px;
+}
+
+main form .shop-name {
+  min-width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 200px;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 15px;
+}
+
+main form .shop-name a {
+  text-decoration: none;
+  padding: 0 15px 0 15px;
+}
+
+main form .rating-box {
+  min-width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+main form .rating-box div.score {
+  min-width: 100px;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+main form .rating-box .rating-label {
+  min-width: 100px;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 15px;
+}
+
+main form .rating-box .rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-flow: row-reverse;
+          flex-flow: row-reverse;
+  min-width: 300px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  margin: 10px;
+}
+
+main form .rating-box .rating input {
+  display: none;
+}
+
+main form .rating-box .rating label {
+  font-size: 50px;
+  color: gray;
+}
+
+main form .rating-box .rating label:checked ~ label[name="rating"] {
+  color: #ffd83c;
+}
+
+main form .rating-box .rating label:hover,
+main form .rating-box .rating label:hover ~ label[name="rating"] {
+  color: #ffd83c;
+}
+
+main form .rating-box .rating label.checked {
+  color: #ffd83c;
+}
+
+main form .rating-box .rating label.disabled {
+  color: #e1dfdf;
+  cursor: not-allowed;
+}
+
+main form .rating-box .rating label.disabled:hover,
+main form .rating-box .rating label.disabled:hover ~ label[name="rating"] {
+  color: #e1dfdf;
+}
+
+main form .rating-box .rating input[name=speed-rating] {
+  display: block;
+  width: 250px;
+  min-height: 40px;
+  padding-right: 10px;
+}
+
+main form .rating-box .rating input.disabled {
+  color: #e1dfdf;
+  cursor: not-allowed;
+}
+
+main form .rating-box .rating .unit {
+  position: absolute;
+  right: -30px;
+  top: 5px;
+  font-size: 1.25rem;
+}
+
+main form .rating-box .unit-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main form .rating-box .unit-div label {
+  text-align: center;
+}
+
+main form .rating-box .comment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  position: absolute;
+  right: -10px;
+  top: 20px;
+}
+
+main form .rating-box .comment #ignore-speed {
+  width: 15px;
+  margin: 5px;
+}
+
+main form .rating-box .comment #ignore-wifi {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+}
+
+main form .rating-box input[name=speed-rating] {
+  display: block;
+  width: 90%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+main form .score-btn {
+  position: absolute;
+  right: 45%;
+  bottom: 10px;
+  width: 150px;
+  height: 35px;
+  font-size: 1.5rem;
+  border: none;
+  background-color: rgba(220, 145, 65, 0.731);
+  border-radius: 15px;
+  color: #3e2703;
+  cursor: pointer;
+}
+/*# sourceMappingURL=rating.css.map */

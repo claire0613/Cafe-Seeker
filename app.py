@@ -3,6 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from env import DB_USER,DB_PASSWORD,DB_HOST,DB_NAME,SECRET_KEY
 from model.models import db
 from api.cafes import api
+from api.users import api
+from api.rating import api
+from api.photo import api
+from api.message import api
+import redis
 
 app=Flask(__name__)
 app.register_blueprint(api, url_prefix="/api")
@@ -38,6 +43,17 @@ db.init_app(app)
 def index():
     return render_template("index.html")
 
+@app.route("/rating/<cafe_id>")
+def rating(cafe_id):
+    return render_template("rating.html")
+
+@app.route("/success/<scr_id>")
+def rating_success(scr_id):
+    return render_template("ratingsuccess.html")
+@app.route("/fail/<scr_id>")
+def rating_fail(scr_id):
+    return render_template("ratingfail.html")
+
 
 @app.route("/shop/<id>")
 def shop(id):
@@ -50,11 +66,19 @@ def city(city):
 @app.route("/<city>/list")
 def city_list(city):
     return render_template("citylist.html")
+
 @app.route("/search",methods=['GET'])
 def search():
     return render_template("search.html")
 
 
+@app.route('/login')
+def login():
+    return render_template("login.html")
+
+@app.route("/member/<user_id>")
+def member(user_id):
+    return render_template("member.html")
 
 
 
@@ -66,4 +90,4 @@ def teardown_request(exception):
     db.session.remove()
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0',port=5000)
+	app.run(host='0.0.0.0',port=5000,debug=True)

@@ -5,14 +5,30 @@ from bs4 import BeautifulSoup
 
 import urllib.request as req
 
-
+import re 
 import sys,json
 sys.path.append("..")
-from model.models import Cafes, City_ref
+from model.models import Cafes, City_ref,Score_rec,db,Photo
+
+def rating_avg(data):
+    result_list=[]
+    for i in data:
+        if i !=0.0:
+            result_list.append(i)
+    if result_list :
+        return round(sum(result_list)/len(result_list),1)
+    return 0.0
+ 
+# cafes=Cafes().search_all()
+# for cafe in cafes: 
+
+
 
 # cafes=Cafes().search_all()
 # for cafe in cafes:
 #     cafe_nomad_id=cafe.cafe_nomad_id
+#     cafe.rating=rating_avg([cafe.price,cafe.wifi,cafe.vacancy,cafe.comfort,cafe.quiet,cafe.drinks])
+#     cafe.update()
 #     if cafe_nomad_id:
 #         url=f'https://cafenomad.tw/shop/{cafe_nomad_id}'
 #         request=req.Request(url,headers={
@@ -52,17 +68,17 @@ from model.models import Cafes, City_ref
 #                 target=city.text.strip()
 #                 cafe.area=target
 #                 cafe.update()
-#         if cafe.images ==[] or cafe.images ==None:
-#              if imgs !=[]:
-#                 new_img=[]
+#         # if cafe.images ==[] or cafe.images ==None:
+#             if imgs !=[]:
 #                 for img in imgs:
 #                     img_list=img.select('.photo')
+#                     num=1
 #                     for item in img_list:
+#                         num+=1
 #                         target='https://cafenomad.tw'+item.get('src')
-#                         new_img.append(target)
-#                 cafe.images=json.dumps(new_img)
-#                 cafe.update()
-       
+#                         photo=Photo(user_id=3,cafe_id=cafe.id,photo_url=target,photo_name=f'{cafe.id}_cafe_nomad.{num}')
+#                         photo.insert()
+#                     num=1
         
 #         time_list=[]
 #         if times !=[]:
@@ -74,8 +90,13 @@ from model.models import Cafes, City_ref
 #             }
 #             cafe.open_hours=json.dumps(time_dict,ensure_ascii=False)
 #             cafe.update()
-        
-import re      
+
+
+
+    
+ 
+
+     
         
  
 cafes=Cafes().search_all()
@@ -96,7 +117,7 @@ for cafe in cafes:
                 cafe.area=target
                 cafe.update()
         else:
-            query=City_ref.query.filter_by(city=cafe.city).first()
+            query=City_ref.query.filter_by(city_id=cafe.city_id).first()
 
             if cafe.area=='台北':
                 cafe.area=query.city_tw+'市'
@@ -104,9 +125,26 @@ for cafe in cafes:
             else:
                 cafe.area=query.city_tw
                 cafe.update()
+    
+         
         
 
 
        
         
         
+#         wifi=db.session.query(db.func.avg(Score_rec.wifi)).filter_by(cafe_id=cafe.id).scalar()
+#         print(wifi,cafe.wifi)
+
+
+        # if cafe.images ==[] or cafe.images ==None:
+        #      if imgs !=[]:
+        #         new_img=[]
+        #         for img in imgs:
+        #             img_list=img.select('.photo')
+        #             for item in img_list:
+        #                 target='https://cafenomad.tw'+item.get('src')
+        #                 new_img.append(target)
+                
+        #         cafe.images=json.dumps(new_img)
+        #         cafe.update()

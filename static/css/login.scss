@@ -1,0 +1,187 @@
+
+.signpage{
+    width: 100%;
+    .sign-container{
+        display: none;
+        width: 600px;
+        min-height: 550px;
+        margin: auto;
+        border-radius: 15px;
+        margin: 80px auto;
+        background-color: rgba(186, 186, 186, 0.491);
+        
+        .topbar{
+            background: linear-gradient(135deg, #8d6b3a 0%,  #3a290f 100%);
+            height: 60px;
+            border-radius: 15px 15px 0 0 ;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-size: 2rem;
+            font-family:'my Smooch',sans-serif;
+        }
+        .form-content{
+            width: 95%;
+            margin:auto 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            form{
+                width: 100%;
+                // display: flex;
+                // flex-direction: column;
+                .form-title{
+                    
+                    position: relative;
+                    color: #666666;
+                    margin: 15px 0px;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 2rem;
+                    margin-bottom: 15px;
+                    
+                }
+                .input-content{
+                    width: 100%;
+                    border-radius: 5px;
+                    margin-bottom: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    p{
+                        width: 100%;
+                        margin: 10px;
+                        font-size: 1.25rem;
+                    }
+                    .verify{
+                        
+                        width: 100%;
+                        input{
+                            border: 1px solid #cccccc;
+                            padding: 15px;
+                            color: #666666;
+                            font-size: 1.25rem;
+                            line-height: 13.3px;
+                            width: 100%;
+                            border-radius: 15px;
+                            margin-bottom: 10px;
+                            font-weight: bold;
+                        }
+                        .user-input-msg{
+                        min-height: 20px;
+                        }
+                    }
+                   
+                    }
+                    button{
+                        color: #ffffff;
+                        font-size: 1.5rem;
+                        border-radius: 15px;
+                        background: #574123;
+                        border: 0;
+                        padding: 10px;
+                        height: 60px;
+                        cursor: pointer;
+                    }   
+            }
+            .convert-sign{
+                color: #5e3705;
+                cursor: pointer;
+                width: fit-content;
+                margin: 0 auto;
+                padding-bottom: 15px;
+                font-size: 1.25rem;
+              
+            }
+            .message{
+                text-align:center ;
+                color: red;
+                margin-bottom: 5px;
+            }
+            }
+        
+    }
+    .sign-container.show{
+        display: block;
+    }
+    
+
+  
+}
+.signpage.showup{
+    display: block;
+}
+
+
+
+
+
+
+.form-content 
+
+.Info-container{
+    display:none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 3;
+    position: fixed;
+    top:0px;
+  
+}
+
+.Info-container>.order-success{
+    display: none;
+    width: 340px;
+    height: 200px;
+    margin: auto;
+    box-shadow: 0px 4px 60px #AAAAAA;
+    border-radius: 6px;
+    margin: 80px auto;
+    background-color: white;
+    text-align: center;
+
+}
+.Info-container>.order-success.show{
+    display: block;
+
+}
+.verify.invalid >input{
+    border-color: rgba(255, 0, 0, 0.8);
+}
+.verify.valid >input{
+    border-color: rgba(8, 176, 8, 0.891);
+}
+
+.user-input-msg span{
+    font-size: 14px;
+    padding-left:10px;
+    display: none;
+}
+:is(.invalid,.valid)>span{
+    display: block;
+}
+.user-input-msg.invalid{
+    color: red;
+}
+.user-input-msg.valid{
+    color: green;
+    margin: 0; opacity: 0; height: 0px;
+    animation:input-animation 1.3s;
+}
+@keyframes input-animation {
+    0% { margin: 0; opacity: 0; height: 0px; }
+    70% { margin: 2px 0 5px 0; opacity: 1; height: 14px; }
+    100% { margin: 0; opacity: 0; height: 0px; }
+}
+
+@media (max-width:600px){
+    
+        .signpage{
+            .sign-container{
+                width: 95%;
+            }
+   
+
+}
+}

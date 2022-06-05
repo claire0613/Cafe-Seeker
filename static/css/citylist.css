@@ -10,6 +10,7 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  min-height: 90vh;
 }
 
 main .description-container {
@@ -32,39 +33,124 @@ main .description-container .description {
 
 main .scroll-wrapper {
   width: 1200px;
+  background-color: white;
+  border-radius: 5px;
 }
 
-main .scroll-wrapper input.search-filter {
+main .scroll-wrapper form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .scroll-wrapper form .select-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 5px;
+}
+
+main .scroll-wrapper form .select-group .form-select {
+  background: #95e2e581;
+  font-size: 14px;
+  border-radius: 0.25rem;
+  height: 30px;
+  min-width: 130px;
+  border: 1px solid #874602cf;
+}
+
+main .scroll-wrapper .input-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 5px;
+  background: #d0b28cd6;
+  color: #3c2d08;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  min-height: 50px;
+}
+
+main .scroll-wrapper .input-div .btn {
+  border: none;
+  background: #9c641ba8;
+  font-size: large;
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 50px;
+}
+
+main .scroll-wrapper .input-div .btn img {
+  width: 30px;
+  height: 30px;
+  color: #5b3902;
+}
+
+main .scroll-wrapper .input-div input.search-filter {
+  width: 100%;
+  min-height: 50px;
+  background-color: #d0b28cd6;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: bold;
+  border: none;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  padding-left: 15px;
+}
+
+main .scroll-wrapper table {
   width: 100%;
 }
 
-main .scroll-wrapper thead tr {
+main .scroll-wrapper table thead tr {
   height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 100%;
+  margin: 20px 0px 20px 0px;
+  border-bottom: 2px solid #756141;
 }
 
-main .scroll-wrapper thead tr th {
+main .scroll-wrapper table thead tr th {
   min-width: 40px;
 }
 
-main .scroll-wrapper thead tr .name {
-  min-width: 200px;
+main .scroll-wrapper table thead tr .name {
+  min-width: 175px;
 }
 
-main .scroll-wrapper thead tr .transport {
+main .scroll-wrapper table thead tr .transport {
   min-width: 150px;
 }
 
-main .scroll-wrapper thead tr .open-hours {
-  min-width: 100px;
+main .scroll-wrapper table thead tr .open-hours {
+  min-width: 115px;
 }
 
-main tbody {
+main .scroll-wrapper table thead tr .vacancy {
+  min-width: 75px;
+}
+
+main .scroll-wrapper table thead :is(.quiet, .comfort) {
+  min-width: 50px;
+}
+
+main .scroll-wrapper table thead :is(.open_hours, .limited-time, .selling-meal) {
+  min-width: 65px;
+}
+
+main .scroll-wrapper tbody {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -74,39 +160,63 @@ main tbody {
           flex-direction: column;
 }
 
-main tbody tr {
+main .scroll-wrapper tbody tr {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 1200px;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  border-bottom: 2px solid #756141;
+  min-height: 60px;
 }
 
-main tbody tr td {
+main .scroll-wrapper tbody tr td {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 40px;
+  width: 50px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-main tbody tr td span {
-  min-height: 20px;
+main .scroll-wrapper tbody tr td span {
+  min-height: 30px;
   width: 100%;
+  text-align: center;
 }
 
-main tbody tr td.tb-name {
-  min-width: 200px;
+main .scroll-wrapper tbody tr td a {
+  text-decoration: none;
+  color: black;
+  text-align: center;
 }
 
-main tbody tr td.tb-mrt {
+main .scroll-wrapper tbody tr td.tb-vaca {
+  min-width: 75px;
+}
+
+main .scroll-wrapper tbody tr td.tb-name {
+  min-width: 175px;
+}
+
+main .scroll-wrapper tbody tr td.tb-mrt {
   min-width: 150px;
 }
 
-main tbody tr td.tb-open {
-  min-width: 100px;
+main .scroll-wrapper tbody tr td.tb-open {
+  min-width: 115px;
+}
+
+main .scroll-wrapper tbody tr :is(td.tb-quiet, td.tb-comfort) {
+  min-width: 50px;
+}
+
+main .scroll-wrapper tbody tr :is(td.tb-open, td.tb-limited_time, td.tb-mealing) {
+  min-width: 65px;
 }
 /*# sourceMappingURL=citylist.css.map */

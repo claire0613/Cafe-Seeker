@@ -4,7 +4,7 @@ from sqlalchemy import update
 import yaml
 import sys
 sys.path.append("..")
-from model.models import Cafes, Score_rec,City_ref
+from model.models import Cafes, Score_rec,City_ref, Station_ref,Photo
 import os,json
 from dotenv import load_dotenv
 load_dotenv()
@@ -24,6 +24,11 @@ def listing(data):
         return [data]
     else:
         return []
+def int_check(data):
+    if data:
+        return data
+    else:
+        return None
 def check_socket(data):
     if data:
         if data >=3 :
@@ -60,7 +65,11 @@ def check_hours(data):
                 data['sun']='未營業'
         return data       
 
-
+def set_default_int(data):
+    if data:
+        return data
+    else:
+        return 0
 
 def parseFile(filename,dir_f):
     #寫入資料庫
@@ -74,65 +83,67 @@ def parseFile(filename,dir_f):
         area=data.get("area")
         if area:
             area=area.lower()
-        imgs=data.get("images")
-        img_list=[]
-        if imgs:
-            for img in imgs:
-                image_url=os.getenv("CDN_URL")+f"cafe-seeker/{dir_f}/{filename[7:-3]}/{img}"
-                img_list.append(image_url)
+        # imgs=data.get("images")
+        # img_list=[]
+        # if imgs:
+        #     for img in imgs:
+            #     image_url=os.getenv("CDN_URL")+f"cafe-seeker/{dir_f}/{filename[7:-3]}/{img}"
+            #     img_list.append(image_url)
+          
         
        
         if not data.get("closed"):
             
             if data.get('content'):
                 data["review"]["en"]=content
+            city_a=dir_f
             if dir_f =='taiwan':
-                dir_f=data.get("area")
+                city_a=data.get("area")
+                if city_a:
+                    city_a=city_a.lower()
                 
             if coordinates and address and area:
                 latitude=data["coordinates"].split(',')[0]
                 longitude=data["coordinates"].split(',')[1]
+                city_search=City_ref.query.filter_by(city=city_a).first()
+                if city_search:
+                    city_id=city_search.city_id
+                else:
+                    city_id=None
+                station=Station_ref.query.filter_by(station=data.get("station")).first()
                 
-                result=Cafes(name=data.get("name"),area=area,city=dir_f,address=address,\
-                transport=data.get("station"),google_maps=data.get("google_maps"),latitude=latitude,longitude=longitude,\
-                open_hours=json.dumps(check_hours(data.get("hours")), ensure_ascii=False),open_time=data.get("open_time"),wifi=data.get("wifi"),\
-                speed=data.get("speed"),vacancy=data.get("vacancy"),\
-                comfort=data.get("comfort"),quiet=data.get("quiet"),\
-                food=data.get("food"),drinks=data.get("drinks"),price=data.get("price"),\
-                view=data.get("view"),toilets=data.get("toilets"),socket=check_socket(data.get("power")),limited_time=None,\
+                if station:
+                    station=station.station_tw
+             
+                result=Cafes(name=data.get("name"),area=area,city_id=city_id,address=address,\
+                transport=station,google_maps=data.get("google_maps"),latitude=latitude,longitude=longitude,\
+                open_hours=json.dumps(check_hours(data.get("hours")), ensure_ascii=False),open_time=data.get("open_time"),wifi=set_default_int(data.get("wifi")),\
+                speed=set_default_int(data.get("speed")),vacancy=set_default_int(data.get("vacancy")),\
+                comfort=set_default_int(data.get("comfort")),quiet=set_default_int(data.get("quiet")),\
+                food=set_default_int(data.get("food")),drinks=set_default_int(data.get("drinks")),price=set_default_int(data.get("price")),\
+                view=set_default_int(data.get("view")),toilets=set_default_int(data.get("toilets")),socket=check_socket(data.get("power")),limited_time=None,\
                 music=data.get("music"),smoking=data.get("smoking"),standing_tables=data.get("standing_tables"),outdoor_seating=data.get("outdoor_seating"),\
                 cash_only=data.get("cash_only"),animals=data.get("animals"),facebook=data.get("facebook"),\
-                instagram=data.get("instagram"),telephone=data.get("telephone"),website=data.get("website"),\
-                images=json.dumps(img_list, ensure_ascii=False),review=json.dumps(data.get("review"), ensure_ascii=False))
+                instagram=data.get("instagram"),telephone=data.get("telephone"),website=data.get("website"))
                 result.insert()
                 query_id=Cafes().search_by_name(data.get("name"))
                 id=query_id[-1].id
                 
-                record=Score_rec(cafe_id=id,wifi=json.dumps(listing(data.get("wifi"))),\
-                speed=json.dumps(listing(data.get("speed"))),\
-                vacancy=json.dumps(listing(data.get("vacancy"))),comfort=json.dumps(listing(data.get("comfort"))),quiet=json.dumps(listing(data.get("quiet"))),\
-                food=json.dumps(listing(data.get("food"))),drinks=json.dumps(listing(data.get("drinks"))),price=json.dumps(listing(data.get("price"))),\
-                view=json.dumps(listing(data.get("view"))),toilets=json.dumps(listing(data.get("toilets"))))
-                
+                record=Score_rec(user_id=2,cafe_id=id,wifi=int_check(data.get("wifi")),\
+                speed=int_check(data.get("speed")),\
+                vacancy=int_check(data.get("vacancy")),comfort=int_check(data.get("comfort")),quiet=int_check(data.get("quiet")),\
+                food=int_check(data.get("food")),drinks=int_check(data.get("drinks")),price=int_check(data.get("price")),\
+                view=int_check(data.get("view")),toilets=int_check(data.get("toilets")))
                 record.insert()
+                
+                imgs=data.get("images")
                
-                # result=Cafes()
-                # result.insert_data(name=data.get("name"),area=data.get("area"),city=dir_f,address=check_address(data.get("address")),\
-                # transport=data.get("station"),google_maps=data.get("google_maps"),latitude=latitude,longitude=longitude,\
-                # open_hours=json.dumps(data.get("hours")),open_time=data.get("open_time"),wifi=json.dumps(listing(data.get("wifi"))),\
-                # speed=json.dumps(listing(data.get("speed"))),socket=check_socket(data.get("power")),\
-                # vacancy=json.dumps(listing(data.get("vacancy"))),comfort=json.dumps(listing(data.get("comfort"))),quiet=json.dumps(listing(data.get("quiet"))),\
-                # food=json.dumps(listing(data.get("food"))),drinks=json.dumps(listing(data.get("drinks"))),price=json.dumps(listing(data.get("price"))),\
-                # view=json.dumps(listing(data.get("view"))),toilets=json.dumps(listing(data.get("toilets"))),\
-                # music=data.get("music"),smoking=data.get("smoking"),standing_tables=data.get("standing_tables"),outdoor_seating=data.get("outdoor_seating"),\
-                # cash_only=data.get("cash_only"),animals=data.get("animals"),facebook=data.get("facebook"),\
-                # instagram=data.get("instagram"),telephone=data.get("telephone"),website=data.get("website"),\
-                # images=json.dumps(data.get("images")),review=json.dumps(data.get("review")),content=data.get("content"),cafe_nomad_id=None,limited_time=None)
-               
-               
-               
-               
-               
+                if imgs:
+                    for img in imgs:
+                        photo=Photo(user_id=2,cafe_id=id,photo_url=os.getenv("CDN_URL")+f"cafe-seeker/{dir_f}/{filename[7:-3]}/{img}",photo_name=img)
+                        photo.insert()
+                
+ 
             return data
 
 
@@ -169,3 +180,23 @@ read_md_and_insert_db('taiwan',dir_f='taiwan')
 #         print(filename)
 #         # parseFile(filename,dir_f)
 # read_img_and_insert_db('../images/taipei/',dir_f='taipei')
+
+
+                # record=Score_rec(user_id=2,cafe_id=id,wifi=json.dumps(listing(data.get("wifi"))),\
+                # speed=json.dumps(listing(data.get("speed"))),\
+                # vacancy=json.dumps(listing(data.get("vacancy"))),comfort=json.dumps(listing(data.get("comfort"))),quiet=json.dumps(listing(data.get("quiet"))),\
+                # food=json.dumps(listing(data.get("food"))),drinks=json.dumps(listing(data.get("drinks"))),price=json.dumps(listing(data.get("price"))),\
+                # view=json.dumps(listing(data.get("view"))),toilets=json.dumps(listing(data.get("toilets"))))
+                
+                
+                # result=Cafes(name=data.get("name"),area=area,city_id=city_id,address=address,\
+                # transport=station,google_maps=data.get("google_maps"),latitude=latitude,longitude=longitude,\
+                # open_hours=json.dumps(check_hours(data.get("hours")), ensure_ascii=False),open_time=data.get("open_time"),wifi=set_default_int(data.get("wifi")),\
+                # speed=set_default_int(data.get("speed")),vacancy=set_default_int(data.get("vacancy")),\
+                # comfort=set_default_int(data.get("comfort")),quiet=set_default_int(data.get("quiet")),\
+                # food=set_default_int(data.get("food")),drinks=set_default_int(data.get("drinks")),price=set_default_int(data.get("price")),\
+                # view=set_default_int(data.get("view")),toilets=set_default_int(data.get("toilets")),socket=check_socket(data.get("power")),limited_time=None,\
+                # music=data.get("music"),smoking=data.get("smoking"),standing_tables=data.get("standing_tables"),outdoor_seating=data.get("outdoor_seating"),\
+                # cash_only=data.get("cash_only"),animals=data.get("animals"),facebook=data.get("facebook"),\
+                # instagram=data.get("instagram"),telephone=data.get("telephone"),website=data.get("website"),\
+                # images=json.dumps(img_list, ensure_ascii=False),review=json.dumps(data.get("review"), ensure_ascii=False))

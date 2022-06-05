@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `city_ref`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `city_ref` (
+  `city_id` int NOT NULL AUTO_INCREMENT,
   `city` varchar(100) NOT NULL,
-  `city_id` int DEFAULT NULL,
   `city_tw` varchar(100) NOT NULL,
-  PRIMARY KEY (`city`),
-  UNIQUE KEY `city_id` (`city_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`city_id`),
+  UNIQUE KEY `city` (`city`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `city_ref` (
 
 LOCK TABLES `city_ref` WRITE;
 /*!40000 ALTER TABLE `city_ref` DISABLE KEYS */;
-INSERT INTO `city_ref` VALUES ('changhua',8,'彰化'),('chiayi',10,'嘉義'),('hsinchu',4,'新竹'),('hualien',15,'花蓮'),('kaohsiung',12,'高雄'),('keelung',2,'基隆'),('kinmen',19,'金門'),('lienchiang',18,'連江'),('miaoli',5,'苗栗'),('nantou',7,'南投'),('penghu',16,'澎湖'),('pingtung',13,'屏東'),('taichung',6,'台中'),('tainan',11,'台南'),('taipei',1,'台北'),('taitung',17,'台東'),('taoyuan',3,'桃園'),('yilan',14,'宜蘭'),('yunlin',9,'雲林');
+INSERT INTO `city_ref` VALUES (1,'taipei','台北'),(2,'keelung','基隆'),(3,'taoyuan','桃園'),(4,'hsinchu','新竹'),(5,'miaoli','苗栗'),(6,'taichung','台中'),(7,'nantou','南投'),(8,'changhua','彰化'),(9,'yunlin','雲林'),(10,'chiayi','嘉義'),(11,'tainan','台南'),(12,'kaohsiung','高雄'),(13,'pingtung','屏東'),(14,'yilan','宜蘭'),(15,'hualien','花蓮'),(16,'penghu','澎湖'),(17,'taitung','台東'),(18,'lienchiang','連江'),(19,'kinmen','金門');
 /*!40000 ALTER TABLE `city_ref` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-22  3:24:47
+-- Dump completed on 2022-06-05 10:30:59

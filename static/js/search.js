@@ -31,14 +31,6 @@ async function keySearch(){
     
 
         let img=document.createElement('img')
-        // if (cafe.images){
-        //     let url=JSON.parse(cafe.images)[0]
-        //     url=encodeURI(url)
-        //     img.src=url;
-        //     img.alt='no pic';
-        //     box.append(img)
-        // }
-
         if (cafe.images!=='[]'){
             let url=JSON.parse(cafe.images)
             console.log(url)

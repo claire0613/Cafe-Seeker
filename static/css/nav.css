@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #ECDEC4;
+  background-color: #f3eada;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -79,6 +79,11 @@ header nav ul li {
   transition: all 0.25s ease;
 }
 
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
 header nav ul :hover {
   color: wheat;
 }
@@ -112,6 +117,10 @@ header nav ul :is(#signin-up-btn, #signout-btn, #member-page):hover {
 }
 
 footer {
+  background-color: #353333;
+}
+
+footer div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -127,18 +136,18 @@ footer {
           align-items: center;
   position: relative;
   margin-top: 50px;
-  background-color: #353333;
+  font-size: 1.25rem;
   color: white;
 }
 
-footer .footer-head {
+footer div .footer-head {
   width: 700px;
   font-size: 2rem;
   font-family: "my Smooch",sans-serif;
   margin-top: 20px;
 }
 
-footer ul {
+footer div ul {
   width: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -150,7 +159,7 @@ footer ul {
           justify-content: center;
 }
 
-footer ul li {
+footer div ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -162,7 +171,7 @@ footer ul li {
           justify-content: center;
 }
 
-footer ul li a {
+footer div ul li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -174,12 +183,12 @@ footer ul li a {
   width: 100px;
 }
 
-footer ul li a img {
+footer div ul li a img {
   width: 2rem;
   margin-right: 0.5rem;
 }
 
-footer .reference {
+footer div .reference {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -189,17 +198,18 @@ footer .reference {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-size: 1rem;
   height: 150px;
   width: 400px;
   margin: auto;
 }
 
-footer .reference div {
+footer div .reference div {
   width: 90%;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
-footer .reference li {
+footer div .reference li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -207,7 +217,7 @@ footer .reference li {
       justify-content: space-around;
 }
 
-footer .reference li a {
+footer div .reference li a {
   color: white;
   text-decoration: none;
   width: 150px;

@@ -65,5 +65,5 @@ function keyFormSubmit(e){
 
 
 }
-console.log(keywordform)
+
 keywordform.addEventListener('submit',keyFormSubmit)

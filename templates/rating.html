@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe-Seeker | City</title>
+    <link rel="stylesheet" href="../static/css/nav.css" />
+    <link rel="stylesheet" href="../static/css/rating.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <script src="https://kit.fontawesome.com/0b26f16c17.js" crossorigin="anonymous"></script> -->
+</head>
+<body>
+    <header>
+        <div class="topic"><a href="/">Cafe-Seeker</a></div>
+        <nav>
+            <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
+            <ul class="nav-link">
+                <!-- <li id="discussion">討論區</li> -->
+                <li id="member-page">會員專區</li>
+                <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
+                <li id="signout-btn">登出系統</li>
+            </ul>
+        </nav>
+    </header>
+    <div  class="search-box">
+        <div id="search-word"></div>
+        <div id="search-total"></div>
+   
+
+    </div>
+   
+    <main>
+       
+        <form id="score-form">
+            <div class="shop-name"></div>
+            <div class='rating-box'>
+                <div class='rating-label'>
+                價格便宜
+                </div>
+                <div class="score-price score"></div>
+                <div class="rating price-rating">
+                    <input type="radio" name="price-rating" value="" checked />
+                    <input type="radio" id="price-star5" name="price-rating" value="5" />
+                    <label  class="fa fa-star" name="rating" tag="price-rating" for="price-star5"></label>
+                
+                    <input type="radio" id="price-star4" name="price-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="price-rating" for="price-star4"></label>
+                
+                    <input type="radio" id="price-star3" name="price-rating" value="3" />
+                    <label  class="fa fa-star" name="rating" tag="price-rating" for="price-star3"></label>
+                
+                    <input type="radio" id="price-star2" name="price-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="price-rating" for="price-star2"></label>
+                
+                    <input type="radio" id="price-star1" name="price-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="price-rating" for="price-star1"></label>
+                
+                </div>
+                
+            </div>
+            <div class='rating-box'>
+                <div class='rating-label'>
+                wifi 穩定
+                </div>
+                <div class="score-wifi score"></div>
+                <div class="rating wifi-rating">
+                    <input type="radio" name="wifi-rating" value="" checked />
+                    <input type="radio" id="wifi-star5" name="wifi-rating" value="5" />
+                    <label  class="fa fa-star" name="rating" tag="wifi-rating" for="wifi-star5"></label>
+                
+                    <input type="radio" id="wifi-star4" name="wifi-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="wifi-rating" for="wifi-star4"></label>
+                
+                    <input type="radio" id="wifi-star3" name="wifi-rating" value="3" />
+                    <label  class="fa fa-star" name="rating" tag="wifi-rating" for="wifi-star3"></label>
+                
+                    <input type="radio" id="wifi-star2" name="wifi-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="wifi-rating" for="wifi-star2"></label>
+                
+                    <input type="radio" id="wifi-star1" name="wifi-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="wifi-rating" for="wifi-star1"></label>
+                
+                </div>
+                <div class="comment" >
+                    <input type='checkbox' name='ignore-wifi' value='1' id='ignore-wifi'>
+                    <label for='ignore-wifi'>沒在那用過 wifi，暫時不評這項</label>
+                </div>
+            </div>
+            <div class='rating-box'>
+                <div class='rating-label'>
+                通常有位
+                </div>
+                <div class="score-vaca score"></div>
+                <div class="rating vaca-rating">
+                    <input type="radio" name="vaca-rating" value="" checked />
+                    <input type="radio" id="vaca-star5" name="vaca-rating" value="5" />
+                    <label  class="fa fa-star" name="rating" tag="vaca-rating" for="vaca-star5"></label>
+                
+                    <input type="radio" id="vaca-star4" name="vaca-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="vaca-rating" for="vaca-star4"></label>
+                
+                    <input type="radio" id="vaca-star3" name="vaca-rating" value="3" />
+                    <label  class="fa fa-star" name="rating" tag="vaca-rating" for="vaca-star3"></label>
+                
+                    <input type="radio" id="vaca-star2" name="vaca-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="vaca-rating" for="vaca-star2"></label>
+                
+                    <input type="radio" id="vaca-star1" name="vaca-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="vaca-rating" for="vaca-star1"></label>
+                
+                </div>
+               
+            </div>
+            <div class='rating-box'>
+                <div class='rating-label'>
+                安靜程度
+                </div>
+                <div class="score-quiet score"></div>
+                <div class="rating quiet-rating">
+                    <input type="radio" name="quiet-rating" value="" checked />
+                    <input type="radio" id="quiet-star5" name="quiet-rating" value="5" />
+                    <label  class="fa fa-star"name="rating" tag="quiet-rating" for="quiet-star5"></label>
+                
+                    <input type="radio" id="quiet-star4" name="quiet-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="quiet-rating" for="quiet-star4"></label>
+                
+                    <input type="radio" id="quiet-star3" name="quiet-rating" value="3" />
+                    <label  class="fa fa-star" name="rating" tag="quiet-rating" for="quiet-star3"></label>
+                
+                    <input type="radio" id="quiet-star2" name="quiet-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="quiet-rating" for="quiet-star2"></label>
+                
+                    <input type="radio" id="quiet-star1" name="quiet-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="quiet-rating" for="quiet-star1"></label>
+                
+                </div>
+                
+            </div>
+            <div class='rating-box'>
+                <div class='rating-label'>
+                舒適程度
+                </div>
+                <div class="score-comfort score"></div>
+                <div class="rating comfort-rating">
+                    <input type="radio" name="comfort-rating" value="" checked />
+                    <input type="radio" id="comfort-star5" name="comfort-rating" value="5" />
+                    <label  class="fa fa-star"name="rating" tag="comfort-rating" for="comfort-star5"></label>
+                
+                    <input type="radio" id="comfort-star4" name="comfort-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="comfort-rating" for="comfort-star4"></label>
+                
+                    <input type="radio" id="comfort-star3" name="comfort-rating" value="3" />
+                    <label  class="fa fa-star" name="rating" tag="comfort-rating" for="comfort-star3"></label>
+                
+                    <input type="radio" id="comfort-star2" name="comfort-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="comfort-rating" for="comfort-star2"></label>
+                
+                    <input type="radio" id="comfort-star1" name="comfort-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="comfort-rating" for="comfort-star1"></label>
+                
+                </div>
+                
+            </div>
+            <div class='rating-box'>
+                <div class='rating-label'>
+                咖啡好喝
+                </div>
+                <div class="score-drinks score"></div>
+                <div class="rating drinks-rating">
+                    <input type="radio" name="drinks-rating" value="" checked />
+                    <input type="radio" id="drinks-star5" name="drinks-rating" value="5" />
+                    <label  class="fa fa-star"name="rating" tag="drinks-rating" for="drinks-star5"></label>
+                
+                    <input type="radio" id="drinks-star4" name="drinks-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="drinks-rating" for="drinks-star4"></label>
+                
+                    <input type="radio" id="drinks-star3" name="drinks-rating" value="3" />
+                    <label  class="fa fa-star" name="rating" tag="drinks-rating" for="drinks-star3"></label>
+                
+                    <input type="radio" id="drinks-star2" name="drinks-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="drinks-rating" for="drinks-star2"></label>
+                
+                    <input type="radio" id="drinks-star1" name="drinks-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="drinks-rating" for="drinks-star1"></label>
+                
+                </div>
+                
+            </div>
+
+            <div class='rating-box'>
+                <div class='rating-label'>
+                東西好吃
+                </div>
+                <div class="score-food score"></div>
+                <div class="rating food-rating">
+                    <input type="radio" name="food-rating" value="" checked />
+                    <input type="radio" id="food-star5" name="food-rating" value="5" />
+                    <label  class="fa fa-star"name="rating" tag="food-rating" for="food-star5"></label>
+                
+                    <input type="radio" id="food-star4" name="food-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="food-rating" for="food-star4"></label>
+                
+                    <input type="radio" id="food-star3" name="food-rating" value="3"value />
+                    <label  class="fa fa-star" name="rating" tag="food-rating" for="food-star3"></label>
+                
+                    <input type="radio" id="food-star2" name="food-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="food-rating" for="food-star2"></label>
+                
+                    <input type="radio" id="food-star1" name="food-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="food-rating" for="food-star1"></label>
+                
+                </div>
+     
+            </div>
+
+           
+
+            <div class='rating-box'>
+                <div class='rating-label'>
+                景色
+                </div>
+                <div class="score-view score"></div>
+                <div class="rating view-rating">
+                    <input type="radio" name="view-rating" value="" checked />
+                    <input type="radio" id="view-star5" name="view-rating" value="5" />
+                    <label  class="fa fa-star"name="rating" tag="view-rating" for="view-star5"></label>
+                
+                    <input type="radio" id="view-star4" name="view-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="view-rating" for="view-star4"></label>
+                
+                    <input type="radio" id="view-star3" name="view-rating" value="3" />
+                    <label  class="fa fa-star" name="rating" tag="view-rating" for="view-star3"></label>
+                
+                    <input type="radio" id="view-star2" name="view-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="view-rating" for="view-star2"></label>
+                
+                    <input type="radio" id="view-star1" name="view-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="view-rating" for="view-star1"></label>
+                
+                </div>
+                
+            </div>
+            <div class='rating-box'>
+                <div class='rating-label'>
+                廁所
+                </div>
+                <div class="score-toilets score"></div>
+                <div class="rating toilets-rating">
+                    <input type="radio" name="toilets-rating" value="" checked />
+                    <input type="radio" id="toilets-star5" name="toilets-rating" value="5" />
+                    <label  class="fa fa-star"name="rating" tag="toilets-rating" for="toilets-star5"></label>
+                
+                    <input type="radio" id="toilets-star4" name="toilets-rating" value="4" />
+                    <label  class="fa fa-star" name="rating" tag="toilets-rating" for="toilets-star4"></label>
+                
+                    <input type="radio" id="toilets-star3" name="toilets-rating" value="3" />
+                    <label  class="fa fa-star" name="rating" tag="toilets-rating" for="toilets-star3"></label>
+                
+                    <input type="radio" id="toilets-star2" name="toilets-rating" value="2" />
+                    <label  class="fa fa-star" name="rating" tag="toilets-rating" for="toilets-star2"></label>
+                
+                    <input type="radio" id="toilets-star1" name="toilets-rating" value="1" />
+                    <label  class="fa fa-star" name="rating" tag="toilets-rating" for="toilets-star1"></label>
+                
+                </div>
+                
+            </div>
+            <div class='rating-box'>
+                <div class='rating-label'>
+                WiFi 速度
+                </div>
+                <div class="score"></div>
+                <div class="unit-div">
+                    <div class="rating speed-rating">
+                        <input type="number" name='speed-rating' step='0.1' class="speed" placeholder="下載速度"pattern="[0-9]">
+                        <div class="unit">Mbps</div>
+                    </div>
+                    <label class="help-block" style="padding-left: 10px;">測速工具可以<a href="https://fast.com/" target="_blank">參考這個網站</a></label>
+                </div>
+                
+               
+                <div class="comment">
+                    <input type='checkbox' name='speed-rating' value='' id='ignore-speed'>
+                    <span>沒在那用過 wifi，暫時不評這項</span>
+                    
+                    
+                    
+                </div>
+              
+                    
+  
+            
+                </div>
+                
+            </div>
+            <button type="submit" class="score-btn">提交</button>
+          
+        </form>
+        
+    </main>
+
+    
+
+
+    <footer>
+        <div>
+            <h2 class="footer-head">Cafe-Seeker</h2>
+            <ul>
+                <li><a href="#"><img src="../static/icons/home_w.png">Home</a></li>
+                <li><a href="#"><img src="../static/icons/user_w 1.png">About</a></li>
+                <li><a href="#"><img src="../static/icons/mail _w.png">Contact</a></li>
+                <li><a href="#"><img src="../static/icons/Git_w.png">GitHub</a></li>
+    
+            </ul>
+            <div class="reference">
+                <div>References:</div>
+                <li><a href="#"> Cafe Nomad</a></li>
+                <li><a href="#">Cafe and Coword</a></li>
+            </div>
+            <p id="footer-p">COPYRIGHT © 2022</p>
+        </div>
+    </footer>
+    <script src="../static/js/nav.js"></script>
+    <script src="../static/js/rating.js"></script>
+   
+</body>
+</html>

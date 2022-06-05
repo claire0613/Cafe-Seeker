@@ -3,7 +3,7 @@ import urllib.request as req
 import json
 import sys
 sys.path.append("..")
-from model.models import Cafes,Score_rec,db
+from model.models import Cafes, City_ref,Score_rec,db
 def main():
 
     url="https://cafenomad.tw/api/v1.2/cafes"
@@ -27,8 +27,7 @@ def main():
         exist=cafe.search_nomad(search_name=result.get('name'),address=result.get('address'))
         if not '已結束營業' in result.get("open_time") and not '停業'in result.get("open_time") and not'已結束營業' in result.get("name") and not'停業' in result.get("name"):
             if exist :
-                    
-                exist.city=check_data_str(exist.city,result.get("city"))
+                
                 exist.longitude=check_coordinate(result.get("longitude"))
                 exist.latitude=check_coordinate(result.get("latitude"))
                 exist.transport=check_data_str(exist.transport,result.get('mrt'))
@@ -53,25 +52,31 @@ def main():
                 cafe.update()
                 if query_id:
                     cafe_id=query_id[-1].id
-                    cafe_scr=Score_rec().search_id(cafe_id=cafe_id)
-                    if cafe_scr:
+                #     cafe_scr=Score_rec().search_id(cafe_id=cafe_id)
+                #     if cafe_scr:
                     
-                        cafe_scr.wifi=check_score_js(check_j_l(cafe_scr.wifi),result.get('wifi'))
-                        cafe_scr.vacancy=check_score_js(check_j_l(cafe_scr.vacancy),result.get('seat'))
-                        cafe_scr.quiet=check_score_js(check_j_l(cafe_scr.quiet),result.get('quiet'))
-                        cafe_scr.food_rec=check_score_js(check_j_l(cafe_scr.food),result.get('tasty'))
-                        cafe_scr.drinks_rec=check_score_js(check_j_l(cafe_scr.drinks),result.get('tasty'))
-                        cafe_scr.price=check_score_js(check_j_l(cafe_scr.price),result.get('cheap'))
-                        cafe_scr.update()
+                #         cafe_scr.wifi=check_score_js(check_j_l(cafe_scr.wifi),result.get('wifi'))
+                #         cafe_scr.vacancy=check_score_js(check_j_l(cafe_scr.vacancy),result.get('seat'))
+                #         cafe_scr.quiet=check_score_js(check_j_l(cafe_scr.quiet),result.get('quiet'))
+                #         cafe_scr.food_rec=check_score_js(check_j_l(cafe_scr.food),result.get('tasty'))
+                #         cafe_scr.drinks_rec=check_score_js(check_j_l(cafe_scr.drinks),result.get('tasty'))
+                #         cafe_scr.price=check_score_js(check_j_l(cafe_scr.price),result.get('cheap'))
+                #         cafe_scr.update()
+                    record=Score_rec(user_id=3,cafe_id=cafe_id,wifi=int_nomad(result.get('wifi')),\
+                    vacancy=int_nomad(result.get('seat')),comfort=int_nomad(result.get('music')),quiet=int_nomad(result.get('quiet')),\
+                    food=int_nomad(result.get('tasty')),drinks=int_nomad(result.get('tasty')),price=int_nomad(result.get('cheap')))
+                    record.insert() 
+                
 
             else:
                 latitude=check_coordinate(result.get("latitude"))
                 longitude=check_coordinate(result.get("longitude"))
                 if latitude and longitude:
-                    insert_data=Cafes(name=result.get("name"),area=result.get("city"),city=result.get("city"),address=result.get("address"),\
-                        transport=result.get("mrt"),latitude=latitude,longitude=longitude,open_time=result.get("open_time"),wifi=result.get('wifi'),\
+                    city_id=City_ref.query.filter_by(city=result.get("city")).first().city_id
+                    insert_data=Cafes(name=result.get("name"),area=result.get("city"),city_id=city_id,address=result.get("address"),\
+                        transport=result.get("mrt"),latitude=latitude,longitude=longitude,open_time=result.get("open_time"),wifi=result.get('wifi'),speed=0,\
                         vacancy=result.get("seat"),comfort=result.get('music'),quiet=result.get("quiet"),food=result.get("tasty"),drinks=result.get("tasty"),price=result.get("cheap"),\
-                        socket=result.get('socket'),limited_time=result.get('limited_time'),\
+                        view=0,toilets=0,socket=result.get('socket'),limited_time=result.get('limited_time'),\
                         music=check_music_i(result.get('music')),standing_tables=check_standing_desk_i(result.get('standing_desk')),facebook=check_url(result.get('url'),'fb'),\
                         instagram=check_url(result.get('url'),'ig'),website=check_url(result.get('url'),'web'),\
                         cafe_nomad_id=result.get('id'))
@@ -79,17 +84,27 @@ def main():
                     query_id=cafe.search_by_name(result.get("name"))
                     if query_id:
                         cafe_id=query_id[-1].id
-                        record=Score_rec(cafe_id=cafe_id,wifi=listing_nomad(result.get('wifi')),\
-                            speed=json.dumps([]),vacancy=listing_nomad(result.get('seat')),comfort=listing_nomad(result.get('music')),quiet=listing_nomad(result.get('quiet')),\
-                            food=listing_nomad(result.get('tasty')),drinks=listing_nomad(result.get('tasty')),price=listing_nomad(result.get('cheap')),\
-                            view=json.dumps([]),toilets=json.dumps([]))
-                        record.insert()
+                    #     record=Score_rec(cafe_id=cafe_id,wifi=listing_nomad(result.get('wifi')),\
+                    #         speed=json.dumps([]),vacancy=listing_nomad(result.get('seat')),comfort=listing_nomad(result.get('music')),quiet=listing_nomad(result.get('quiet')),\
+                    #         food=listing_nomad(result.get('tasty')),drinks=listing_nomad(result.get('tasty')),price=listing_nomad(result.get('cheap')),\
+                    #         view=json.dumps([]),toilets=json.dumps([]))
+                    #     record.insert()
+                        record=Score_rec(user_id=3,cafe_id=cafe_id,wifi=int_nomad(result.get('wifi')),\
+                        vacancy=int_nomad(result.get('seat')),comfort=int_nomad(result.get('music')),quiet=int_nomad(result.get('quiet')),\
+                        food=int_nomad(result.get('tasty')),drinks=int_nomad(result.get('tasty')),price=int_nomad(result.get('cheap')))
+                        record.insert()            
 
 def listing_nomad(data):
     if data!=0:
         return json.dumps([data])
     else:
         return json.dumps([])
+    
+def int_nomad(data):
+    if data!=0:
+        return data
+    else:
+        return None
 
 
         
@@ -133,7 +148,7 @@ def check_score_js(exist_d,result):
 def check_score_f(exist_d,result):
     if exist_d:
         if result != 0:
-            return (exist_d+result)/2
+            return round((exist_d+result)/2,1)
         else:
             return exist_d
     else:
@@ -191,11 +206,11 @@ def check_data_str(exist_d,result):
 
 def check_url(data,status):
     if data != '':
-        if 'facebook' in data and 'fb' in status:
+        if 'facebook' in data and 'fb' in status and data.startswith('http'):
              return data
-        elif 'instagram'in data and 'ig' in status:
+        elif 'instagram'in data and 'ig' in status and data.startswith('http'):
              return data  
-        elif  'web' in status:
+        elif  'web' in status and data.startswith('http'):
              return data
     else:
         data=None
