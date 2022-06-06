@@ -11,12 +11,12 @@ for cafe in cafes:
         cafe_favor=Cafes_like.query.filter_by(cafe_id=cafe.id).count()
         cafe_rating=Score_rec.query.filter_by(cafe_id=cafe.id).count()
         cafe_msg=Message.query.filter_by(cafe_id=cafe.id).count()
-        view.search_count=cafe.search_count
-        view.cafe_favor_count=cafe_favor
-        view.cafe_msg_count=cafe_msg
-        view.cafe_rating_count=cafe_rating
+        update.search_count=cafe.search_count
+        update.cafe_favor_count=cafe_favor
+        update.cafe_msg_count=cafe_msg
+        update.cafe_rating_count=cafe_rating
 
-        view.update()
+        update.update()
     else:
         cafe_favor=Cafes_like.query.filter_by(cafe_id=cafe.id).count()
         cafe_rating=Score_rec.query.filter_by(cafe_id=cafe.id).count()
