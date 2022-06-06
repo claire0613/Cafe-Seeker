@@ -1,6 +1,5 @@
 
 
-from turtle import Screen
 from flask import *
 from sqlalchemy import or_,and_
 from . import api
