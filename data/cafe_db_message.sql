@@ -36,7 +36,7 @@ CREATE TABLE `message` (
   KEY `cafe_id` (`cafe_id`),
   CONSTRAINT `message_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `message_ibfk_2` FOREIGN KEY (`cafe_id`) REFERENCES `cafes` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (7,4,2000,'test1','測試~~\n',1,0,'2022-06-05 04:41:58');
+INSERT INTO `message` VALUES (7,4,2000,'test1','測試~~\n',1,0,'2022-06-05 04:41:58'),(34,4,1,'test1','測試~~\n',1,0,'2022-06-06 07:01:31'),(35,4,497,'test1','測試~~~',1,0,'2022-06-06 11:34:55'),(36,4,4,'test1','測試測試',1,1,'2022-06-06 12:20:55'),(37,5,4,'test2','哈囉\n',2,0,'2022-06-06 12:26:45');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-05 10:30:58
+-- Dump completed on 2022-06-06 12:34:49

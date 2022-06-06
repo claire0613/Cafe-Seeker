@@ -7,7 +7,7 @@ from api.users import api
 from api.rating import api
 from api.photo import api
 from api.message import api
-
+from api.favor import api
 
 app=Flask(__name__)
 app.register_blueprint(api, url_prefix="/api")
@@ -90,4 +90,4 @@ def teardown_request(exception):
     db.session.remove()
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0',port=5000)
+	app.run(host='0.0.0.0',port=5000,debug=True)

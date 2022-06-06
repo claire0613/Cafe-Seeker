@@ -13,15 +13,50 @@
             <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
             <ul class="nav-link">
                 <!-- <li id="discussion">討論區</li> -->
-                <li id="member-page">會員專區</li>
+                <!-- <li id="member-page">會員專區</li> -->
                 <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
                 <li id="signout-btn">登出系統</li>
             </ul>
         </nav>
     </header>
-    <div>
-        <img src ="/static/images/user.png">
-    </div>
+    <section class="member-info-container">
+        <div class="user-img">
+            <div class="user-pic"><img id="user-photo"></div>
+        </div>
+        <div class="user-info">
+            <div class="username-save ">使用者名稱:
+                <span class="username-auto"></span>
+                <button id="username-edit-icon"><i class="fa-solid fa-pencil"></i></button>
+            </div>
+            <div class="username-edit hide"> 使用者名稱:  
+                <span><input type="text" id="newName" placeholder="輸入新名稱" /></span>
+                <button id="username-save-icon"><i class="fa-solid fa-file-pen"></i></button>
+            </div>
+            
+            <div class="user-email">帳號信箱:<span id ="email"></span></div>
+            
+            <div class="pwd-save">密碼: 
+                <span>********</span>
+                <button id="pwd-edit-icon"><i class="fa-solid fa-pencil"></i></button></div> 
+            <div class ="pwd-edit hide">密碼:
+                <span><input type="text" id="newPwd" placeholder="輸入新密碼" /></span>
+                <button id="pwd-save-icon"><i class="fa-solid fa-file-pen"></i></button>
+                
+            </div>
+            <p class="modified-msg"></p>
+        </div>
+        
+    </section>
+    <main>
+        <section class="record">
+            <div class="update-div"></div>
+            <div class="favor-cafe-div"></div>
+            <div class="photo-div"></div>
+
+        </section>
+    </main>
+ 
+
     
     <script src="../static/js/nav.js"></script>
 </body>

@@ -1,5 +1,6 @@
 
 
+from turtle import Screen
 from flask import *
 from sqlalchemy import or_,and_
 from . import api
@@ -7,15 +8,28 @@ import jwt,sys,os
 sys.path.append("..")
 from dotenv import load_dotenv
 load_dotenv()
-from model.models import City_ref, Photo, db,Cafes,Message,Message_like,Users
+from model.models import City_ref, Photo, Score_rec, View, db,Cafes,Message,Message_like,Users,Cafes_like
 from datetime import datetime
+def cafe_photo_list(result):
 
+    cafe_list=[]
+    for item in result:
+        item_dict = {c.name: getattr(item[0], c.name) for c in item[0].__table__.columns}
+        if item[1]:
+            item_dict['photo_url']=item[1].photo_url
+        else:
+            item_dict['photo_url']=None
+        cafe_list.append(item_dict)
+
+    return cafe_list
+    
 def key_search(page, keyword=None):
     if not keyword:
-        result = Cafes.query.limit(20).offset(page*20).all()
-        all_count = Cafes.query.limit(20).offset(page*20).count()
+        result = db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).group_by(Cafes.id).limit(20).offset(page*20).all()
+        all_count = db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).group_by(Cafes.id).limit(20).offset(page*20).count()
         total_count=Cafes.query.count()
-       
+    
+    
     else:
      
         #有keyword 沒有city
@@ -23,27 +37,24 @@ def key_search(page, keyword=None):
         key_city=City_ref.query.filter(City_ref.city_tw==keyword).first()
         if key_city:
             city_id=key_city.city_id
-            query=Cafes.query.filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'),\
-                        Cafes.city_id==city_id))
+            query=db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'),\
+                        Cafes.city_id==city_id)).group_by(Cafes.id)
             all_count=query.limit(20).offset(page*20).count()
             total_count=query.count()
             
             
             result=query.limit(20).offset(page*20).all()
         else: 
-            query=Cafes.query.filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'))).\
-                limit(20).offset(page*20)
-            all_count= query.count()
+            query=db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).\
+                filter(or_(Cafes.name.like(f'%{keyword}%'),Cafes.address.like(f'%{keyword}%'))).group_by(Cafes.id)
+               
+            all_count= query.limit(20).offset(page*20).count()
             total_count= query.count()
             result= query.all()
                 
-                  
-    cafe_list=[]
-    for cafe in result:
-        cafe_dict = {c.name: getattr(cafe, c.name) for c in cafe.__table__.columns}
-        cafe_list.append(cafe_dict)
+    answer=cafe_photo_list(result)
   
-    return {'cafe_list':cafe_list,'all_count':all_count,'total_count':total_count}
+    return {'cafe_list':answer,'all_count':all_count,'total_count':total_count}
 
     
 def city_search_cafe(page,city=None):
@@ -177,7 +188,7 @@ def city_cafe_filter(page,keyword,city,rating,price,wifi,vacancy,drinks,quiet,co
     
 @api.route('/city', methods=['GET'])
 def get_city():
-    # try:
+    try:
         page = int(request.args.get('page'))
         limit=4
         result_list=[]
@@ -197,8 +208,8 @@ def get_city():
             }
             result_list.append(data)
         return  jsonify({'data':result_list,'nextPage':nextpage})
-    # except:
-    #     return jsonify({"error": True, "message": "伺服器內部錯誤"})
+    except:
+        return jsonify({"error": True, "message": "伺服器內部錯誤"})
     
     
 @api.route('/search',methods=['GET'])
@@ -207,6 +218,7 @@ def get_shop_key():
         page = int(request.args.get('page'))
         keyword=request.args.get('keyword')
         result=key_search(page=page,keyword=keyword)
+        
         surplus=result['all_count']
         if surplus<20:
             next_page=None
@@ -250,12 +262,7 @@ def get_city_filter():
         result=city_cafe_filter(page=page,city=city,keyword=keyword,price=price,wifi=wifi,vacancy=vacancy,drinks=drinks,quiet=quiet,comfort=comfort,\
         limited_time=limited_time,meal_selling=meal_selling,rating=rating)
 
-        # if keyword:
-        #     keyword='aaa'
-        # else:
-        #     keyword='000'
-        # return f'{page},{city},{price},{keyword},{rating},{wifi},{vacancy},{food},{quiet},{comfort},{limited_time},{meal_selling}'
-       
+
     
         if result:
             surplus=result['all_count']
@@ -269,6 +276,16 @@ def get_city_filter():
     except:
         return jsonify({"error": True, "message": "伺服器內部錯誤"})
     
+@api.route('/shop/search_count', methods=['POST'])
+def shop_search_count():
+    try:
+        score=Score_rec.query.order_by(Score_rec)(Photo.create_time.desc()).filter_by(cafe_id=cafe_id).limit(15)
+    except:
+        return jsonify({"error": True, "message": "伺服器內部錯誤"})
+    
+    
+    
+    
     
     
 @api.route('/shop/<cafe_id>', methods=['GET'])
@@ -281,6 +298,12 @@ def get_shop(cafe_id):
             msg_t=[]
             msg_list=Message.query.order_by(Message.create_time).filter_by(cafe_id=cafe_id).all()
             token_cookie=request.cookies.get('user_cookie')
+           
+            score_count=Score_rec.query.filter_by(cafe_id=cafe_id).count()
+            if token_cookie:
+                is_login=True
+            else:
+                 is_login=False
             for photo in photo_list:
                 photo_t.append(photo.photo_url)
             for msg in msg_list:
@@ -290,6 +313,7 @@ def get_shop(cafe_id):
                 if token_cookie:
                     user=jwt.decode(token_cookie,os.getenv("SECRET_KEY"),algorithms=['HS256'])
                     user_id=user['id']
+                    
                     is_favor=Message_like.query.filter_by(msg_id=msg.msg_id,user_id=user_id).first()
                     if is_favor:
                         is_favor=True
@@ -302,7 +326,7 @@ def get_shop(cafe_id):
                 
                  
             result=result.as_dict()
-            return  jsonify({ "data": result,"photo_url":photo_t,'message':msg_t})
+            return  jsonify({ "data": result,"photo_url":photo_t,'message':msg_t,'is_login':is_login,'score_count':score_count})
         
             
         
@@ -311,5 +335,75 @@ def get_shop(cafe_id):
     except:
         return jsonify({"error": True, "message": "伺服器內部錯誤"})
      
+     
+    
+@api.route('/shop/view/<cafe_id>', methods=['POST'])
+def post_shop_browse(cafe_id):
+    try:
+
+        cafe=Cafes.query.filter_by(id=cafe_id).first()
+        add=cafe.search_count+1
+        cafe.search_count=add
+        cafe.update()
+        return jsonify({ "data": True,"now_search_count":add})
+    except:
+        return jsonify({"error": True, "message": "伺服器內部錯誤"})
+    
+    
+@api.route('/city/view', methods=['GET'])
+def get_city_view():
+    try:
+        search_list=[]
+        favor_list=[]
+        msg_list=[]
+        rating_list=[]
+        search_count=View.query.order_by(View.search_count.desc()).limit(8).all()
+        for search in search_count:
+            search_data=db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).filter(Cafes.id==search.cafe_id).group_by(Cafes.id).first()
+            search_t=search_data[0].as_dict()
+            if search_data[1]:
+                search_t['photo_url']=search_data[1].photo_url
+            else:
+                search_t['photo_url']=None
+            search_list.append(search_t)
+        cafe_favor=View.query.order_by(View.cafe_favor_count.desc()).limit(8).all()
+        for favor in cafe_favor:
+            favor_data=db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).filter(Cafes.id==favor.cafe_id).group_by(Cafes.id).first()
+            favor_t=favor_data[0].as_dict()
+            if favor_data[1]:
+                favor_t['photo_url']=favor_data[1].photo_url
+            else:
+                favor_t['photo_url']=None
+            favor_list.append(favor_t)
+        
+        cafe_msg=View.query.order_by(View.cafe_msg_count.desc()).limit(8).all()
+        for msg in cafe_msg:
+            msg_data=db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).filter(Cafes.id==msg.cafe_id).group_by(Cafes.id).first()
+            msg_t=msg_data[0].as_dict()
+            if msg_data[1]:
+                msg_t['photo_url']=msg_data[1].photo_url
+            else:
+                msg_t['photo_url']=None
+            msg_list.append(msg_t)
+        
+        cafe_rating=View.query.order_by(View.cafe_rating_count.desc()).limit(8).all()
+        for rating in cafe_rating:
+            rating_data=db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).filter(Cafes.id==rating.cafe_id).group_by(Cafes.id).first()
+            rating_t=rating_data[0].as_dict()
+            if rating_data[1]:
+                rating_t['photo_url']=rating_data[1].photo_url
+            else:
+                rating_t['photo_url']=None
+            rating_list.append(rating_t)
+        
+        return jsonify({ "data": True,"search_count":search_list,"cafe_favor":favor_list,"cafe_msg":msg_list,"cafe_rating":rating_list})
+    except:
+        return jsonify({"error": True, "message": "伺服器內部錯誤"})
+    
+    
+    
+    
+    
+    
     #  db.session.query(City_ref).order_by(City_ref.city_id).offset(page).limit(limit).all()
     # page=0&city=taipei&keyword=&rating=&price=&wifi=&vacancy=&food=&quiet=&comfort=&limted_time=&meal_selling=

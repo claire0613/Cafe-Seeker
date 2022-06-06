@@ -176,6 +176,16 @@ class Cafes_like(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
     cafe_id = db.Column(db.Integer, db.ForeignKey('cafes.id', ondelete='CASCADE'), nullable=False)
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    def update(self):
+        db.session.commit()
+    def as_dict(self):
+        return{c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 Index('users_cafes_index',Cafes_like.user_id, Cafes_like.cafe_id)
 
@@ -293,6 +303,26 @@ class Update_detail(db.Model):
     def as_dict(self):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
     
+    
+class View(db.Model):
+    __tablename__='view'
+    view_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
+    cafe_id=db.Column(db.Integer, db.ForeignKey('cafes.id', ondelete='CASCADE'), nullable=False)
+    search_count=db.Column(db.Integer, server_default=text("0"), nullable=False)
+    cafe_favor_count=db.Column(db.Integer, server_default=text("0"), nullable=False)
+    cafe_rating_count=db.Column(db.Integer, server_default=text("0"), nullable=False)
+    cafe_msg_count=db.Column(db.Integer, server_default=text("0"), nullable=False)
+    update_time=db.Column(db.DateTime, server_default=text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+    
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    def update(self):
+        db.session.commit()
+    
+    def as_dict(self):
+        return{c.name: getattr(self, c.name) for c in self.__table__.columns}
     
 
 # class Board(db.Model):

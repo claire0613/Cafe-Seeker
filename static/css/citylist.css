@@ -65,7 +65,18 @@ main .scroll-wrapper form .select-group .form-select {
   border-radius: 0.25rem;
   height: 30px;
   min-width: 130px;
+  text-align: center;
   border: 1px solid #874602cf;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 main .scroll-wrapper .input-div {
@@ -123,7 +134,7 @@ main .scroll-wrapper table thead tr {
 }
 
 main .scroll-wrapper table thead tr th {
-  min-width: 40px;
+  min-width: 50px;
 }
 
 main .scroll-wrapper table thead tr .name {
@@ -131,7 +142,7 @@ main .scroll-wrapper table thead tr .name {
 }
 
 main .scroll-wrapper table thead tr .transport {
-  min-width: 150px;
+  min-width: 130px;
 }
 
 main .scroll-wrapper table thead tr .open-hours {
@@ -160,7 +171,12 @@ main .scroll-wrapper tbody {
           flex-direction: column;
 }
 
-main .scroll-wrapper tbody tr {
+main .scroll-wrapper tbody a {
+  text-decoration: none;
+  color: black;
+}
+
+main .scroll-wrapper tbody .tr-box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,7 +187,7 @@ main .scroll-wrapper tbody tr {
   min-height: 60px;
 }
 
-main .scroll-wrapper tbody tr td {
+main .scroll-wrapper tbody .tr-box td {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -184,39 +200,39 @@ main .scroll-wrapper tbody tr td {
           justify-content: center;
 }
 
-main .scroll-wrapper tbody tr td span {
+main .scroll-wrapper tbody .tr-box td span {
   min-height: 30px;
   width: 100%;
   text-align: center;
 }
 
-main .scroll-wrapper tbody tr td a {
+main .scroll-wrapper tbody .tr-box td a {
   text-decoration: none;
   color: black;
   text-align: center;
 }
 
-main .scroll-wrapper tbody tr td.tb-vaca {
+main .scroll-wrapper tbody .tr-box td.tb-vaca {
   min-width: 75px;
 }
 
-main .scroll-wrapper tbody tr td.tb-name {
+main .scroll-wrapper tbody .tr-box td.tb-name {
   min-width: 175px;
 }
 
-main .scroll-wrapper tbody tr td.tb-mrt {
+main .scroll-wrapper tbody .tr-box td.tb-mrt {
   min-width: 150px;
 }
 
-main .scroll-wrapper tbody tr td.tb-open {
+main .scroll-wrapper tbody .tr-box td.tb-open {
   min-width: 115px;
 }
 
-main .scroll-wrapper tbody tr :is(td.tb-quiet, td.tb-comfort) {
+main .scroll-wrapper tbody .tr-box :is(td.tb-quiet, td.tb-comfort) {
   min-width: 50px;
 }
 
-main .scroll-wrapper tbody tr :is(td.tb-open, td.tb-limited_time, td.tb-mealing) {
+main .scroll-wrapper tbody .tr-box :is(td.tb-open, td.tb-limited_time, td.tb-mealing) {
   min-width: 65px;
 }
 /*# sourceMappingURL=citylist.css.map */

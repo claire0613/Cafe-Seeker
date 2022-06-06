@@ -35,4 +35,28 @@ function scoreRender(value){
 
     }
 }
-export {getValueColor,scoreRender}
+
+function star(text,value,card){
+  let fill=parseInt(value);
+  let empty=parseInt(5-value);
+  let half=value%1;
+  card.append(text)
+
+  for (let i=0;i < fill;i++){
+      let i=document.createElement('img')
+      i.src='../static/icons/filled-star_w_20.png'
+      card.append(i)
+  }
+  if (half!==0){
+      let i=document.createElement('img')
+      i.src='../static/icons/star-half_w_20.png'
+      card.append(i)
+  }
+  for (let i=0;i < empty;i++){
+      let i=document.createElement('img')
+      i.src='../static/icons/bx-star_w_20.png'
+      card.append(i)
+}
+
+}
+export {getValueColor,scoreRender,star}

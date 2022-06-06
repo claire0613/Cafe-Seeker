@@ -6,6 +6,7 @@ const keySearchApi=`api/search?keyword=${keyword}&page=${search_page}`;
 const searchWord=document.querySelector('#search-word')
 const searchTotal=document.querySelector('#search-total')
 const  ITEM_PER_PAGE=8;
+import  {star} from './datahelper.js'
 let pagination=document.querySelector('#pagination');
 // let pageNavigation=document.querySelector('.page-navigation');
 
@@ -28,19 +29,18 @@ async function keySearch(){
         
         let box = document.createElement('div');
         box.classList.add('cafe-box')
+        let link=document.createElement('a');
+        link.href=`/shop/${cafe.id}`
     
 
         let img=document.createElement('img')
-        if (cafe.images!=='[]'){
-            let url=JSON.parse(cafe.images)
-            console.log(url)
-            if(url!==null){
-                url=encodeURI(url[0])
-                img.src=url;
-                img.alt='no pic';
-                box.append(img)
-
-            }
+        if (cafe.photo_url){
+            
+            let url=encodeURI(cafe.photo_url)
+            img.src=url;
+            img.alt='no pic';
+            box.append(img)
+            
     
         }
 
@@ -70,7 +70,8 @@ async function keySearch(){
         }
         
         box.append(name,card1,card2,card3)
-        keySearchContent.append(box)
+        link.append(box)
+        keySearchContent.append(link)
     }
     if(result.nextPage!==null){
         getTotalPages(result.totalPage,search_page)
@@ -184,26 +185,3 @@ async function keySearch(){
    
 
 keySearch()
-function star(text,value,card){
-        let fill=parseInt(value);
-        let empty=parseInt(5-value);
-        let half=value%1;
-        card.append(text)
-
-        for (let i=0;i < fill;i++){
-            let i=document.createElement('img')
-            i.src='../static/icons/filled-star_w_20.png'
-            card.append(i)
-        }
-        if (half!==0){
-            let i=document.createElement('img')
-            i.src='../static/icons/star-half_w_20.png'
-            card.append(i)
-        }
-        for (let i=0;i < empty;i++){
-            let i=document.createElement('img')
-            i.src='../static/icons/bx-star_w_20.png'
-            card.append(i)
-    }
-    
-}

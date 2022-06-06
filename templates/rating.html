@@ -17,23 +17,21 @@
             <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
             <ul class="nav-link">
                 <!-- <li id="discussion">討論區</li> -->
-                <li id="member-page">會員專區</li>
+                <!-- <li id="member-page">會員專區</li> -->
                 <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
                 <li id="signout-btn">登出系統</li>
             </ul>
         </nav>
     </header>
-    <div  class="search-box">
-        <div id="search-word"></div>
-        <div id="search-total"></div>
-   
 
-    </div>
    
     <main>
-       
-        <form id="score-form">
+        <div  class="search-box">
             <div class="shop-name"></div>
+
+        </div>
+        <form id="score-form">
+            <!-- <div class="shop-name"></div> -->
             <div class='rating-box'>
                 <div class='rating-label'>
                 價格便宜
@@ -322,7 +320,7 @@
         </div>
     </footer>
     <script src="../static/js/nav.js"></script>
-    <script src="../static/js/rating.js"></script>
-   
+    <script type="module"src="../static/js/rating.js"></script>
+    <script type="module" src="../static/js/datahelper.js"></script>
 </body>
 </html>

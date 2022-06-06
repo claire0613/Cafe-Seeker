@@ -1,6 +1,6 @@
 const signinupBtn = document.querySelector('#signin-up-btn');
 const signoutBtn=document.querySelector('#signout-btn')
-const memberPage=document.querySelector('#member-page')
+// const memberPage=document.querySelector('#member-page')
 const userApi = '/api/user';
 
 
@@ -12,13 +12,13 @@ const userApi = '/api/user';
     if(result.data){
         signinupBtn.classList.remove('show');
         signoutBtn.classList.add('show');
-        memberPage.classList.add('show');
+        // memberPage.classList.add('show');
         
         
     }else{
         signinupBtn.classList.add('show');
         signoutBtn.classList.remove('show');
-        memberPage.classList.remove('show');
+        // memberPage.classList.remove('show');
         
     }
        
@@ -44,17 +44,17 @@ signoutBtn.addEventListener('click', signout);
 const memberapi=`/api/member`
 
 
-memberPage.addEventListener("click",async(e)=>{
-    const response=await fetch(userApi);
-    const promise=await response.json();
-    const result =await promise;
-    if (result.data){
-        location.replace('/member')
+// memberPage.addEventListener("click",async(e)=>{
+//     const response=await fetch(userApi);
+//     const promise=await response.json();
+//     const result =await promise;
+//     if (result.data){
+//         location.replace('/member')
             
-        }else{
-            location.replace('/login');
-        }
-});
+//         }else{
+//             location.replace('/login');
+//         }
+// });
 
 
 

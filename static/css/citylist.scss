@@ -1,3 +1,6 @@
+
+
+
 main{
     margin: auto;
     display: flex;
@@ -23,8 +26,7 @@ main{
         width: 1200px;
         background-color: rgb(255, 255, 255);
         border-radius: 5px ;
-       
-        // flex-direction: column;
+    
         form{
            
             display: flex;
@@ -35,22 +37,21 @@ main{
                 display: flex;
                 justify-content: space-around;
                 margin: 5px;
+                
                 .form-select{
                     background: #95e2e581;
                     font-size: 14px;
                     border-radius: 0.25rem;
                     height: 30px;
                     min-width: 130px;
-               
+                    text-align: center;
                     border: 1px solid #874602cf;
-    
-                    option{
-                        
-                    }
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                   
                 }
-                .form-select{
-    
-                }
+
 
             }
 
@@ -107,13 +108,13 @@ main{
                 margin:20px 0px 20px 0px;
                 border-bottom: 2px solid rgb(117, 97, 65);
                 th{
-                    min-width:40px;   
+                    min-width:50px;   
                 }
                 .name{
                     min-width: 175px;
                 }
                 .transport{
-                    min-width: 150px;
+                    min-width: 130px;
                 }
                 .open-hours{
                     min-width: 115px;
@@ -136,8 +137,12 @@ main{
             // flex-direction: column;
             display: flex;
             flex-direction: column;
-         
-            tr{
+            a{
+                text-decoration: none;
+                color: black;
+               
+            }
+            .tr-box{
                 display: flex;
                 width: 1200px;
                 justify-content: space-around;

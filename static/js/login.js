@@ -97,8 +97,9 @@ async function signin(e){
                 signinCheck();
                 signinupBtn.classList.remove('show');
                 signoutBtn.classList.add('show');
-                memberPage.classList.add('show');
-                location.replace('/')
+                // memberPage.classList.add('show');
+                // location.replace('/')
+                history.go(-1);
             
             }
       

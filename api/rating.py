@@ -95,6 +95,7 @@ def update_rating(scr_id):
             scr_id=scr_id
             history=Score_rec.query.filter_by(scr_id=scr_id,user_id=user_id).first()
             data = request.json
+            cafe_id=data['cafe_id']
             history.price=data['price']
             history.wifi=data['wifi']
             history.vacancy=data['vacancy']

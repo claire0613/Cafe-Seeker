@@ -1,6 +1,6 @@
 const cafe_id=document.URL.split('/').at(-1);
 const shopName=document.querySelector('.shop-name');
-const scoreDiv=document.querySelector('.score_div');
+
 const wifiSpan=document.querySelector('#wifi-span');
 const vacaSpan=document.querySelector('#vaca-span');
 const priceSpan=document.querySelector('#price-span');
@@ -11,6 +11,7 @@ const drinksSpan=document.querySelector('#drinks-span');
 const viewSpan=document.querySelector('#view-span');
 const toiletsSpan=document.querySelector('#toilets-span');
 const speedSpan=document.querySelector('#speed-span');
+const scoreCount=document.querySelector('#score-count');
 const singleSelling=document.querySelector('#single-span');
 const limitedTime=document.querySelector('#limited-span');
 const dessertSpan=document.querySelector('#dessert-span');
@@ -64,6 +65,12 @@ async function shopInit(){
         viewSpan.style.color=getValueColor(data.view);
         toiletsSpan.innerText=scoreRender(data.toilets);
         toiletsSpan.style.color=getValueColor(data.toilets);
+        if(result.score_count ===0){
+            scoreCount.innerText=`目前無人評分`
+        }else{
+            scoreCount.innerText=`這間店目前由 ${result.score_count} 位共同評分`
+        }
+   
         if (data.speed !=0){
             speedSpan.innerText=data.speed.toFixed(1);
         }
@@ -111,75 +118,72 @@ async function shopInit(){
         }
         
         phoneSpan.innerText=data.telephone;
-
-
-
-    }
-    const msgContent=result.message
-    if(msgContent !==null){
-        msgDiv.innerText='';
-        for (let msg of msgContent){
-            if (msg!==null ){
-                const msgBox=document.createElement('form')
-                msgBox.classList.add('msg-box')
-                const userBox=document.createElement('div')
-                userBox.classList.add('user-box')
-                const userName=document.createElement('div')
-        
-                userName.innerText=msg.user_name
-                const ImgContainer= document.createElement('div')
-                ImgContainer.classList.add('img-container')
-                const userImg = document.createElement('img')
-                userImg.src = msg.user_avatar
-                ImgContainer.append(userImg)
-                userBox.append(ImgContainer,userName)
-                //deletion icon
-                if(msg.now_user===msg.user_id){
-                    const deleteBtn = document.createElement('Button')
-                    const deleteicon=document.createElement('img')
-                    deleteicon.src="/static/icons/icon_delete.png"
-                    deleteBtn.type = 'submit'
-                    deleteBtn.classList.add('delete-icon')
-                    deleteBtn.append(deleteicon)
-                    msgBox.append(deleteBtn)
-                }
-                //msg id (invisible)
-                const msgId=document.createElement('input');
-                msgId.style.display='none';
-                msgId.classList.add('msgId');
-                msgId.value = msg.msg_id;
-                const content =document.createElement('span');
-                content.innerText=msg.msg_content;
-                content.classList.add('content')
-                
-                const favorDiv=document.createElement('div')
-                favorDiv.classList.add('msgfavor-div')
-                
-                const favorBtn=document.createElement('button')
-                favorBtn.classList.add('favor-btn')
-                favorBtn.value=msg.msg_id
-                const favorIcon=document.createElement('img')
-                if(msg.is_favor){
-                    favorIcon.src="/static/icons/heart-fill.png"
-                }else{
-                    favorIcon.src="/static/icons/heart-emt.png"
-                }
-                const likeCount=document.createElement('span')
-                likeCount.innerText=msg.like_count
-                favorBtn.append(favorIcon)
-                favorDiv.append(favorBtn,likeCount)
-                const time=document.createElement('span')
-                time.classList.add('time')
-                time.innerText=msg.create_time;
-                msgBox.append(userBox,msgId,content,favorDiv,time)
-                msgDiv.append(msgBox)
-
-
-        }
-      
-    }
+        const msgContent=result.message
+        if(msgContent !==null){
+            msgDiv.innerText='';
+            for (let msg of msgContent){
+                if (msg!==null ){
+                    const msgBox=document.createElement('form')
+                    msgBox.classList.add('msg-box')
+                    const userBox=document.createElement('div')
+                    userBox.classList.add('user-box')
+                    const userName=document.createElement('div')
+            
+                    userName.innerText=msg.user_name
+                    const ImgContainer= document.createElement('div')
+                    ImgContainer.classList.add('img-container')
+                    const userImg = document.createElement('img')
+                    userImg.src = msg.user_avatar
+                    ImgContainer.append(userImg)
+                    userBox.append(ImgContainer,userName)
+                    //deletion icon
+                    if(msg.now_user===msg.user_id){
+                        const deleteBtn = document.createElement('Button')
+                        const deleteicon=document.createElement('img')
+                        deleteicon.src="/static/icons/icon_delete.png"
+                        deleteBtn.type = 'submit'
+                        deleteBtn.classList.add('delete-icon')
+                        deleteBtn.append(deleteicon)
+                        msgBox.append(deleteBtn)
+                    }
+                    //msg id (invisible)
+                    const msgId=document.createElement('input');
+                    msgId.style.display='none';
+                    msgId.classList.add('msgId');
+                    msgId.value = msg.msg_id;
+                    const content =document.createElement('span');
+                    content.innerText=msg.msg_content;
+                    content.classList.add('content')
+                    
+                    const favorDiv=document.createElement('div')
+                    favorDiv.classList.add('msgfavor-div')
+                    
+                    const favorBtn=document.createElement('button')
+                    favorBtn.classList.add('favor-btn')
+                    favorBtn.value=msg.msg_id
+                    const favorIcon=document.createElement('img')
+                    if(msg.is_favor){
+                        favorIcon.src="/static/icons/heart-fill.png"
+                    }else{
+                        favorIcon.src="/static/icons/heart-emt.png"
+                    }
+                    const likeCount=document.createElement('span')
+                    likeCount.innerText=msg.like_count
+                    favorBtn.append(favorIcon)
+                    favorDiv.append(favorBtn,likeCount)
+                    const time=document.createElement('span')
+                    time.classList.add('time')
+                    time.innerText=msg.create_time;
+                    msgBox.append(userBox,msgId,content,favorDiv,time)
+                    msgDiv.append(msgBox)
     
-    }
+    
+            }
+          
+        }
+        
+        }
+
     //刪除自己的留言
     const msgdeletform = document.querySelectorAll('form.msg-box')
     msgdeletform.forEach(form => {
@@ -187,13 +191,7 @@ async function shopInit(){
       
        
     })
-    // const msgform = document.querySelectorAll('form.msg-box')
-    // msgform.forEach(msg => {
-       
-    //     msg.addEventListener('click', favorMsg)
-       
-    // })
-    
+
     const msgfavor = document.querySelectorAll('.msgfavor-div')
     msgfavor.forEach(msg => {
         console.log(msgfavor)
@@ -220,15 +218,133 @@ async function shopInit(){
         
     }
 
+    }
+
+
+
+
+    //上傳照片check是否登入
+    const photoBtnCover=document.querySelector('.upload-cover');
+    const photoBtnCoverFake=document.querySelector('.upload-cover-fake');
+    console.log(result.is_login)
+    if(!result.is_login){
+        photoBtnCover.classList.add('hidden');
+        photoBtnCoverFake.classList.remove('hidden');
+        photoBtnCoverFake.addEventListener('click',()=>{
+            location.replace('/login');
+        })
+        
+    }else{
+        photoBtnCover.classList.remove('hidden');
+        photoBtnCoverFake.classList.add('hidden');
+    }
+
 }
+
 shopInit()
 
 
 
 
+
+
+const cafeFavorApi=`/api/shop/favor`   
+async function cafeFavorInit(){
+    const response= await fetch(cafeFavorApi+`?cafe_id=${cafe_id}`,{method:'GET'});
+    const result=await response.json();
+    console.log(result.data)
+    if (result.data){
+        const cafeFavorIcon=document.querySelector('#cafe-favor-icon')
+        const cafeFavorCount=document.querySelector('#favor-count')
+        cafeFavorCount.innerText='';
+        if(result.is_favor){
+            cafeFavorIcon.src='/static/icons/heart-fill.png'
+        }else{
+            
+            cafeFavorIcon.src='/static/icons/heart-emt.png';
+        }
+        console.log()
+        if(result.count === 0){
+            cafeFavorCount.innerText=`目前無人收藏`
+        }else{
+            cafeFavorCount.innerText=`目前收藏此店總共有 ${result.count} 人`
+        }
+        
+    }
+
+}
+cafeFavorInit()
+async function favorCafe(e){
+    e.preventDefault();
+    const response= await fetch(userApi,{method:'GET'});
+    const result=await response.json();
+    if (result.data){ 
+    fetch(cafeFavorApi+`?cafe_id=${cafe_id}`)
+    .then(cafeFres=>cafeFres.json())
+    .then(cafeFresult=>{
+        if(cafeFresult.is_favor){
+            fetch(cafeFavorApi, {
+                method: 'DELETE',
+                body: JSON.stringify({"cafe_id": cafe_id}),
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            })
+            .then(favorres => favorres.json())
+            .then(favorResult => {        
+                cafeFavorInit()
+               
+            })
+        }else{
+            fetch(cafeFavorApi, {
+                method: 'POST',
+                body: JSON.stringify({"cafe_id": cafe_id }),
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            })
+            .then(favorres => favorres.json())
+            .then(favorResult => {        
+                cafeFavorInit()
+               
+            })
+        }
+        
+    })
+    }else{location.replace('/login');}
+   
+   
+
+}   
+
+
+async function browse(){
+    const response= await fetch(`/api/shop/view/${cafe_id}`,{
+        method: 'POST'});
+    const result=await response.json();
+   
+}
+
+browse()
+
+
+//收藏咖啡店
+const cafefavorBtn=document.querySelector('.favor')
+cafefavorBtn.addEventListener('click',favorCafe)
+
+
+
+
 const ratingUserBtn=document.querySelector('.rating-btn');
-ratingUserBtn.addEventListener('click',()=>{
-    location.replace(`/rating/${cafe_id}`)
+ratingUserBtn.addEventListener('click',async(e)=>{
+    const response= await fetch(userApi,{method:'GET'});
+    const result=await response.json();
+    if(result.data){
+        location.replace(`/rating/${cafe_id}`)
+    }else{
+        location.replace('/login');
+    }
+   
 })
 
 
@@ -313,7 +429,6 @@ photoBtn.addEventListener('change',(e)=>{
     
 })
 
-const msgContent=document.querySelector('.msg-content');
 const messageApi=`/api/message`
 const msgFavorApi=`/api/message/favor`
 const msgForm=document.querySelector('.msg-form');

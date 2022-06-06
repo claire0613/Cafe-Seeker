@@ -6,36 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafe-Seeker | City</title>
     <link rel="stylesheet" href="../static/css/nav.css" />
-    <link rel="stylesheet" href="../static/css/index.css" />
+    <link rel="stylesheet" href="../static/css/city.css" />
 </head>
 <body>
+    <a href="#topic" id="arrow"><img src="../static/icons/arrow-up-circle.svg"></a>
     <header>
-        <div class="topic"><a href="/">Cafe-Seeker</a></div>
+        <div class="topic" id="topic"><a href="/">Cafe-Seeker</a></div>
         <nav>
             <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
             <ul class="nav-link">
                 <!-- <li id="discussion">討論區</li> -->
-                <li id="member-page">會員專區</li>
+                <!-- <li id="member-page">會員專區</li> -->
                 <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
                 <li id="signout-btn">登出系統</li>
             </ul>
         </nav>
     </header>
-    <div  class="search-box">
-        <div id="search-word"></div>
-        <div id="search-total"></div>
+    <main>
+        <content>
+            <div  class="view">
+                <h class="title">熱門搜尋的店家</h>
+                <div class="search-div" id="view-box"></div>
+                
+            </div>
+            <div  class="view"  >
+                <h class="title">熱門收藏的店家</h>
+                <div class="favor-div" id="view-box"></div>
+            </div>
+            <div  class="view" >
+                <h class="title">最多人評分的店家</h>
+                <div class="rating-div" id="view-box"></div>
+            </div>
+            <div  class="view">
+                <h class="title">最多人討論的店家</h>
+                <div class="msg-div" id="view-box"></div>
+            </div>
+        </content>
+        
+    </main>
+
    
 
-    </div>
-   
-    <content>
-    </content>
-    
-<div class="page-navigation">
-    <ul class="pagination" id="pagination">
-
-    </ul>
-</div>
 
     <footer>
         <div>
@@ -55,7 +66,8 @@
             <p id="footer-p">COPYRIGHT © 2022</p>
         </div>
     </footer>
-    <script src="../static/js/index.js"></script>
+    <script type="module"src="../static/js/city.js"></script>
+    <script type="module" src="../static/js/datahelper.js"></script>
     <script src="../static/js/nav.js"></script>
 </body>
 </html>

@@ -57,7 +57,7 @@ main content {
   gap: 15px;
 }
 
-main content .cafe-box {
+main content a .cafe-box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -70,11 +70,11 @@ main content .cafe-box {
   background-color: #c0b9b9;
 }
 
-main content .cafe-box div {
+main content a .cafe-box div {
   padding: 10px;
 }
 
-main content .cafe-box .cafe-name {
+main content a .cafe-box .cafe-name {
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -85,7 +85,7 @@ main content .cafe-box .cafe-name {
   font-size: 2rem;
 }
 
-main content .cafe-box img {
+main content a .cafe-box img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
@@ -95,14 +95,14 @@ main content .cafe-box img {
           filter: brightness(60%);
 }
 
-main content .cafe-box .card-one {
+main content a .cafe-box .card-one {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-main content .cafe-box .card-two {
+main content a .cafe-box .card-two {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -120,7 +120,7 @@ main content .cafe-box .card-two {
   color: white;
 }
 
-main content .cafe-box .card-two img {
+main content a .cafe-box .card-two img {
   width: 15px;
   height: 15px;
   background-color: transparent;
@@ -128,7 +128,7 @@ main content .cafe-box .card-two img {
           filter: brightness(100%);
 }
 
-main content .cafe-box .card-three {
+main content a .cafe-box .card-three {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -146,7 +146,7 @@ main content .cafe-box .card-three {
   color: white;
 }
 
-main content .cafe-box .card-three img {
+main content a .cafe-box .card-three img {
   width: 15px;
   height: 15px;
   background-color: transparent;
@@ -154,7 +154,7 @@ main content .cafe-box .card-three img {
           filter: brightness(100%);
 }
 
-main content .cafe-box:hover {
+main content a .cafe-box:hover {
   cursor: pointer;
 }
 
@@ -193,8 +193,10 @@ main .pagination li {
 }
 
 main .pagination li a {
+  width: 100%;
   text-decoration: none;
   color: #3a3a3a;
+  text-align: center;
 }
 
 main .pagination li span {

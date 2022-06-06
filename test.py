@@ -1,4 +1,4 @@
-from model.models import Users,db,Cafes,Photo,Score_rec,Message,Message_like
+from model.models import Users,db,Cafes,Photo,Score_rec,Message,Message_like,Cafes_like,View
 from sqlalchemy.sql import func
 # import os
 
@@ -120,5 +120,17 @@ msg_list=Message.query.order_by(Message.floor).filter_by(cafe_id=1).all()
 #     msg_t.append(msg_dict)
                 
 # print(msg_t)   
-a=Message.query.order_by(Message.create_time).filter_by(cafe_id=1).all()
-print(a)
+# a=Message.query.order_by(Message.create_time).filter_by(cafe_id=1).all()
+# print(a)
+
+
+# a=db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).group_by(Cafes.id).limit(20).offset(0*20).count()
+# print(a)
+# for c in a:
+#     if c[1]:
+#         print(c[1].photo_url)
+#     else:
+# #         print('none')
+# cafe_msg=View.query.order_by(View.cafe_msg_count.desc()).limit(8).all().as_dict()
+cafe_rating=db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).filter(Cafes.id==1).group_by(Cafes.id).first()
+print(cafe_rating)

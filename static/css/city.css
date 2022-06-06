@@ -1,0 +1,162 @@
+content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+content .view {
+  width: 1200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+content .view .title {
+  width: 100%;
+  height: 50px;
+  background-color: #e68d8d;
+  border-radius: 15px 15px 0px 0px;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+content .view #view-box {
+  width: 90%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(200px, 1fr))[4];
+      grid-template-columns: repeat(4, minmax(200px, 1fr));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  min-height: 320px;
+  margin: 20px 50px 20px 50px;
+  gap: 15px;
+}
+
+content .view #view-box a .cafe-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 250px;
+  height: 150px;
+  color: white;
+  border-radius: 5%;
+  border-bottom: 0ch;
+  background-color: #c0b9b9;
+}
+
+content .view #view-box a .cafe-box div {
+  padding: 10px;
+}
+
+content .view #view-box a .cafe-box .cafe-name {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+content .view #view-box a .cafe-box img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  aspect-ratio: 3/2;
+  border-radius: 5%;
+  -webkit-filter: brightness(60%);
+          filter: brightness(60%);
+}
+
+content .view #view-box a .cafe-box .card-one {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+content .view #view-box a .cafe-box .card-two {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120x;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+content .view #view-box a .cafe-box .card-two img {
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
+}
+
+content .view #view-box a .cafe-box .card-three {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 110px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+content .view #view-box a .cafe-box .card-three img {
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
+}
+
+content .view #view-box a .cafe-box:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=city.css.map */

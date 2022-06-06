@@ -35,88 +35,90 @@ main{
         justify-items: center;
         margin: 20px 50px 20px 50px;
         gap:15px;
-        
-        .cafe-box{
-            display: flex;
-            position:relative;
-            width: 300px;
-            height: 200px;
-            
-            color: white;
-            border-radius: 5%;
-            border-bottom: 0ch;
-            background-color: rgb(192, 185, 185);
-            div{
-                padding: 10px;
-            }
-            .cafe-name{
-                position: absolute;
-                z-index:1;
-                top:50%;
-                transform:translateY(-50%);
-                text-align: center;
-                width: 100%;
-               font-size: 2rem;
-            }
-            img{
-     
-                object-fit:cover;
-                width: 100%;
-                aspect-ratio: 3/2;
+        a{
+            .cafe-box{
+                display: flex;
+                position:relative;
+                width: 300px;
+                height: 200px;
+                
+                color: white;
                 border-radius: 5%;
-                filter: brightness(60%);
-                
-                
-            }
-            .card-one{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index:1;
-            }
-              
-            .card-two{
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 150px;
-                height: 45px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: white;
+                border-bottom: 0ch;
+                background-color: rgb(192, 185, 185);
+                div{
+                    padding: 10px;
+                }
+                .cafe-name{
+                    position: absolute;
+                    z-index:1;
+                    top:50%;
+                    transform:translateY(-50%);
+                    text-align: center;
+                    width: 100%;
+                   font-size: 2rem;
+                }
                 img{
-                    width: 15px;
-                    height: 15px;
-                    background-color: transparent;
+         
+                    object-fit:cover;
+                    width: 100%;
+                    aspect-ratio: 3/2;
+                    border-radius: 5%;
+                    filter: brightness(60%);
                     
-                    filter: brightness(100%);
+                    
                 }
-                
-            }
-            .card-three{
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                width: 150px;
-                height: 45px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: white;
-                img{
-                    width: 15px;
-                    height: 15px;
-                    background-color: transparent;
-                    filter: brightness(100%);
+                .card-one{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index:1;
                 }
-                
+                  
+                .card-two{
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 150px;
+                    height: 45px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: white;
+                    img{
+                        width: 15px;
+                        height: 15px;
+                        background-color: transparent;
+                        
+                        filter: brightness(100%);
+                    }
+                    
+                }
+                .card-three{
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 150px;
+                    height: 45px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: white;
+                    img{
+                        width: 15px;
+                        height: 15px;
+                        background-color: transparent;
+                        filter: brightness(100%);
+                    }
+                    
+                }
+    
             }
+            .cafe-box:hover{
+                cursor: pointer;
+            }
+        }
 
-        }
-        .cafe-box:hover{
-            cursor: pointer;
-        }
     }
         .pagination{
             margin: 40px;
@@ -138,8 +140,10 @@ main{
                 cursor: pointer;
                 
                 a{
+                    width: 100%;
                     text-decoration: none;
                     color: rgb(58, 58, 58);
+                    text-align: center;
                 
                 }
                 span{

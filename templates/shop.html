@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe-Seeker | Shop</title>
+    <meta name="'robots" content="index, follow">
     <link rel="stylesheet" href="../static/css/nav.css" />
     <link rel="stylesheet" href="../static/css/shop.css" />
+    <title>Cafe-Seeker | Shop</title>
 </head>
 <body>
+    <a href="#topic" id="arrow"><img src="../static/icons/arrow-up-circle.svg"></a>
     <header>
-        <div class="topic"><a href="/">Cafe-Seeker</a></div>
+        <div class="topic" id="topic"><a href="/">Cafe-Seeker</a></div>
         <nav>
             <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
             <ul class="nav-link">
                 <!-- <li id="discussion">討論區</li> -->
-                <li id="member-page">會員專區</li>
+                <!-- <li id="member-page">會員專區</li> -->
                 <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
                 <li id="signout-btn">登出系統</li>
             </ul>
@@ -25,10 +27,10 @@
         <content>
             <div class="cafe-header">
                 <div class="shop-name"></div>
-                <!-- <div class="favor-div">
-                    <button class="favor"><img src="/static/icons/heart-emt.png">收藏</button>
-                    <span id="favor-count">目前有 11 人 收藏</span>
-                </div> -->
+                <div class="favor-div">
+                    <button class="favor"><img id="cafe-favor-icon"src="/static/icons/heart-emt.png">收藏</button>
+                    <span id="favor-count">目前沒有人收藏</span>
+                </div>
 
             </div>
             
@@ -44,6 +46,8 @@
                 <div class="toilet"><p>廁所</p><span id="toilets-span"></span></div>
                 <div class="speed"><p>WiFi 速度</p><span id="speed-span"></span></div>
                 <button class="rating-btn">我要給這間店評分</button>
+                <div id="score-count">目前有 11 人 收藏</div>
+
             </div>
             <div class="shop-detail">店家資訊</div>
             <div class="shop-detail-div">
@@ -76,8 +80,8 @@
                     <div class="address"><p>地址</p><a id="address-link"></a></div>
                     <div class="phone"><p>電話</p><span id="phone-span"></span></div>
                     <div class="modify-div">
-                        
-                        <button class="modify-shop">提出修改</button>
+<!--                         
+                        <button class="modify-shop">提出修改</button> -->
                         <p></p>
                     </div>
                     
@@ -99,6 +103,9 @@
             <div class="photo">
                 <div class="photo-header">網友提供照片</div>
                 <div class="image"></div>
+                <label class="upload-cover-fake">
+                    <span class="upload-span">上傳照片</span>
+                </label>
                 
                 <label class="upload-cover">
                     <input id="upload-input" type="file" name='file[]'accept=".jpg,.png,.jpeg "multiple>

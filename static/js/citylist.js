@@ -66,13 +66,11 @@ async function cityListSearch(){
          
             const rating_td=document.createElement('td')
             rating_td.classList.add('tb-rating')
-            const rating=document.createElement('span')
+            let rating=document.createElement('span')
             rating.innerText=scoreRender(cafe.rating)
             if (cafe.rating ===0){
-                rating.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                rating.style.backgroundRepeat='no-repeat'
-                rating.style.backgroundSize='contain'
-                rating.style.backgroundPosition='top'
+                rating=document.createElement('img')
+                rating.src='../static/icons/help-circle_w_20.png'
             }
 
             rating.style.color=getValueColor(cafe.rating)
@@ -88,13 +86,12 @@ async function cityListSearch(){
 
             const price_td=document.createElement('td')
             price_td.classList.add('tb-price')
-            const price=document.createElement('span')
+            let price=document.createElement('span')
             price.innerText=scoreRender(cafe.price)
             if (cafe. price ===0){
-                price.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                price.style.backgroundRepeat='no-repeat'
-                price.style.backgroundSize='contain'
-                price.style.backgroundPosition='top'
+                price=document.createElement('img')
+                price.src='../static/icons/help-circle_w_20.png'
+   
             }
             price.style.color=getValueColor(cafe.price)
             price_td.append(price)
@@ -102,94 +99,79 @@ async function cityListSearch(){
 
             const wifi_td=document.createElement('td')
             wifi_td.classList.add('tb-wifi')
-            const wifi=document.createElement('span')
+            let wifi=document.createElement('span')
             wifi.innerText=scoreRender(cafe.wifi)
             if (cafe. wifi ===0){
-                wifi.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                wifi.style.backgroundRepeat='no-repeat'
-                wifi.style.backgroundSize='contain'
-                wifi.style.backgroundPosition='top'
+                wifi=document.createElement('img')
+                wifi.src='../static/icons/help-circle_w_20.png'
             }
             wifi.style.color=getValueColor(cafe.wifi)
             wifi_td.append(wifi)
 
             const vaca_td=document.createElement('td')
             vaca_td.classList.add('tb-vaca')
-            const vaca=document.createElement('span')
+            let vaca=document.createElement('span')
             vaca.innerText=scoreRender(cafe.vacancy)
             if (cafe.vacancy ===0){
-                vaca.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                vaca.style.backgroundRepeat='no-repeat'
-                vaca.style.backgroundSize='contain'
-                vaca.style.backgroundPosition='top'
+                vaca=document.createElement('img')
+                vaca.src='../static/icons/help-circle_w_20.png'
             }
-            vaca.style.color=getValueColor(cafe.wifi)
+            vaca.style.color=getValueColor(cafe.vacancy)
             vaca_td.append(vaca)
             
             const drinks_td=document.createElement('td')
             drinks_td.classList.add('tb-food')
-            const drinks=document.createElement('span')
+            let drinks=document.createElement('span')
             drinks.innerText=scoreRender(cafe.drinks)
             if (cafe.drinks ===0){
-                drinks.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                drinks.style.backgroundRepeat='no-repeat'
-                drinks.style.backgroundSize='contain'
-                drinks.style.backgroundPosition='top'
+                drinks=document.createElement('img')
+                drinks.src='../static/icons/help-circle_w_20.png'
             }
             drinks.style.color=getValueColor(cafe.drinks)
             drinks_td.append(drinks)
 
             const quiet_td=document.createElement('td')
             quiet_td.classList.add('tb-quiet')
-            const quiet=document.createElement('span')
+            let quiet=document.createElement('span')
             quiet.innerText=scoreRender(cafe.quiet)
             if (cafe.quiet ===0){
-                quiet.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                quiet.style.backgroundRepeat='no-repeat'
-                quiet.style.backgroundSize='contain'
-                quiet.style.backgroundPosition='top'
+                quiet=document.createElement('img')
+                quiet.src='../static/icons/help-circle_w_20.png'
             }
             quiet.style.color=getValueColor(cafe.quiet)
             quiet_td.append(quiet)
 
             const comfort_td=document.createElement('td')
             comfort_td.classList.add('tb-comfort')
-            const comfort=document.createElement('span')
+            let comfort=document.createElement('span')
             comfort.innerText=scoreRender(cafe.comfort)
             if (cafe.comfort ===0){
-                comfort.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                comfort.style.backgroundRepeat='no-repeat'
-                comfort.style.backgroundSize='contain'
-                comfort.style.backgroundPosition='top'
+                comfort=document.createElement('img')
+                comfort.src='../static/icons/help-circle_w_20.png'
             }
             comfort.style.color=getValueColor(cafe.comfort)
             comfort_td.append(comfort)
 
             const mrt_td=document.createElement('td')
             mrt_td.classList.add('tb-mrt')
-            const mrt=document.createElement('span')
+            let mrt=document.createElement('span')
             mrt.innerText=cafe.transport
         
             if (cafe.transport === null){
-                comfort.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                comfort.style.backgroundRepeat='no-repeat'
-                comfort.style.backgroundSize='contain'
-                comfort.style.backgroundPosition='top'
+                mrt=document.createElement('img')
+                mrt.src='../static/icons/help-circle_w_20.png'
             }
             mrt_td.append(mrt)
 
             const open_td=document.createElement('td')
             open_td.classList.add('tb-open')
-            const open=document.createElement('span')
+            let open=document.createElement('span')
             let day=JSON.parse(cafe.open_hours)
             if(day!==null){
                 open.innerText=day[today]
             }else{
-                open.innerText=null
-                open.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                open.style.backgroundRepeat='no-repeat'
-                open.style.backgroundSize='contain'
-                open.style.backgroundPosition='top'
+                open=document.createElement('img')
+                open.src='../static/icons/help-circle_w_20.png'
                 }
             
            
@@ -197,32 +179,33 @@ async function cityListSearch(){
 
             const limited_time_td=document.createElement('td')
             limited_time_td.classList.add('tb-limited_time')
-            const limited_time=document.createElement('span')
-            limited_time.innerText=cafe.limited_time
+            let limited_time=document.createElement('span')
+            limited_time.innerText=scoreRender(cafe.limited_time)
             if (cafe.limited_time === null){
-                limited_time.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                limited_time.style.backgroundRepeat='no-repeat'
-                limited_time.style.backgroundSize='contain'
-                limited_time.style.backgroundPosition='top'
+                limited_time=document.createElement('img')
+                limited_time.src='../static/icons/help-circle_w_20.png'
             }
-
+            limited_time.style.color=getValueColor(cafe.limited_time)
 
             limited_time_td.append(limited_time)
             
             const meal_selling_td=document.createElement('td')
             meal_selling_td.classList.add('tb-mealing')
-            const meal_selling=document.createElement('span')
-            meal_selling.innerText=cafe.meal_selling
+            let meal_selling=document.createElement('span')
+            meal_selling.innerText=scoreRender(cafe.meal_selling)
             if (cafe.meal_selling === null){
-                meal_selling.style.backgroundImage="url('/static/icons/help-circle_w_20.png')"
-                meal_selling.style.backgroundRepeat='no-repeat'
-                meal_selling.style.backgroundSize='contain'
-                meal_selling.style.backgroundPosition='top'
+                meal_selling=document.createElement('img')
+                meal_selling.src='../static/icons/help-circle_w_20.png'
             }
+            meal_selling.style.color=getValueColor(cafe.meal_selling)
             meal_selling_td.append(meal_selling)
             
             tr.append(rating_td,name_td,price_td,wifi_td,vaca_td,drinks_td,quiet_td,comfort_td,limited_time_td,meal_selling_td,open_td,mrt_td)
-            cityListTbody.append(tr)
+            const link =document.createElement('a')
+            link.href=`/shop/${cafe.id}`
+            link.append(tr)
+            cityListTbody.append(link)
+           
             
 
         }
@@ -265,8 +248,8 @@ function avg(arr) {
 cityListSearch()
 
 const options = {
-    rootMargin: "0px 0px 100px 0px",
-    threshold: 0
+    rootMargin: "0px 0px 200px 0px",
+    threshold: 0.5
   }
 let callback = ([entry]) => {
         if (entry.isIntersecting) {
