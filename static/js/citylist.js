@@ -1,6 +1,7 @@
 const listDescription = document.querySelector(".description");
 const cityListTbody = document.querySelector("tbody");
 const queryListCity = document.URL.split("/").at(3);
+const resetBtn = document.querySelector(".reset");
 import { getValueColor, scoreRender } from "./datahelper.js";
 let cityListPage = 0;
 let fKeyword = "";
@@ -26,7 +27,8 @@ async function cityListSearch() {
   const result = await response.json();
   const data = result.data;
   if (result.city_tw) {
-    listDescription.innerText = `${result.city_tw} 網友們推薦的咖啡廳清單 : 共收錄 ${result.totalCount} 間店`;
+    listDescription.innerText ='';
+    listDescription.innerText = `"${result.city_tw}" 網友們推薦的咖啡廳清單 :共收錄 ${result.totalCount} 間店`;
     let today = 0;
     switch (new Date().getDay()) {
       case 1:
@@ -211,7 +213,7 @@ async function cityListSearch() {
       cityListTbody.append(link);
     }
   }
-  console.log(result["nextPage"]);
+
 
   if (result.nextPage !== null) {
     cityListPage = result["nextPage"];
@@ -240,6 +242,22 @@ function avg(arr) {
 
 cityListSearch();
 
+
+resetBtn.addEventListener('click',()=>{
+    cityListPage = 0;
+    fKeyword = "";
+    fRating = 0;
+    fPrice = 0;
+    fWifi = 0;
+    fVaca = 0;
+    fDrinks = 0;
+    fQuiet = 0;
+    fComfort = 0;
+    fLimted_time = "";
+    fMeal_selling = "";
+    cityListTbody.innerText = "";
+    cityListSearch()
+})
 const options = {
   rootMargin: "0px 0px 200px 0px",
   threshold: 0.5,
@@ -267,7 +285,7 @@ observer.observe(footer);
 const filterForm = document.querySelector("form");
 filterForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  console.log("key");
+  
   cityListPage = 0;
   cityListTbody.innerText = "";
 

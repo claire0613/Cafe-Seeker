@@ -11,13 +11,14 @@ from env import DB_USER,DB_PASSWORD,DB_HOST,DB_NAME
 from sqlalchemy import Index,text,or_
 from sqlalchemy.dialects.mysql import DOUBLE
 from werkzeug.security import generate_password_hash,check_password_hash
+import redis
 
-from redis import Redis
 
 from flask_caching import Cache
 
 redis_host = os.getenv("REDIS_HOST")
-cache = Cache(config={"CACHE_TYPE": "RedisCache", "CACHE_REDIS_HOST": redis_host})
+redis_db=redis.Redis(host=redis_host,port=6379,decode_responses=True)
+# cache = Cache(config={"CACHE_TYPE": "redis", "CACHE_REDIS_HOST": redis_host,'CACHE_REDIS_PORT': 6379,"CACHE_DEFAULT_TIMEOUT":2000})
 
 app=Flask(__name__)
 # 設定資料庫位置，並建立 app
@@ -35,6 +36,13 @@ app
 
 
 db = SQLAlchemy(app)
+
+class Redis_set:
+    def __init__(self):
+        self.redis_set = redis.Redis(host=redis_host,port=6379,decode_responses=True)
+
+redis_set = Redis_set()
+
 
 class Cafes(db.Model):
     __tablename__='cafes'
@@ -339,73 +347,7 @@ class Rank(db.Model):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
     
 
-# class Board(db.Model):
-#     __tablename__ = 'board'
-#     id = db.Column(db.String(255), primary_key=True)
-#     board_name = db.Column(db.String(255), unique=True, nullable=False)
-    
-#     def view_board(board_id):
-#         return Board.query.filter_by(id=board_id).first()
 
-# class Post(db.Model):
-#     __tablename__ = 'post'
-#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     board_id = db.Column(db.String(255), db.ForeignKey('board.id', ondelete='CASCADE'), nullable=False)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
-#     user_name = db.Column(db.String(255), nullable=False)
-#     title = db.Column(db.String(255), nullable=False)
-#     content = db.Column(db.Text, nullable=False)
-#     like_count = db.Column(db.Integer, server_default=text("0"), nullable=False)
-#     comment_count = db.Column(db.Integer, server_default=text("0"), nullable=False)
-#     search_count= db.Column(db.Integer, server_default=text("0"), nullable=False)
-#     create_time = db.Column(db.DateTime, server_default=text('NOW()'))
- 
-#     def insert(self):
-#         db.session.add(self)
-#         db.session.commit()
-#     def as_dict(self):
-#         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
-
-# class PostLike(db.Model):
-#     __tablename__ = 'post_like'
-#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
-#     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
-
-# Index('users_post_index',PostLike.user_id, PostLike.post_id)
-
-# class PostMsg(db.Model):
-#     __tablename__ = 'postmsg'
-#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
-#     user_name = db.Column(db.String(255), nullable=False)
-#     content = db.Column(db.Text, nullable=False)
-#     create_time = db.Column(db.DateTime, server_default=text('NOW()'), nullable=False)
-#     like_count = db.Column(db.Integer, server_default=text("0"), nullable=False)
-    
-# class Postmsg_like(db.Model):
-#     __tablename__ = 'postmsg_like'
-#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
-#     postmsg_id = db.Column(db.Integer, db.ForeignKey('postmsg.id', ondelete='CASCADE'), nullable=False)
-
-# Index('postmsglike_user_index', Postmsg_like.postmsg_id, Postmsg_like.user_id)
+        
     
 
-# class Score_rec(db.Model):
-#     __tablename__='score_rec'
-#     scr_id=db.Column(db.Integer,primary_key=True,nullable=False)
-#     user_id=db.Column(db.Integer,db.ForeignKey('users.user_id'),nullable=False)
-#     cafe_id=db.Column(db.Integer,db.ForeignKey('cafes.id'),nullable=False)
-#     wifi=db.Column(db.JSON)
-#     speed=db.Column(db.JSON)
-#     vacancy=db.Column(db.JSON)
-#     comfort=db.Column(db.JSON)
-#     quiet=db.Column(db.JSON)
-#     food=db.Column(db.JSON)
-#     drinks=db.Column(db.JSON)
-#     price=db.Column(db.JSON)
-#     view=db.Column(db.JSON)
-#     toilets=db.Column(db.JSON)
-#     create_time = db.Column(db.DateTime, server_default=text('NOW()'))

@@ -16,7 +16,7 @@ def post_cafe_favor():
     try:
         data=request.json
         cafe_id=data['cafe_id']
-        print(cafe_id)
+       
         token_cookie=request.cookies.get('user_cookie')
         if token_cookie:
             user=jwt.decode(token_cookie,os.getenv("SECRET_KEY"),algorithms=['HS256'])
