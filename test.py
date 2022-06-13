@@ -23,7 +23,7 @@ try:
         msg_list =get_rank(cafe_msg,city_id)
         cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
         rating_list=get_rank(cafe_rating,city_id)
-        data=jsonify({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time})
+        data=json.dumps({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time})
         redis_db.setex('fetch',200, data)
     
     print('目前有cache',redis_db.get('fetch'))        
