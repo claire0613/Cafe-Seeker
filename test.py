@@ -13,9 +13,9 @@ try:
     cache_favor_list=redis_db.get('favor_list')
     cache_msg_list=redis_db.get('msg_list')
     cache_rating_list=redis_db.get('rating_list')
-    print('已經有cache', cache_update_time)
+    
     if not cache_update_time:
-        print('消失cache', cache_update_time)
+        print('消失cache')
         search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
         update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
         search_list =get_rank(search_count,city_id)
@@ -40,7 +40,7 @@ try:
         rating_list=get_rank(cafe_rating,city_id)
         redis_db.setex('rating_list',200, str(rating_list))
 
-            
+    print('已經有cache', cache_update_time)        
     print(jsonify({"data": True, "search_count": list(cache_search_list), "cafe_favor": list(cache_favor_list), "cafe_msg": list(cache_msg_list), "cafe_rating": list(cache_rating_list),'city_name':city_tw,'update_time':list(cache_update_time)})) 
     # else:
     #     search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
