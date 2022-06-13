@@ -1,4 +1,5 @@
 from ast import expr_context
+from decimal import Decimal
 from sqlalchemy import or_, and_
 from model.models import City_ref, Photo, Score_rec, Rank, db, Cafes, Message, Message_like, Users, Cafes_like
 import re
@@ -195,6 +196,7 @@ def get_rank(value, city_id):
     for search in value:
         search_data = db.session.query(Cafes, Photo).join(Photo, Photo.cafe_id == Cafes.id, isouter=True).filter(and_(Cafes.id == search.cafe_id,Cafes.city_id==city_id)).group_by(Cafes.id).first()
         search_t = search_data[0].as_dict()
+        
         if search_data[1]:
             search_t['photo_url'] = search_data[1].photo_url
         else:

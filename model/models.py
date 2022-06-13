@@ -12,7 +12,8 @@ from sqlalchemy import Index,text,or_
 from sqlalchemy.dialects.mysql import DOUBLE
 from werkzeug.security import generate_password_hash,check_password_hash
 import redis
-
+import json
+from decimal import *
 
 from flask_caching import Cache
 
@@ -345,6 +346,16 @@ class Rank(db.Model):
     
     def as_dict(self):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
+    
+    
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, obj):
+        # if passed in object is instance of Decimal
+        # convert it to a string
+        if isinstance(obj, Decimal):
+            return str(obj)
+        # otherwise use the default behavior
+        return json.JSONEncoder.default(self, obj)
     
 
 
