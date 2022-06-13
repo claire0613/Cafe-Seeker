@@ -15,7 +15,7 @@ import redis
 import json
 from decimal import *
 
-from flask_caching import Cache
+
 
 redis_host = os.getenv("REDIS_HOST")
 redis_db=redis.Redis(host=redis_host,port=6379,decode_responses=True)
