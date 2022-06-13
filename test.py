@@ -41,7 +41,7 @@ try:
         redis_db.setex('rating_list',200, str(rating_list))
 
             
-        print(jsonify({"data": True, "search_count": list(cache_search_list), "cafe_favor": list(cache_favor_list), "cafe_msg": list(cache_msg_list), "cafe_rating": json.dumps(cache_rating_list),'city_name':city_tw,'update_time':list(cache_update_time)})) 
+    print(jsonify({"data": True, "search_count": list(cache_search_list), "cafe_favor": list(cache_favor_list), "cafe_msg": list(cache_msg_list), "cafe_rating": list(cache_rating_list),'city_name':city_tw,'update_time':list(cache_update_time)})) 
     else:
         search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
         update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
