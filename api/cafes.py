@@ -181,7 +181,7 @@ def get_city_rank():
                 rating_list=get_rank(cafe_rating,city_id)
                 data=json.dumps({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time}, cls=DecimalEncoder,ensure_ascii=False)
                 redis_db.setex('fetch',200, data)
-                return data,200
+            return jsonify(json.loads(cache_fetch)),200
         except:
             search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
             update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
