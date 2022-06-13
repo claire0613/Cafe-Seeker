@@ -20,28 +20,28 @@ try:
         update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
         search_list =get_rank(search_count,city_id)
         print(json.dumps(search_list))
-        redis_db.setex('search_list',200,json.dumps(search_list))
+        redis_db.setex('search_list',200,json.loads(search_list))
         
-        redis_db.setex('update_time',200,json.dumps(update_time))
+        redis_db.setex('update_time',200,json.loads(update_time))
         
         
 
         cafe_favor = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_favor_count.desc()).limit(8).all()
         favor_list =get_rank(cafe_favor,city_id)
-        redis_db.setex('favor_list',200,json.dumps(favor_list))
+        redis_db.setex('favor_list',200,json.loads(favor_list))
         
 
         cafe_msg = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_msg_count.desc()).limit(8).all()
         msg_list =get_rank(cafe_msg,city_id)
-        redis_db.setex('msg_list',200,json.dumps(msg_list))
+        redis_db.setex('msg_list',200,json.loads(msg_list))
         
 
         cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
         rating_list=get_rank(cafe_rating,city_id)
-        redis_db.setex('rating_list',200, json.dumps(rating_list))
+        redis_db.setex('rating_list',200, json.loads(rating_list))
 
             
-        print(jsonify({"data": True, "search_count": json.loads(cache_search_list), "cafe_favor": json.loads(cache_favor_list), "cafe_msg": json.loads(cache_msg_list), "cafe_rating": json.loads(cache_rating_list),'city_name':city_tw,'update_time':json.loads(cache_update_time)})) 
+        print(jsonify({"data": True, "search_count": json.dumps(cache_search_list), "cafe_favor": json.dumps(cache_favor_list), "cafe_msg": json.dumps(cache_msg_list), "cafe_rating": json.dumps(cache_rating_list),'city_name':city_tw,'update_time':json.dumps(cache_update_time)})) 
     else:
         search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
         update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
