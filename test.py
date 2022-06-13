@@ -7,11 +7,11 @@ try:
     city_tw='台北'
     try:
         print('cache now')
-        cache_update_time=redis_db.get('update_time').decode()
-        cache_search_list=redis_db.get('search_list').decode()
-        cache_favor_list=redis_db.get('favor_list').decode()
-        cache_msg_list=redis_db.get('msg_list').decode()
-        cache_rating_list=redis_db.get('rating_list').decode()
+        cache_update_time=redis_db.get('update_time')
+        cache_search_list=redis_db.get('search_list')
+        cache_favor_list=redis_db.get('favor_list')
+        cache_msg_list=redis_db.get('msg_list')
+        cache_rating_list=redis_db.get('rating_list')
         print('已經有cache', cache_update_time)
         if not cache_update_time:
             print('消失cache', cache_update_time)
