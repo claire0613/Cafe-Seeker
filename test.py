@@ -31,7 +31,7 @@ try:
         redis_db.setex('fetch',200, data)
     
     print('目前有cache',redis_db.get('fetch'))        
-    print(data)
+    print(cache_fetch)
     # else:
     #     search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
     #     update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
