@@ -1,7 +1,8 @@
 from model.models import City_ref, Photo, Score_rec, Rank, db, Cafes, Message, Message_like, Users, Cafes_like,redis_db,DecimalEncoder
 from data.api_helper import city_cafe_filter,key_search,get_rank,area_from_city,check_website,check_float
-from datetime import datetime
+
 import datetime
+from datetime import datetime
 from flask import *
 import json
 from decimal import Decimal
@@ -30,7 +31,7 @@ try:
         cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
         rating_list=get_rank(cafe_rating,city_id)
         data=json.dumps({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time}, cls=DecimalEncoder,ensure_ascii=False)
-        redis_db.setex('fetch',200, data)
+        # redis_db.setex('fetch',200, data)
     
     print('目前有cache',datetime.datetime.now())        
    
