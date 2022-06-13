@@ -36,7 +36,7 @@ main{
         background-color: #fff;
         border-radius: 15px;
         position: relative;
-        padding:0px 0px 75px 0px;
+        padding:20px 0px 75px 0px;
         
         .rating-box{
             min-width: 95%;
@@ -45,6 +45,7 @@ main{
             align-items: center;
             position: relative;
             
+          
             
             div.score{
                 min-width: 200px;
@@ -61,10 +62,10 @@ main{
             .rating{
                 display: flex; 
                 flex-flow: row-reverse;
-                min-width: 275px;
+                min-width: 235px;
                 justify-content: center;
                 position: relative;
-                margin: 10px;
+           
                
                 input { display:none; cursor: pointer;}
                 label{

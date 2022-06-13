@@ -1,0 +1,44 @@
+{% extends "basic.html" %}
+    {% block CSS %}
+    <link rel="stylesheet" href="../static/css/rank.css" />
+    {% endblock %}
+    {% block title %}
+    <title>Cafe-Seeker | 排名</title>
+    {% endblock %}
+    {% block main %}
+    <main>
+        <content>
+            <div class="title-div"> 
+                <div class="city-name"></div>
+                <div id="update-time"></div>
+            </div>
+
+            
+            <div  class="view">
+                <h class="title">熱門搜尋的店家</h>
+                <div class="search-div" id="view-box"></div>
+                
+            </div>
+            <div  class="view"  >
+                <h class="title">熱門收藏的店家</h>
+                <div class="favor-div" id="view-box"></div>
+            </div>
+            <div  class="view" >
+                <h class="title">最多人評分的店家</h>
+                <div class="rating-div" id="view-box"></div>
+            </div>
+            <div  class="view">
+                <h class="title">最多人討論的店家</h>
+                <div class="msg-div" id="view-box"></div>
+            </div>
+        </content>
+        
+    </main>
+    {% endblock %}
+    {% block JS %}
+    <script type="module"src="../static/js/rank.js"></script>
+    <script type="module" src="../static/js/datahelper.js"></script>
+    {% endblock %}
+
+
+

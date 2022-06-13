@@ -9,6 +9,8 @@
 body{
     background-color: #f3eada;
 }
+
+
 h1,h2,h3,h4,h5,h6{
     font-weight: normal;
 }
@@ -106,6 +108,27 @@ header{
 
     }
 }
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #b9b8b8;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #353433b4;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #353433b4;
+  }
 footer{
    
     background-color: #353333;

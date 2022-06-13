@@ -4,6 +4,25 @@ content{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
+    .title-div{
+        width: 1200px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        .city-name{
+            font-size: 2.5rem;
+        }
+       
+       
+        #update-time{
+            position: absolute;
+            bottom: 0px;
+            font-size: 1rem;
+            right: 10px;
+            
+        }
+    }
     .view{
         width: 1200px;
         display: flex;

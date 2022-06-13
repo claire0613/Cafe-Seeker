@@ -1,0 +1,301 @@
+{% extends "basic.html" %}
+    {% block CSS %}
+    <link rel="stylesheet" href="../static/css/insertcafe.css" />
+    {% endblock %}
+    {% block title %}
+    Cafe-Seeker | Create New Cafe
+    {% endblock %}
+    {% block main %}
+    <div class="msg-page hidden" ><div id="modified-msg"></div></div>
+    <main>
+        <content>
+            <div class="title">新增店家表單</div>
+            <div class="alert-info">
+                <p>開始填表單前，為了避免重複新增一樣的店家，請先去確認是否已經存在!</p>
+                <p>Cafe-Seeker 所收錄的店家幾乎是可以方便讀書、工作以及開會</p>
+                <p>因此不建議收錄您新增"單純用餐為主"的咖啡館! </p>
+            </div>
+            <form class="insertform">
+                <div class="box">
+                    <span >所在縣市(必選) : </span>
+                    <div class="select">
+                        <select class="city-selection"  id="city" name="city" required>
+                            <option></option>
+                            <option value="1">台北(含新北)</option>
+                            <option value="2">基隆</option>
+                            <option value="3">桃園</option>
+                            <option value="4">新竹</option>
+                            <option value="5">苗栗</option>
+                            <option value="6">台中</option>
+                            <option value="7">南投</option>
+                            <option value="8">彰化</option>
+                            <option value="9">雲林</option>
+                            <option value="10">嘉義</option>
+                            <option value="11">台南</option>
+                            <option value="12">高雄</option>
+                            <option value="13">屏東</option>
+                            <option value="14">宜蘭</option>
+                            <option value="15">花蓮</option>
+                            <option value="16">澎湖</option>
+                            <option value="17">台東</option>
+                            <option value="18">連江</option>
+                            <option value="19">金門</option>
+                          </select>
+
+                    </div>
+      
+                   
+                    
+                </div>
+                <div class="box">
+                    <span>店名(必填)<p>(若有分店，請註明分店名):</p> </span>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="box">
+                    <span >地址(必填) : </span>  
+                    <input type="text" name="address" id="address"required>
+                </div>
+                
+               <div class="box">
+                    <span>有賣單品 : </span>
+                    <div>
+                        <label for ="single-selling-yes">是 </label>  
+                        <input type="radio" name="single-selling" value="1" id="single-selling-yes">
+                    </div>
+                    
+                    <div>
+                        <label for ="single-selling-no">否 </label>  
+                        <input type="radio" name="single-selling" value="0" id="single-selling-no">
+                    </div>
+                </div>
+                <div class="box">
+                    <span>有賣甜點 : </span>
+                    <div>
+                    <label for ="dessert-selling-yes">是 </label>  
+                    <input type="radio" name="dessert-selling" value="1" id="dessert-selling-yes">
+                     </div>
+                    <div>
+                    <label for ="dessert-selling-no">否 </label>  
+                    <input type="radio" name="dessert-selling" value="0" id="dessert-selling-no">
+                    </div>
+                </div>
+                <div class="box">
+                    <span>有賣正餐 : </span>
+                    <div>
+                        <label for ="meal-selling-yes">是 </label>  
+                        <input type="radio" name="meal-selling" value="1" id="meal-selling-yes">
+                    </div>
+                    <div>
+                        <label for ="meal-selling-no">否 </label>  
+                        <input type="radio" name="meal-selling" value="0" id="meal-selling-no">
+
+                    </div>
+                   
+                  
+                </div>
+                <div class="box">
+                    <span>有無限時 : </span>
+                    <div>
+                        <label for ="limited_time-yes">是 </label>  
+                        <input type="radio" name="limited_time" value="yes" id="limited_time-yes">
+                    </div>
+                    <div>
+                        <label for ="limited_time-no">否 </label>  
+                        <input type="radio" name="limited_time" value="no" id="limited_time-no">
+                    </div>
+           
+                 
+                </div>
+              
+                <div class="box">
+                    <span>可站立工作 : </span>
+                    <div>
+                        <label for ="standing-table-yes">是 </label>  
+                        <input type="radio" name="standing-table" value="1" id="standing-table-yes">
+                    </div>
+                   <div>
+                    <label for ="standing-table-no">否 </label>  
+                    <input type="radio" name="standing-table" value="0" id="standing-table-no">
+                   </div>
+
+                    
+                </div>
+                <div class="box">
+                    <span>有音樂? : </span>
+                    <div>
+                        <label for ="music-yes">是 </label>  
+                        <input type="radio" name="music" value="1" id="music-yes">
+                    </div>
+                  <div>
+
+                    <label for ="music-no">否 </label>  
+                    <input type="radio" name="music" value="0" id="music-no">
+                  </div>
+
+                </div>
+                <div class="box">
+                    <span>僅收現金 : </span>
+                    <div>
+                        <label for ="cashonly-yes">是 </label>  
+                        <input type="radio" name="cashonly" value="1" id="cashonly-yes">
+                    </div>
+                    <div>
+                        <label for ="cashonly-no">否 </label>  
+                        <input type="radio" name="cashonly" value="0" id="cashonly-no">
+                    </div>
+
+                </div>
+                <div class="box">
+                    <span>室外座位 : </span>
+                    <div>
+                        <label for ="outdoor_seating-yes">是 </label>  
+                        <input type="radio" name="outdoor-seating" value="1" id="outdoor-seating-yes">
+                    </div>
+                    <div>
+                        <label for ="outdoor_seating-no">否 </label>  
+                        <input type="radio" name="outdoor-seating" value="0" id="outdoor-seating-no">
+                    </div>
+  
+                </div>
+                <div class="box">
+                    <span>寵物友善 : </span>
+                    <div>
+                        <label for ="animals-yes">是 </label>  
+                        <input type="radio" name="animals" value="1" id="animals-yes">
+                    </div>
+                    <div>
+                        <label for ="animals-no">否 </label>  
+                        <input type="radio" name="animals" value="0" id="animals-no">
+                    </div>
+                    
+                </div>
+                <div class="box">
+                    <span>插座多 : </span>
+                    <div class="socket-div">
+                        <div>
+                            <label for ="socket-yes">是 </label>  
+                            <input type="radio" name="socket" value="yes" id="socket-yes">
+                        </div>
+                       
+                        <div>
+                            <label for ="socket-no">否 </label>  
+                            <input type="radio" name="socket" value="no" id="socket-no">
+                        </div>
+                        <div>
+                            <label for ="socket-maybe">看座位 </label>  
+                            <input type="radio" name="socket" value="maybe" id="socket-maybe">
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="box">
+                    <span>捷運站 : </span>
+                    <input type="text" id="mrt">
+                </div>
+                <div class="box">
+                    <span>電話 : </span>
+                    <input  type="text" id="phone"pattern="[0-9]{10}">
+                </div> 
+                <div class="box">
+                    <span >經度 : </span>
+                    <input  type="text" name="longitude"id="longitude"pattern="^(\+|-)?(?:180(?:(?:\.0{1,6}+)?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6}+)?))$">
+                </div> 
+                <div class="box">
+                    <span>緯度 : </span>
+                    <input  type="text" name="latitude"id="latitude"pattern="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$">
+                </div> 
+                <div class="box web">
+                    <span>官網 、 FB 或 IG <p>網址格式</p><p>http:// 或 https:// :</p></span>
+                    <input  type="text" id="website" pattern="https?://.+" >
+                </div>
+
+
+                <div class="box-time">
+                    <div class="time-title">營業時間</div>
+                    <div class="time">
+                        <div class="day" id=" monday">
+                            <div>週一</div>
+                            <input type="time" name="mon-start" id="mon-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="mon-end" id="mon-end" class="time-picker">
+                            <label>
+                                <input name="mon-start" value="未營業"type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
+                        <div class="day" id="tuesday">
+                            <div>週二</div>
+                            <input type="time" name="tue-start" id="tue-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="tue-end" id="tue-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
+                        <div class="day" id="wednesday">
+                            <div>週三</div>
+                            <input type="time" name="wed-start" id="wed-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="wed-end" id="wed-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
+                        <div class="day" id="thursday">
+                            <div>週四</div>
+                            <input type="time" name="thu-start" id="thu-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="thu-end" id="thu-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
+                        <div class="day" id="saturday">
+                            <div>週五</div>
+                            <input type="time" name="fri-start" id="fri-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="fri-end" id="fri-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
+                        <div class="day" id="saturday">
+                            <div>週六</div>
+                            <input type="time" name="sat-start" id="sat-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="sat-end" id="sat-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
+                        <div class="day" id="sunday ">
+                            <div>週日</div>
+                            <input type="time" name="sun-start" id="sat-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="sun-end" id="sun-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
+                        <div class="day">
+                        </div>
+                    </div>
+                
+                </div>
+               
+
+                <button type="submit">提出</button>
+            </form>
+           
+        </content>
+    </main>
+    {% endblock %}
+    {% block JS %}
+    <script src="../static/js/insertcafe.js"></script>
+    {% endblock %}

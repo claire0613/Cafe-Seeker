@@ -61,6 +61,7 @@ def get_cafe_favor():
         
             is_favor=Cafes_like.query.filter_by(cafe_id=cafe_id,user_id=user_id).first()
             if is_favor:
+                
                 is_favor=True
       
                 
@@ -68,3 +69,6 @@ def get_cafe_favor():
         
     except:
         return {"error": True, "message": "伺服器內部錯誤"}, 500
+    
+
+

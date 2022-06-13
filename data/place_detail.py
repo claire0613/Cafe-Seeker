@@ -13,7 +13,7 @@ from model.models import Cafes, City_ref,Score_rec,db,Photo
 def rating_avg(data):
     result_list=[]
     for i in data:
-        if i !=0.0:
+        if i !=0.0 and not None:
             result_list.append(i)
     if result_list :
         return round(sum(result_list)/len(result_list),1)
@@ -118,13 +118,8 @@ for cafe in cafes:
                 cafe.update()
         else:
             query=City_ref.query.filter_by(city_id=cafe.city_id).first()
-
-            if cafe.area=='台北':
-                cafe.area=query.city_tw+'市'
-                cafe.update()
-            else:
-                cafe.area=query.city_tw
-                cafe.update()
+            cafe.area=query.city_tw
+            cafe.update()
     
          
         

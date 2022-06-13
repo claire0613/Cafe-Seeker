@@ -1,0 +1,367 @@
+body {
+  position: relative;
+}
+
+body .msg-page {
+  position: absolute;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #59471f7c;
+}
+
+body .msg-page #modified-msg {
+  margin-top: 100px;
+  background-color: #f3dbb6;
+  font-size: 2.5rem;
+  border-radius: 10%;
+  color: #5f4203;
+  padding: 60px;
+  border: 3px solid #5f4203;
+  width: 400px;
+  height: 200px;
+  text-align: center;
+  font-weight: bold;
+}
+
+body .msg-page.hidden {
+  display: none;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main content {
+  width: 1200px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 200px auto;
+      grid-template-rows: 200px auto;
+}
+
+main content .member-info-container {
+  width: 600px;
+  margin: 50px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+main content .member-info-container .user-img {
+  width: 150px;
+  position: relative;
+  background-color: rgba(245, 245, 245, 0.731);
+  border-radius: 10%;
+}
+
+main content .member-info-container .user-img .user-pic {
+  width: 100%;
+}
+
+main content .member-info-container .user-img .user-pic #user-photo {
+  border-radius: 10%;
+  width: 100%;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main content .member-info-container .user-img .photo-upload-cover {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1rem;
+  border: none;
+  background-color: rgba(171, 171, 171, 0.731);
+  border-radius: 15px;
+  color: #3e2703;
+}
+
+main content .member-info-container .user-img .photo-upload-cover input {
+  display: none;
+}
+
+main content .member-info-container .user-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-left: 50px;
+}
+
+main content .member-info-container .user-info :is(span, button) {
+  padding-left: 15px;
+}
+
+main content .member-info-container .user-info div {
+  padding-bottom: 20px;
+}
+
+main content .member-info-container .user-info input {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #cccccc;
+}
+
+main content .member-info-container .hide {
+  display: none;
+}
+
+main content .member-info-container .modified-msg {
+  color: red;
+}
+
+main content .member-info-container button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+main content .record {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+main content .record .record-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 10px 20px 10px 20px;
+}
+
+main content .record .record-detail :is(.favor-title, .photo-title) {
+  text-align: center;
+  background-color: rgba(183, 129, 13, 0.66);
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+main content .record .record-detail .favor-div {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(165px, 1fr))[2];
+      grid-template-columns: repeat(2, minmax(165px, 1fr));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: auto;
+  height: 400px;
+  background-color: rgba(69, 67, 67, 0.221);
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+main content .record .record-detail .favor-div .favor-box {
+  width: 150px;
+  height: 150px;
+  background: #fefefe;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  padding-bottom: 20px;
+  margin: 5px;
+  border-radius: 5%;
+  text-decoration: none;
+}
+
+main content .record .record-detail .favor-div .favor-box .img-container {
+  border-radius: 5% 5% 0 0;
+  position: relative;
+  width: 100%;
+  background-color: #c0b9b9;
+}
+
+main content .record .record-detail .favor-div .favor-box .img-container .comment {
+  position: absolute;
+  top: 40%;
+  right: 40px;
+}
+
+main content .record .record-detail .favor-div .favor-box .img-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/2;
+  border-radius: 5% 5% 0 0;
+}
+
+main content .record .record-detail .favor-div .favor-box div {
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+main content .record .record-detail .favor-div .favor-box .cafe-delete-icon {
+  width: 20px;
+  position: absolute;
+  bottom: 0px;
+  background-color: transparent;
+  right: 0;
+  border: none;
+  cursor: pointer;
+}
+
+main content .record .record-detail .favor-div .favor-box .cafe-delete-icon img {
+  width: 100%;
+}
+
+main content .record .record-detail .photo-div {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(165px, 1fr))[2];
+      grid-template-columns: repeat(2, minmax(165px, 1fr));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: auto;
+  height: 400px;
+  background-color: rgba(69, 67, 67, 0.221);
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+main content .record .record-detail .photo-div .photo-box {
+  width: 150px;
+  height: 185px;
+  background: #fefefe;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  margin: 5px;
+  border-radius: 5%;
+  text-decoration: none;
+}
+
+main content .record .record-detail .photo-div .photo-box .img-container {
+  border-radius: 5% 5% 0 0;
+  position: relative;
+  width: 100%;
+  background-color: #c0b9b9;
+}
+
+main content .record .record-detail .photo-div .photo-box .img-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/2;
+  border-radius: 5% 5% 0 0;
+}
+
+main content .record .record-detail .photo-div .photo-box div {
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+main content .record .record-detail .photo-div .photo-box .photo-delete-icon {
+  width: 20px;
+  position: absolute;
+  bottom: 0px;
+  background-color: transparent;
+  right: 0;
+  border: none;
+  cursor: pointer;
+}
+
+main content .record .record-detail .photo-div .photo-box .photo-delete-icon img {
+  width: 100%;
+}
+
+main content .record ::-webkit-scrollbar {
+  width: 3px;
+}
+
+main content .record ::-webkit-scrollbar-track {
+  background: #9f9f9e;
+}
+
+main content .record ::-webkit-scrollbar-thumb {
+  background: #3c3c3bb4;
+}
+
+main content .record ::-webkit-scrollbar-thumb:hover {
+  background: #3c3c3bb4;
+}
+/*# sourceMappingURL=member.css.map */

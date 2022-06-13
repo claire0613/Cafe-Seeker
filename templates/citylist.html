@@ -1,167 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/nav.css" />
-    <link rel="stylesheet" href="../static/css/citylist.css" />
-    <title>Cafe-Seeker | City List</title>
-</head>
-<body>
-    <a href="#topic" id="arrow"><img src="../static/icons/arrow-up-circle.svg"></a>
-    <header>
-        <div class="topic" id="topic"><a href="/">Cafe-Seeker</a></div>
-        <nav>
-            <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
-            <ul class="nav-link">
-                <!-- <li id="discussion">討論區</li> -->
-                <!-- <li id="member-page">會員專區</li> -->
-                <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
-                <li id="signout-btn">登出系統</li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <div class="description-container">
-            <div class="description"></div>
-        </div>
-        
-        <div class="scroll-wrapper">
-            <form>
-                <div class="input-div">
-                   
-                    <input class="search-filter" name="keyword" placeholder="搜尋 (名稱、地區)">
-                    <button type="submit" class="btn"><img src="/static/icons/search.svg" alt="search"/></button>
-                </div>
+{% extends "basic.html" %}
+{% block CSS %}
+<link rel="stylesheet" href="../static/css/citylist.css" />
+{% endblock %}
+{% block title %}
+Cafe-Seeker | 尋找最適合自己的咖啡廳的網站
+{% endblock %}
+{% block main %}
+<main>
+    <div class="description-container">
+        <div class="description"></div>
+    </div>
 
-                <div class="select-group">
-                    <select class="form-select s-rating" name="rating" >
-                        <option value="0" selected>評比</option>
-                        <option value="5">評比 ≥ 5</option>
-                        <option value="4">評比 ≥ 4</option>
-                        <option value="3">評比 ≥ 3</option>
-                        <option value="2">評比 ≥ 2</option>
-          
-                      </select>
-                    <select class="form-select s-price" name="price" >
-                        <option value="0" selected>價格便宜</option>
-                        <option value="5">價格便宜 ≥ 5</option>
-                        <option value="4">價格便宜 ≥ 4</option>
-                        <option value="3">價格便宜 ≥ 3</option>
-                        <option value="2">價格便宜 ≥ 2</option>
-                      </select>
-                      <select class="form-select s-wifi" name="wifi" >
-                        <option value="0" selected>WiFi 穩定</option>
-                        <option value="5">WiFi 穩定 ≥ 5</option>
-                        <option value="4">WiFi 穩定 ≥ 4</option>
-                        <option value="3">WiFi 穩定 ≥ 3</option>
-                        <option value="2">WiFi 穩定 ≥ 2</option>
-                  
-                      </select>
-                      <select class="form-select" name="vacancy" >
-                        <option value="0" selected>通常有位?</option>
-                        <option value="5">通常有位? ≥ 5</option>
-                        <option value="4">通常有位? ≥ 4</option>
-                        <option value="3">通常有位? ≥ 3</option>
-                        <option value="2">通常有位? ≥ 2</option>
-                     
-                      </select>
-                      <select class="form-select" name="drinks" >
-                        <option value="0" selected>咖啡好喝</option>
-                        <option value="5">咖啡好喝 ≥ 5</option>
-                        <option value="4">咖啡好喝 ≥ 4</option>
-                        <option value="3">咖啡好喝 ≥ 3</option>
-                        <option value="2">咖啡好喝 ≥ 2</option>
-               
-                      </select>
-                      <select class="form-select" name="quiet" >
-                        <option value="0" selected>安靜度</option>
-                        <option value="5">安靜度 ≥ 5</option>
-                        <option value="4">安靜度 ≥ 4</option>
-                        <option value="3">安靜度 ≥ 3分</option>
-                        <option value="2">安靜度 ≥ 2分</option>
-                       
-                      </select>
-                      <select class="form-select" name="comfort" >
-                        <option value="0" selected>舒適度</option>
-                        <option value="5">舒適度 ≥ 5</option>
-                        <option value="4">舒適度 ≥ 4</option>
-                        <option value="3">舒適度 ≥ 3</option>
-                        <option value="2">舒適度 ≥ 2</option>
-                      
-                      </select>
+    <div class="scroll-wrapper">
+        <form id="citylistForm">
+            <div class="input-div">
 
-                      <select class="form-select" name="limted_time" >
-                        <option value="" selected>時間限制</option>
-                        <option value="1">時間限制 有</option>
-                        <option value="0">時間限制 無</option>
-                      </select>
-                      <select class="form-select" id="s-meal" name="meal_selling" >
-                        <option value="" selected>有賣正餐</option>
-                        <option value="1">有賣正餐 有</option>
-                        <option value="0">有賣正餐 無</option>
-                      </select>
-                      
-                </div>
+                <input class="search-filter" name="keyword" placeholder="搜尋 (名稱、地區)">
+                <div class="search-result">
                 
-                  
-            </form>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th class="rating">評比</th>
-                        <th class="name">名稱</th>
-                        <th class="price">價格便宜</th>
-                        <th class="wifi">WiFi 穩定</th>
-                        <th class="vacancy">通常有位?</th>
-                        <th class="drinks">咖啡好喝</th>
-                        <th class="quiet">安靜度</th>
-                        <th class="comfort" >舒適度</th>
-                        <th class="limited-time">時間限制</th>
-                        <th class="selling-meal">有賣正餐</th>
-                        <th class="open_hours">營業時間(今日)</th>
-                        <th class="transport">捷運站/交通</th>
-
-
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-
-            </table>
-           
-        </div>
-        <div class="page-navigation">
-            <ul class="pagination" id="pagination">
-    
-            </ul>
-        </div>
-    </main>
-    
-    <footer>
-        <div>
-            <h2 class="footer-head">Cafe-Seeker</h2>
-            <ul>
-                <li><a href="#"><img src="../static/icons/home_w.png">Home</a></li>
-                <li><a href="#"><img src="../static/icons/user_w 1.png">About</a></li>
-                <li><a href="#"><img src="../static/icons/mail _w.png">Contact</a></li>
-                <li><a href="#"><img src="../static/icons/Git_w.png">GitHub</a></li>
-    
-            </ul>
-            <div class="reference">
-                <div>References:</div>
-                <li><a href="#"> Cafe Nomad</a></li>
-                <li><a href="#">Cafe and Coword</a></li>
+                </div>
+                <button type="submit" class="btn">Search</button>
+                <button type="reset" class="btn"><img src="/static/icons/reset.png" alt="" /></button>
             </div>
-            <p id="footer-p">COPYRIGHT © 2022</p>
-        </div>
 
-    </footer>
-    <script type="module"src="../static/js/citylist.js"></script>
-    <script type="module" src="../static/js/datahelper.js"></script>
-    <script src="../static/js/nav.js"></script>
-</body>
-</html>
+            <div class="select-group">
+                <select class="form-select s-rating" name="rating">
+                    <option value="0" selected>評比</option>
+                    <option value="5">評比 ≥ 5</option>
+                    <option value="4">評比 ≥ 4</option>
+                    <option value="3">評比 ≥ 3</option>
+                    <option value="2">評比 ≥ 2</option>
+
+                </select>
+                <select class="form-select s-price" name="price">
+                    <option value="0" selected>價格便宜</option>
+                    <option value="5">價格便宜 ≥ 5</option>
+                    <option value="4">價格便宜 ≥ 4</option>
+                    <option value="3">價格便宜 ≥ 3</option>
+                    <option value="2">價格便宜 ≥ 2</option>
+                </select>
+                <select class="form-select s-wifi" name="wifi">
+                    <option value="0" selected>WiFi 穩定</option>
+                    <option value="5">WiFi 穩定 ≥ 5</option>
+                    <option value="4">WiFi 穩定 ≥ 4</option>
+                    <option value="3">WiFi 穩定 ≥ 3</option>
+                    <option value="2">WiFi 穩定 ≥ 2</option>
+
+                </select>
+                <select class="form-select" name="vacancy">
+                    <option value="0" selected>通常有位?</option>
+                    <option value="5">通常有位? ≥ 5</option>
+                    <option value="4">通常有位? ≥ 4</option>
+                    <option value="3">通常有位? ≥ 3</option>
+                    <option value="2">通常有位? ≥ 2</option>
+
+                </select>
+                <select class="form-select" name="drinks">
+                    <option value="0" selected>咖啡好喝</option>
+                    <option value="5">咖啡好喝 ≥ 5</option>
+                    <option value="4">咖啡好喝 ≥ 4</option>
+                    <option value="3">咖啡好喝 ≥ 3</option>
+                    <option value="2">咖啡好喝 ≥ 2</option>
+
+                </select>
+                <select class="form-select" name="quiet">
+                    <option value="0" selected>安靜度</option>
+                    <option value="5">安靜度 ≥ 5</option>
+                    <option value="4">安靜度 ≥ 4</option>
+                    <option value="3">安靜度 ≥ 3</option>
+                    <option value="2">安靜度 ≥ 2</option>
+
+                </select>
+                <select class="form-select" name="comfort">
+                    <option value="0" selected>舒適度</option>
+                    <option value="5">舒適度 ≥ 5</option>
+                    <option value="4">舒適度 ≥ 4</option>
+                    <option value="3">舒適度 ≥ 3</option>
+                    <option value="2">舒適度 ≥ 2</option>
+
+                </select>
+
+                <select class="form-select" name="limted_time">
+                    <option value="" selected>時間限制</option>
+                    <option value="1">時間限制 有</option>
+                    <option value="0">時間限制 無</option>
+                </select>
+                <select class="form-select" id="s-meal" name="meal_selling">
+                    <option value="" selected>有賣正餐</option>
+                    <option value="1">有賣正餐 有</option>
+                    <option value="0">有賣正餐 無</option>
+                </select>
+
+            </div>
+
+
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="rating">評比</th>
+                    <th class="name">名稱</th>
+                    <th class="price">價格便宜</th>
+                    <th class="wifi">WiFi 穩定</th>
+                    <th class="vacancy">通常有位?</th>
+                    <th class="drinks">咖啡好喝</th>
+                    <th class="quiet">安靜度</th>
+                    <th class="comfort">舒適度</th>
+                    <th class="limited-time">時間限制</th>
+                    <th class="selling-meal">有賣正餐</th>
+                    <th class="open_hours">營業時間(今日)</th>
+                    <th class="transport">捷運站/交通</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="page-navigation">
+        <ul class="pagination" id="pagination">
+
+        </ul>
+    </div>
+</main>
+{% endblock %}
+{% block JS %}
+<script type="module" src="../static/js/citylist.js"></script>
+<script type="module" src="../static/js/datahelper.js"></script>
+{% endblock %}
+
+
+

@@ -10,6 +10,7 @@ from model.models import Users,db
 sys.path.append("..")
 from dotenv import load_dotenv
 load_dotenv()
+from data.api_helper import updated_name_pwd
 
 
 @api.route('/user', methods=['GET'])
@@ -78,7 +79,9 @@ def login():
                 token = jwt.encode({
                     "id": user_detail.user_id,
                     "username": user_detail.username,
-                    "email": user_detail.email, "exp": datetime.utcnow() + timedelta(days=1)
+                    "email": user_detail.email,
+                    "avatar":user_detail.avatar,
+                    "exp": datetime.utcnow() + timedelta(days=1)
                 }, os.getenv("SECRET_KEY"), algorithm='HS256')
                 message = {"ok": True}
                 
@@ -123,40 +126,42 @@ def singout():
     return response
 
 
-# # 修改會員姓名/密碼
-# @api_user.route('/member', methods=['POST'])
-# def updateuser():
-#     try:
-#         token_cookie=request.cookies.get('user_cookie')
-#         if token_cookie :
-#             user=jwt.decode(token_cookie,os.getenv("SECRET_KEY"),algorithms=['HS256'])
-#             user_id=user["id"]
-#             data = request.json
-#             newname = data["newName"]
-#             pwd=data["pwd"]
-#             result=updated_name_pwd(user_id=user_id, new_name=newname,pwd=pwd)
-#             if result:
-#                 message = {"ok": True}
-#                 response = make_response(jsonify(message))
-#                 if newname:
-#                     token = jwt.encode({
-#                     "id": user['id'],
-#                     "name": newname,
-#                     "email": user['email'], "exp": datetime.utcnow() + timedelta(days=1)
-#                     }, os.getenv("SECRET_KEY"), algorithm='HS256')
-#                     response.set_cookie(key='user_cookie', value=token)
-#                     return response
-#                 else:
-#                     return response
+# 修改會員姓名
+@api.route('/user/update', methods=['POST'])
+def updateuser():
+    try:
+        token_cookie=request.cookies.get('user_cookie')
+        if token_cookie :
+            user=jwt.decode(token_cookie,os.getenv("SECRET_KEY"),algorithms=['HS256'])
+            user_id=user["id"]
+            data = request.json
+            newname = data["newName"]
+            result=updated_name_pwd(user_id=user_id, new_name=newname,pwd=None)
+            if result:
+                message = {"ok": True}
+                response = make_response(jsonify(message))
+                if newname:
+                    
+                    token = jwt.encode({
+                    "id": user['id'],
+                    "username": newname,
+                    "email": user['email'],
+                    "avatar":user["avatar"],
+                    "exp": datetime.utcnow() + timedelta(days=1)
+                    }, os.getenv("SECRET_KEY"), algorithm='HS256')
+                    response.set_cookie(key='user_cookie', value=token)
+                    return response
+                else:
+                    return response
             
-#         else:
-#             return jsonify({"error": True,"message":"未登入"})
-#     # 伺服器錯誤
-#     except:
-#         message = {
-#             "error": True,
-#             "message": "伺服器內部錯誤"
-#         }
-#         response = make_response(jsonify(message), 500)
-#         return response
+        else:
+            return jsonify({"error": True,"message":"未登入"})
+    # 伺服器錯誤
+    except:
+        message = {
+            "error": True,
+            "message": "伺服器內部錯誤"
+        }
+        response = make_response(jsonify(message), 500)
+        return response
 

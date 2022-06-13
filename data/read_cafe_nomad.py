@@ -24,7 +24,7 @@ def main():
     for result in results:
         cafe=Cafes()
         query_id=cafe.search_by_name(result.get("name"))        
-        exist=cafe.search_nomad(search_name=result.get('name'),address=result.get('address'))
+        exist=cafe.search_nomad(search_name=result.get('name'))
         if not '已結束營業' in result.get("open_time") and not '停業'in result.get("open_time") and not'已結束營業' in result.get("name") and not'停業' in result.get("name"):
             if exist :
                 

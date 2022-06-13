@@ -25,7 +25,7 @@ function scoreRender(value){
     else if(value === 'maybe'){
       return '看座位'
     }
-    else  if (value!==null && value !=0){
+    else  if (value!==null && value !=0 && value !==''){
       value = value.toFixed(1);
       return value+ ' ★'
   }

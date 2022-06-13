@@ -1,146 +1,171 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="'robots" content="index, follow">
-    <link rel="stylesheet" href="../static/css/nav.css" />
+{% extends "basic.html" %}
+    {% block CSS %}
     <link rel="stylesheet" href="../static/css/shop.css" />
-    <title>Cafe-Seeker | Shop</title>
-</head>
-<body>
-    <a href="#topic" id="arrow"><img src="../static/icons/arrow-up-circle.svg"></a>
-    <header>
-        <div class="topic" id="topic"><a href="/">Cafe-Seeker</a></div>
-        <nav>
-            <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
-            <ul class="nav-link">
-                <!-- <li id="discussion">討論區</li> -->
-                <!-- <li id="member-page">會員專區</li> -->
-                <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
-                <li id="signout-btn">登出系統</li>
-            </ul>
-        </nav>
-    </header>
+    {% endblock %}
+    {% block title %}
+    Cafe-Seeker | Shop
+    {% endblock %}
+    {% block main %}
     <main>
         <content>
             <div class="cafe-header">
                 <div class="shop-name"></div>
                 <div class="favor-div">
-                    <button class="favor"><img id="cafe-favor-icon"src="/static/icons/heart-emt.png">收藏</button>
+                    <button class="favor"><img id="cafe-favor-icon" src="/static/icons/heart-emt.png">收藏</button>
                     <span id="favor-count">目前沒有人收藏</span>
                 </div>
 
             </div>
-            
+
             <div class="rating-div">
-                <div class="wifi"><p>WiFi 穩定</p><span id="wifi-span"></span></div>
-                <div class="vacancy"><p>通常有位</p><span id="vaca-span"></span></div>
-                <div class="price"><p>價格便宜</p> <span id="price-span"></span></div>
-                <div class="quiet"><p>安靜程度</p><span id="quiet-span"></span></div>
-                <div class="comfort"><p>舒適程度</p><span id="comfort-span"></span></div>
-                <div class="drinks"><p>咖啡好喝</p>  <span id="drinks-span"></span></div>
-                <div class="food"><p>東西好吃</p> <span id="food-span"></span></div>
-                <div class="view"><p>景色</p><span id="view-span"></span></div>
-                <div class="toilet"><p>廁所</p><span id="toilets-span"></span></div>
-                <div class="speed"><p>WiFi 速度</p><span id="speed-span"></span></div>
+                <div class="wifi">
+                    <p>WiFi 穩定</p><span id="wifi-span"></span>
+                </div>
+                <div class="vacancy">
+                    <p>通常有位</p><span id="vaca-span"></span>
+                </div>
+                <div class="price">
+                    <p>價格便宜</p> <span id="price-span"></span>
+                </div>
+                <div class="quiet">
+                    <p>安靜程度</p><span id="quiet-span"></span>
+                </div>
+                <div class="comfort">
+                    <p>舒適程度</p><span id="comfort-span"></span>
+                </div>
+                <div class="drinks">
+                    <p>咖啡好喝</p> <span id="drinks-span"></span>
+                </div>
+                <div class="food">
+                    <p>東西好吃</p> <span id="food-span"></span>
+                </div>
+                <div class="view">
+                    <p>景色</p><span id="view-span"></span>
+                </div>
+                <div class="toilet">
+                    <p>廁所</p><span id="toilets-span"></span>
+                </div>
+                <div class="speed">
+                    <p>WiFi 速度</p><span id="speed-span"></span>
+                </div>
                 <button class="rating-btn">我要給這間店評分</button>
-                <div id="score-count">目前有 11 人 收藏</div>
+                <div id="score-count"></div>
 
             </div>
             <div class="shop-detail">店家資訊</div>
             <div class="shop-detail-div">
-                <div class="single-selling"><p>有賣單品</p><span id="single-span"></span></div>
-                <div class="limited-time"><p>時間限制</p><span id="limited-span"></span></div>
-                <div class="dessert"><p>有賣甜點</p><span id="dessert-span"></span></div>
-                <div class="socket"><p>插座多</p><span id="socket-span"></span></div>
-                <div class="meal"><p>有賣正餐</p><span id="meal-span"></span></div>
-                <div class="standing_tables"><p>站立式座位</p><span id="standing-span"></span></div>
-                <div class="music"><p>音樂</p><span id="music-span"></span></div>
-                <div class="outside"><p>室外座位</p><span id="outside-span"></span></div>
-                <div class="cash"><p>僅收現金</p><span id="cash-span"></span></div>
-                <div class="animals"><p>寵物友善</p><span id="animals-span"></span></div>
-                
+                <div class="single-selling">
+                    <p>有賣單品</p><span id="single-span"></span>
+                </div>
+                <div class="limited-time">
+                    <p>時間限制</p><span id="limited-span"></span>
+                </div>
+                <div class="dessert">
+                    <p>有賣甜點</p><span id="dessert-span"></span>
+                </div>
+                <div class="socket">
+                    <p>插座多</p><span id="socket-span"></span>
+                </div>
+                <div class="meal">
+                    <p>有賣正餐</p><span id="meal-span"></span>
+                </div>
+                <div class="standing_tables">
+                    <p>站立式座位</p><span id="standing-span"></span>
+                </div>
+                <div class="music">
+                    <p>音樂</p><span id="music-span"></span>
+                </div>
+                <div class="outside">
+                    <p>室外座位</p><span id="outside-span"></span>
+                </div>
+                <div class="cash">
+                    <p>僅收現金</p><span id="cash-span"></span>
+                </div>
+                <div class="animals">
+                    <p>寵物友善</p><span id="animals-span"></span>
+                </div>
+
             </div>
             <div class="time-web-div">
                 <div class="time">
-                    <div class="mon"><p>週一</p><span id="mon-span"></span></div>
-                    <div class="tue"><p>週二</p><span id="tue-span"></span></div>
-                    <div class="wed"><p>週三</p><span id="wed-span"></span></div>
-                    <div class="thu"><p>週四</p><span id="thu-span"></span></div>
-                    <div class="fri"><p>週五</p><span id="fri-span"></span></div>
-                    <div class="sat"><p>週六</p> <span id="sat-span"></span></div>
-                    <div class="sun"><p>週日</p><span id="sun-span"></span></div>
+                    <div class="mon">
+                        <p>週一</p><span id="mon-span"></span>
+                    </div>
+                    <div class="tue">
+                        <p>週二</p><span id="tue-span"></span>
+                    </div>
+                    <div class="wed">
+                        <p>週三</p><span id="wed-span"></span>
+                    </div>
+                    <div class="thu">
+                        <p>週四</p><span id="thu-span"></span>
+                    </div>
+                    <div class="fri">
+                        <p>週五</p><span id="fri-span"></span>
+                    </div>
+                    <div class="sat">
+                        <p>週六</p> <span id="sat-span"></span>
+                    </div>
+                    <div class="sun">
+                        <p>週日</p><span id="sun-span"></span>
+                    </div>
                     <div class="openTime"><span id="opTime-span"></span></div>
                 </div>
                 <div class="web">
-                    <div class="website"><p>官網</p><a id="web-link"></a></div>
-                    <div class="mrt"><p>捷運站</p><span id="mrt-span"></span></div>
-                    <div class="address"><p>地址</p><a id="address-link"></a></div>
-                    <div class="phone"><p>電話</p><span id="phone-span"></span></div>
+                    <div class="website">
+                        <p>官網</p><a id="web-link"></a>
+                    </div>
+                    <div class="mrt">
+                        <p>捷運站</p><span id="mrt-span"></span>
+                    </div>
+                    <div class="address">
+                        <p>地址</p><a id="address-link"></a>
+                    </div>
+                    <div class="phone">
+                        <p>電話</p><span id="phone-span"></span>
+                    </div>
                     <div class="modify-div">
-<!--                         
-                        <button class="modify-shop">提出修改</button> -->
+           
                         <p></p>
                     </div>
-                    
-           
+
+
                 </div>
-    
+
             </div>
             <div class="message">網友留言</div>
             <div class="msg-div">
                 <div class="msg"></div>
                 <form class="msg-form">
-                    <textarea name="message" id ='message'></textarea>
+                    <textarea name="message" id='message'></textarea>
                     <button class="upload" id="msg-btn">留言</button>
                 </form>
             </div>
- 
-             
-            
+
+
+
             <div class="photo">
                 <div class="photo-header">網友提供照片</div>
                 <div class="image"></div>
                 <label class="upload-cover-fake">
                     <span class="upload-span">上傳照片</span>
                 </label>
-                
+
                 <label class="upload-cover">
-                    <input id="upload-input" type="file" name='file[]'accept=".jpg,.png,.jpeg "multiple>
+                    <input id="upload-input" type="file" name='file[]' accept=".jpg,.png,.jpeg " multiple>
                     <span class="upload-span">上傳照片</span>
                 </label>
                 <p class="msg" id="photo-msg"></p>
             </div>
-    
+
             <div class="map"></div>
-    
+
         </content>
-       
+
     </main>
-        <footer>
-            <div>
-                <h2 class="footer-head">Cafe-Seeker</h2>
-            <ul>
-                <li><a href="#"><img src="../static/icons/home_w.png">Home</a></li>
-                <li><a href="#"><img src="../static/icons/user_w 1.png">About</a></li>
-                <li><a href="#"><img src="../static/icons/mail _w.png">Contact</a></li>
-                <li><a href="#"><img src="../static/icons/Git_w.png">GitHub</a></li>
-    
-            </ul>
-            <div class="reference">
-                <div>References:</div>
-                <li><a href="#"> Cafe Nomad</a></li>
-                <li><a href="#">Cafe and Coword</a></li>
-            </div>
-            <p>COPYRIGHT © 2022</p>
-    
-            </div>
-        </footer>
-    <script src="../static/js/nav.js"></script>
-   
+    {% endblock %}
+    {% block JS %}
     <script type="module" src="../static/js/shop.js"></script>
-     <script type="module" src="../static/js/datahelper.js"></script>
-</body>
-</html>
+    <script type="module" src="../static/js/datahelper.js"></script>
+    {% endblock %}
+

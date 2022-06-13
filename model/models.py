@@ -1,15 +1,23 @@
+import sys,os
+sys.path.append("..")
 from dotenv import load_dotenv
 from requests import delete
 load_dotenv()
 from flask import Flask  
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import expression
-import sys
-sys.path.append("..")
+
 from env import DB_USER,DB_PASSWORD,DB_HOST,DB_NAME
 from sqlalchemy import Index,text,or_
 from sqlalchemy.dialects.mysql import DOUBLE
 from werkzeug.security import generate_password_hash,check_password_hash
+
+from redis import Redis
+
+from flask_caching import Cache
+
+redis_host = os.getenv("REDIS_HOST")
+cache = Cache(config={"CACHE_TYPE": "RedisCache", "CACHE_REDIS_HOST": redis_host})
 
 app=Flask(__name__)
 # 設定資料庫位置，並建立 app
@@ -22,6 +30,7 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_size': 10,
     'max_overflow': 5,
 }
+app
 
 
 
@@ -30,7 +39,7 @@ db = SQLAlchemy(app)
 class Cafes(db.Model):
     __tablename__='cafes'
     id=db.Column(db.Integer,primary_key=True,autoincrement=True)
-    name=db.Column(db.String(255),nullable=False)
+    name=db.Column(db.String(255),unique=True,nullable=False)
     area=db.Column(db.String(100),nullable=False)
     city_id=db.Column(db.Integer,db.ForeignKey('city_ref.city_id'),nullable=False)
     address=db.Column(db.String(255),nullable=False)
@@ -77,8 +86,8 @@ class Cafes(db.Model):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
     
     @classmethod
-    def search_nomad(cls,search_name,address):
-        return cls.query.filter(or_(cls.name==search_name,cls.address==address)).first()
+    def search_nomad(cls,search_name):
+        return cls.query.filter(cls.name==search_name).first()
 
     
     @classmethod
@@ -168,7 +177,8 @@ class Users(db.Model):
   
     def verify_password(self,pwd):
         return check_password_hash(self.pwd_hash,pwd)
-    
+    def update(self):
+        db.session.commit()
 Index('email_name_index',Users.email,Users.username)
 
 class Cafes_like(db.Model):
@@ -227,6 +237,9 @@ class Photo(db.Model):
     create_time = db.Column(db.DateTime, server_default=text('NOW()'))
     def insert(self):
         db.session.add(self)
+        db.session.commit()
+    def delete(self):
+        db.session.delete(self)
         db.session.commit()
     def as_dict(self):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
@@ -304,14 +317,15 @@ class Update_detail(db.Model):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
     
     
-class View(db.Model):
-    __tablename__='view'
-    view_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
+class Rank(db.Model):
+    __tablename__='rank'
+    rank_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     cafe_id=db.Column(db.Integer, db.ForeignKey('cafes.id', ondelete='CASCADE'), nullable=False)
     search_count=db.Column(db.Integer, server_default=text("0"), nullable=False)
     cafe_favor_count=db.Column(db.Integer, server_default=text("0"), nullable=False)
     cafe_rating_count=db.Column(db.Integer, server_default=text("0"), nullable=False)
     cafe_msg_count=db.Column(db.Integer, server_default=text("0"), nullable=False)
+    city_id=db.Column(db.Integer,db.ForeignKey('city_ref.city_id'),nullable=False)
     update_time=db.Column(db.DateTime, server_default=text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
     
     def insert(self):

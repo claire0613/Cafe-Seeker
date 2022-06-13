@@ -46,6 +46,11 @@ main section.background .description form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 
 main section.background .description form input {
@@ -63,8 +68,45 @@ main section.background .description form input {
   border-radius: 5px 0 0 5px;
 }
 
-main section.background .description form #page {
-  display: none;
+main section.background .description form .search-result {
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  background: rgba(225, 201, 167, 0.696);
+  z-index: 1;
+  border-radius: 6px;
+  width: 400px;
+  color: #3c2d08;
+}
+
+main section.background .description form ::-webkit-scrollbar {
+  width: 5px;
+}
+
+main section.background .description form ::-webkit-scrollbar-track {
+  background: #a38c5f;
+}
+
+main section.background .description form ::-webkit-scrollbar-thumb {
+  background: #683a0cb4;
+}
+
+main section.background .description form ::-webkit-scrollbar-thumb:hover {
+  background: #683a0cb4;
+}
+
+main section.background .description form .ul {
+  list-style-type: none;
+  border-radius: 6px;
+  overflow: auto;
+  min-height: 30px;
+  height: 100px;
+}
+
+main section.background .description form .ul li {
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
 }
 
 main section.background .description form .btn {

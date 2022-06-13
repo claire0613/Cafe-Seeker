@@ -58,7 +58,7 @@ main form {
   background-color: #fff;
   border-radius: 15px;
   position: relative;
-  padding: 0px 0px 75px 0px;
+  padding: 20px 0px 75px 0px;
 }
 
 main form .rating-box {
@@ -97,12 +97,11 @@ main form .rating-box .rating {
   -webkit-box-direction: reverse;
       -ms-flex-flow: row-reverse;
           flex-flow: row-reverse;
-  min-width: 275px;
+  min-width: 235px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  margin: 10px;
 }
 
 main form .rating-box .rating input {

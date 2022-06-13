@@ -1,0 +1,46 @@
+{% extends "basic.html" %}
+    {% block CSS %}
+    <style>
+        main{width: 1200px;margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;padding-top:100px; }
+        
+        section{
+            display: flex;
+           
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 500px;
+            font-weight: bold;
+ 
+            border: 3px solid #5f4203;
+            height: 200px;
+            background-color: rgb(243, 219, 182);
+            border-radius: 10%;
+            color:#ba0000;
+            font-size:2.5rem;
+            font-weight:bold;padding-bottom:20px;
+        }
+  
+ 
+      
+    </style>
+    {% endblock %}
+    {% block title %}
+    Cafe-Seeker | 找不到頁面
+    {% endblock %}
+    {% block main %}
+    <main >
+        <section>
+            <h3>ERROR</h3>
+            <p >沒有此頁面</p>
+        
+        </section>
+    </main>
+    {% endblock %}
+    {% block JS %}
+   
+    {% endblock %}

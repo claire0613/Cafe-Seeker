@@ -12,6 +12,29 @@ content {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 50px;
+}
+
+content .title-div {
+  width: 1200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+content .title-div .city-name {
+  font-size: 2.5rem;
+}
+
+content .title-div #update-time {
+  position: absolute;
+  bottom: 0px;
+  font-size: 1rem;
+  right: 10px;
 }
 
 content .view {
@@ -159,4 +182,4 @@ content .view #view-box a .cafe-box .card-three img {
 content .view #view-box a .cafe-box:hover {
   cursor: pointer;
 }
-/*# sourceMappingURL=city.css.map */
+/*# sourceMappingURL=rank.css.map */

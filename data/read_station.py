@@ -2,7 +2,7 @@
 import sys,json
 sys.path.append("..")
 
-from model.models import Cafes, City_ref,Station_ref
+from model.models import Station_ref
 
 with open('../locales/zh-tw.json','r',encoding='utf8') as file:
     for line in file:
@@ -12,4 +12,3 @@ with open('../locales/zh-tw.json','r',encoding='utf8') as file:
             station.insert()
 
 
-# a=Cafes.query.join(City_ref).add_columns(City_ref.city_tw,City_ref.city_id).first()  

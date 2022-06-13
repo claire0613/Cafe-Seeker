@@ -8,9 +8,11 @@ from api.rating import api
 from api.photo import api
 from api.message import api
 from api.favor import api
-
+from api.member import api
+from flask_caching import Cache
 app=Flask(__name__)
 app.register_blueprint(api, url_prefix="/api")
+cache = Cache(app)
 # register blueprint
 
 
@@ -34,8 +36,7 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'max_overflow': 5,
 }
 
-# with app.app_context():
-#     db.create_all() #創建所有table,如果不存在會自動創建
+
 
 db.init_app(app)
 
@@ -59,9 +60,9 @@ def rating_fail(scr_id):
 def shop(id):
     return render_template("shop.html")
 
-@app.route("/<city>")
+@app.route("/rank/<city>")
 def city(city):
-    return render_template("city.html")
+    return render_template("rank.html")
 
 @app.route("/<city>/list")
 def city_list(city):
@@ -76,10 +77,20 @@ def search():
 def login():
     return render_template("login.html")
 
-@app.route("/member/<user_id>")
-def member(user_id):
+@app.route("/member")
+def member():
     return render_template("member.html")
+@app.route("/insertcafe")
+def insertCafe():
+    return render_template("insertcafe.html")
 
+@app.errorhandler(404)
+def not_found(e):
+	return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(e):
+    return render_template('500.html'), 500
 
 
 

@@ -23,6 +23,7 @@ main{
             }
             form{
                 display: flex;
+                position: relative;
                 input{
                     width: 400px;
                     height: 46px;
@@ -39,6 +40,50 @@ main{
                 
                     
                 }
+                .search-result{
+                    position: absolute;
+                    top: 45px;
+                    left: 0px;
+                    background: rgba(225, 201, 167, 0.696);
+                    z-index: 1;
+                    border-radius: 6px;
+                    width: 400px;
+
+                    color: #3c2d08;
+                }
+
+                /* width */
+                ::-webkit-scrollbar {
+                    width: 5px;
+                }
+                
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    background: #a38c5f;
+                }
+                
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    background: #683a0cb4;
+                }
+                
+                /* Handle on hover */
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #683a0cb4;
+                }
+                .ul{
+                    list-style-type: none;
+                    border-radius: 6px;
+                    overflow: auto;
+                    min-height: 30px;
+                    height: 100px;
+                    li{
+                        padding-top: 5px;
+                        padding-left: 5px;
+                        padding-bottom: 5px;
+                       
+                    }
+
                 
                 }
                 .btn{

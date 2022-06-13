@@ -1,63 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <div class="topic"><a href="/">Cafe-Seeker</a></div>
-        <nav>
-            <div class="ham"><img src="/static/icons/hamburger.png" width="30" height="30"></div>
-            <ul class="nav-link">
-                <!-- <li id="discussion">討論區</li> -->
-                <!-- <li id="member-page">會員專區</li> -->
-                <li id="signin-up-btn" class="show"><a href="/login">登入/註冊</a></li>
-                <li id="signout-btn">登出系統</li>
-            </ul>
-        </nav>
-    </header>
-    <section class="member-info-container">
-        <div class="user-img">
-            <div class="user-pic"><img id="user-photo"></div>
-        </div>
-        <div class="user-info">
-            <div class="username-save ">使用者名稱:
-                <span class="username-auto"></span>
-                <button id="username-edit-icon"><i class="fa-solid fa-pencil"></i></button>
-            </div>
-            <div class="username-edit hide"> 使用者名稱:  
-                <span><input type="text" id="newName" placeholder="輸入新名稱" /></span>
-                <button id="username-save-icon"><i class="fa-solid fa-file-pen"></i></button>
-            </div>
-            
-            <div class="user-email">帳號信箱:<span id ="email"></span></div>
-            
-            <div class="pwd-save">密碼: 
-                <span>********</span>
-                <button id="pwd-edit-icon"><i class="fa-solid fa-pencil"></i></button></div> 
-            <div class ="pwd-edit hide">密碼:
-                <span><input type="text" id="newPwd" placeholder="輸入新密碼" /></span>
-                <button id="pwd-save-icon"><i class="fa-solid fa-file-pen"></i></button>
-                
-            </div>
-            <p class="modified-msg"></p>
-        </div>
-        
-    </section>
+{% extends "basic.html" %}
+    {% block CSS %}
+    <link rel="stylesheet" href="../static/css/member.css" />
+    <script src="https://kit.fontawesome.com/0b26f16c17.js" crossorigin="anonymous"></script>
+    {% endblock %}
+    {% block title %}
+    <title>Cafe-Seeker | 會員專區</title>
+    {% endblock %}
+    {% block main %}
+    <div class="msg-page hidden" ><div id="modified-msg"></div></div>
     <main>
-        <section class="record">
-            <div class="update-div"></div>
-            <div class="favor-cafe-div"></div>
-            <div class="photo-div"></div>
-
-        </section>
-    </main>
- 
-
+        <content>
+            <section class="member-info-container">
+                <div class="user-img">
+                    <div class="user-pic"><img id="user-photo"></div>
+                    <label class="photo-upload-cover">
+                        <input id="photo-upload-input" type="file" name='file'accept=".jpg,.png,.jpeg ">
+                        <img src="../static/icons/upload.svg"></img>
+                    </label>
+                </div>
+                <div class="user-info">
+                    <div class="username-save ">使用者名稱:
+                        <span class="username-auto"></span>
+                        <button id="username-edit-icon"><i class="fa-solid fa-pencil"></i></button>
+                    </div>
+                    <div class="username-edit hide"> 使用者名稱:  
+                        <span><input type="text" id="newName" placeholder="輸入新名稱" /></span>
+                        <button id="username-save-icon"><i class="fa-solid fa-file-pen"></i></button>
+                    </div>
+                    
+                    <div class="user-email">帳號信箱:<span id ="email"></span></div>
+                    
+                    
+                    
+                </div>
+                
+            </section>
+            <section class="record">
+                <div class="record-detail">
+                    <div class="favor-title">我的收藏清單</div>
+                    <div class="favor-div"></div>
+                </div>
+                <div class="record-detail">
+                    <div class="photo-title">我的上傳紀錄</div>
+                    <div class="photo-div"></div>
+                </div>
+                 
+               
     
-    <script src="../static/js/nav.js"></script>
-</body>
-</html>
+            </section>
+           
+        </content>
+        
+    </main>
+    {% endblock %}
+    {% block JS %}
+    <script src="../static/js/member.js"></script>
+    {% endblock %}
+
