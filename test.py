@@ -19,7 +19,7 @@ try:
         search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
         update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
         search_list =get_rank(search_count,city_id)
-        print(json.dumps(search_list))
+        print(json.loads(search_list))
         redis_db.setex('search_list',200,json.loads(search_list))
         
         redis_db.setex('update_time',200,json.loads(update_time))
