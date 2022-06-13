@@ -14,6 +14,7 @@ try:
 
     print('cache now')
     cache_fetch=redis_db.get('fetch')
+    print('cache now',cache_fetch)
 
     
     if not cache_fetch:
