@@ -259,7 +259,8 @@ for cafe in cafes:
         update.cafe_msg_count=cafe_msg
         update.cafe_rating_count=cafe_rating
         update.city_id=cafe.city_id
-        update.update_time=datetime.datetime.now()
+        #機台在美國(晚台灣8hr)
+        update.update_time=datetime.datetime.now()+ datetime.timedelta(hours=8)
         update.update()
     else:
         cafe_favor=Cafes_like.query.filter_by(cafe_id=cafe.id).count()
@@ -267,7 +268,8 @@ for cafe in cafes:
         cafe_msg=Message.query.filter_by(cafe_id=cafe.id).count()
         view=Rank(cafe_id=cafe.id,search_count=cafe.search_count,cafe_favor_count=cafe_favor,cafe_msg_count=cafe_msg,city_id=cafe.city_id)
         view.insert()
-print(datetime.datetime.now())
+time=datetime.datetime.now()+ datetime.timedelta(hours=8)
+print(time)
     
     
     
