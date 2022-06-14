@@ -86,11 +86,11 @@ async function shopInit() {
     mealSpan.style.color = getValueColor(data.meal_selling);
     mealSpan.innerText = scoreRender(data.meal_selling);
     standingSpan.style.color = getValueColor(data.standing_tables);
-    standingSpan.style.color = getValueColor(data.standing_tables);
+    standingSpan.innerText =scoreRender(data.standing_tables);
     musicSpan.style.color = getValueColor(data.music);
-    musicSpan.style.color = getValueColor(data.music);
+    musicSpan.innerText = scoreRender(data.music);
     outsideSpan.style.color = getValueColor(data.outdoor_seating);
-    outsideSpan.style.color = getValueColor(data.outdoor_seating);
+    outsideSpan.innerText = scoreRender(data.outdoor_seating);
     cashSpan.innerText = scoreRender(data.cash_only);
     cashSpan.style.color = getValueColor(data.cash_only);
     animalsSpan.innerText = scoreRender(data.animals);
