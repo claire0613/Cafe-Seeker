@@ -44,11 +44,12 @@ with adding a multi-condition query function.
 
 - Authentication
   - JSON Web Token (JWT)
-  - werkzeug.security (encode & verify password)
+  - werkzeug.security (Encode & Verify Password)
 
 - Database
     - MySQL
     - Redis
+    
 - Cloud Service (AWS)
     - EC2
     - RDS
@@ -59,9 +60,9 @@ with adding a multi-condition query function.
     - Docker (deploying web) 
 
 ### Front-End Tech Stack
-- javasrcipt
-- html
-- css/scss
+- JavaScript 
+- Html
+- CSS / SCSS
 
 #### NetWork 
 - NGINX 
