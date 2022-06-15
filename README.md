@@ -1,13 +1,16 @@
 # Cafe-Seeker
 
 本專案是整合"CafeNoamd" & "Cafe and Cowork"的資料並且加入多條件查詢功能的咖啡廳清單網站。
+
 This project is a cafe list website that integrates the data of "Cafe Noamd" and "Cafe and Cowork"
 with adding a multi-condition query function.
+
+
 ## Main Function
 ### Search System:
--Inputing keyword and multi-condition can search the cafes that the best matches your expectation.
-### Update Ranking:
--The ranking is updated every three hours, like search ranking and saving ranking for cafes. 
+-Using keywords and selecting multipule condition to meet a customer's requirement.
+### Updated Ranking:
+-The rank of cafes would autmatically be updated every three hours, like search ranking and saving ranking for cafes. 
 ### Upload and Message System：
 -User can upload the photos for sharing and  leave, click the like button and delete the comment. 
 ### Member System：
@@ -30,32 +33,30 @@ with adding a multi-condition query function.
 ## MySQL EER Diagram
 ![image](https://user-images.githubusercontent.com/93002296/173243687-e0ae566c-0ae7-4780-b9d7-4ffb029bc4a7.png)
 
+
+
+
 ##  Technique
 ### Backend Tech Stack
-- Python / Flask
-  
-- Web Crawler
-    - source
-        - Cafe Nomad
-        - Cafe and Cowork
 
-<br/>
+- Language / Web Framwork 
+    Python / Flask
+
 - Authentication
   - JSON Web Token (JWT)
-<br/>
+  - werkzeug.security (encode & verify password)
+
 - Database
     - MySQL
     - Redis
-<br/>
 - Cloud Service (AWS)
     - EC2
     - RDS
     - S3, CloudFront
     - ElastiCache
-<br/>
+
 - Tool
     - Docker (deploying web) 
-
 
 ### Front-End Tech Stack
 - javasrcipt
