@@ -1,6 +1,7 @@
 function getValueColor(value) {
-    if (value === true||value==='yes'||value==='maybe') return '#0c72df';
-    if (value === false||value==='no') return 'orange';
+    if (value === true||value==='yes') return '#0c72df';
+    if (value==='maybe') return 'orange';
+    if (value === false||value==='no') return '#ff3262';
     if (value !== null && value !=='') {
      
       if (value >= 5) return '#0c72df';
@@ -14,7 +15,7 @@ function getValueColor(value) {
   }
 
 
-function scoreRender(value){
+function scoreRender(value,option){
 
     if(value === true||value==='yes'){
       return '是'
@@ -22,10 +23,14 @@ function scoreRender(value){
     else if(value === false||value==='no'){
       return '否'
     }
-    else if(value === 'maybe'){
+    else if(value === 'maybe'&& option==='socket'){
       return '看座位'
     }
+    else if(value === 'maybe'&& option==='limited_time'){
+      return '看情況'
+    }
     else  if (value!==null && value !=0 && value !==''){
+
       value = value.toFixed(1);
       return value+ ' ★'
   }

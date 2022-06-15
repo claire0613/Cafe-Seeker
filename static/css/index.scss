@@ -37,6 +37,7 @@ main{
                     font-weight: bold;
                     border:none;
                     border-radius: 5px 0 0 5px;
+                    
                 
                     
                 }
@@ -81,6 +82,7 @@ main{
                         padding-top: 5px;
                         padding-left: 5px;
                         padding-bottom: 5px;
+                        cursor: pointer;
                        
                     }
 
@@ -95,6 +97,7 @@ main{
                     border:none;
                     border-radius: 0 5px 5px 0;
                     font-size: large;
+                    cursor: pointer;
                 
                 
                 }
@@ -180,6 +183,7 @@ main{
         text-align: center;
         width: 1200px;
         font-size: 1.5rem;
+        cursor: pointer;
     }
     .load-more.hide{
         display: none;

@@ -77,12 +77,12 @@ async function shopInit() {
 
     singleSelling.innerText = scoreRender(data.single_selling);
     singleSelling.style.color = getValueColor(data.single_selling);
-    limitedTime.innerText = scoreRender(data.limited_time);
+    limitedTime.innerText = scoreRender(data.limited_time,'limited_time');
     limitedTime.style.color = getValueColor(data.limited_time);
     dessertSpan.style.color = getValueColor(data.dessert_selling);
     dessertSpan.innerText = scoreRender(data.dessert_selling);
     sockettSpan.style.color = getValueColor(data.socket);
-    sockettSpan.innerText = scoreRender(data.socket);
+    sockettSpan.innerText = scoreRender(data.socket,'socket');
     mealSpan.style.color = getValueColor(data.meal_selling);
     mealSpan.innerText = scoreRender(data.meal_selling);
     standingSpan.style.color = getValueColor(data.standing_tables);

@@ -65,6 +65,7 @@ main{
             position: relative;
             padding-bottom: 30px;
             
+            
           
             input[type="text"]{
                 width: 300px;
@@ -72,10 +73,12 @@ main{
                 border-radius: 5px;
                 border: 1px solid rgba(122, 58, 1, 0.804);
                 padding-left: 10px;
+               
             }
             input[type="radio"]{
                 width: 30px;
                 height: 17px;
+                cursor: pointer;
             
             }
             input[type="radio"]:checked{
@@ -88,8 +91,11 @@ main{
                 border-radius: 5px;
                 border: 1px solid rgba(122, 58, 1, 0.804);
                 text-align: center;
-             
+                cursor: pointer;
                
+            }
+            input[type="checkbox"]{
+                cursor: pointer;
             }
             .box{
                 width: 50%;
@@ -99,6 +105,7 @@ main{
                 min-height: 50px;
              
                 .select{
+                    
                     select{
                         font-size: 1.05rem;
                         text-align: center;
@@ -106,13 +113,24 @@ main{
                         border: 1px solid rgba(122, 58, 1, 0.804);
                         border-radius: 5px;
                         height: 35px;
+                        cursor: pointer;
+                        background-color: #ffffff;
+                    
                     }
                     text-align: center;
                     width: 300px;
                     
+                    
                 }
                 
                 .socket-div{
+                    width:350px ;
+                    display: flex;
+                    div{
+                        width:100px ;
+                    }
+                }
+                .limited_time-div{
                     width:350px ;
                     display: flex;
                     div{
@@ -166,10 +184,12 @@ main{
                         align-items: center;
                         
                     }
+                    .time-picker.disabled{
+                        cursor: not-allowed;
+                        background-color: #f1dcc659;
+                    }
                 }
-                .time.disabled{
-                    cursor: not-allowed;
-                }
+               
             }
             button{
                 position: absolute;

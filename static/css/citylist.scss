@@ -71,7 +71,7 @@ main{
                     background: #9c641ba8;
                     font-size: 1.5rem;
                     padding: 5px;
-                    border-radius: 5px;
+                    border-radius: 5px 0px 0px 5px;
                     min-width: 100px;
                     font-family: 'Times New Roman', Times, serif;
                     cursor: pointer;
@@ -85,12 +85,13 @@ main{
 
                 .reset{
                     border:none;
-                    background: #c0c0c0a8;
+                    background: #f7b6b6a8;
                     font-size: 1.5rem;
                     padding: 5px;
-                    border-radius: 5px;
+                    border-radius: 0px 5px 5px 0px;
                     min-width: 100px;
                     font-family: 'Times New Roman', Times, serif;
+                   
                     cursor: pointer;
                     
                     img{

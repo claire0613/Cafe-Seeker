@@ -82,29 +82,29 @@ insertForm.addEventListener('submit',async(e)=>{
             })
           })
         const result=await response.json();
-        // if(result.ok){
-        //     msgPage.classList.remove('hidden')
-        //     modifiedMsg.innerHTML="新增成功，準備跳轉到店家頁面!"
-        //     setTimeout(()=>{
-        //       msgPage.classList.add('hidden')
-        //       location.replace(`/shop/${result.cafe_id}`)
-        //     },2000)
+        if(result.ok){
+            msgPage.classList.remove('hidden')
+            modifiedMsg.innerHTML="新增成功，準備跳轉到店家頁面!"
+            setTimeout(()=>{
+              msgPage.classList.add('hidden')
+              location.replace(`/shop/${result.cafe_id}`)
+            },2000)
             
 
-        // }else if(result.message ==="店家已經重複請再次確認"){
+        }else if(result.message ==="店家已經重複請再次確認"){
             
-        //     msgPage.classList.remove('hidden')
-        //     modifiedMsg.innerHTML="店家已經重複請再次確認"
-        //     setTimeout(()=>{
-        //       msgPage.classList.add('hidden')
-        //     },2000)
-        // }else{
-        //     msgPage.classList.remove('hidden')
-        //     modifiedMsg.innerHTML="伺服器異常，請重新再提交一次"
-        //     setTimeout(()=>{
-        //       msgPage.classList.add('hidden')
-        //     },2000)
-        // }
+            msgPage.classList.remove('hidden')
+            modifiedMsg.innerHTML="店家已經重複請再次確認"
+            setTimeout(()=>{
+              msgPage.classList.add('hidden')
+            },2000)
+        }else{
+            msgPage.classList.remove('hidden')
+            modifiedMsg.innerHTML="伺服器異常，請重新再提交一次"
+            setTimeout(()=>{
+              msgPage.classList.add('hidden')
+            },2000)
+        }
         
     
 

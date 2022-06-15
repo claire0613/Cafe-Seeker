@@ -6,6 +6,7 @@ const userNameSave = document.querySelector(".username-save");
 const userNameEdit = document.querySelector(".username-edit");
 const userNameEditIcon = document.querySelector("#username-edit-icon");
 const userNameSaveIcon = document.querySelector("#username-save-icon");
+const userNameCancleIcon = document.querySelector("#username-cancle-icon");
 const modifiedMsg = document.querySelector("#modified-msg");
 const msgPage = document.querySelector(".msg-page");
 
@@ -376,6 +377,11 @@ userNameSaveIcon.addEventListener('click',async(e)=>{
       
     },2000)
   }
+})
+
+userNameCancleIcon.addEventListener('click',()=>{
+  userNameSave.classList.remove('hide');
+  userNameEdit.classList.add('hide');
 })
 
 

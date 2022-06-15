@@ -18,6 +18,8 @@ let fMeal_selling = "";
 let isfetching = false;
 
 async function cityListSearch() {
+  console.log(cityListPage)
+  console.log(fQuiet)
   isfetching = true;
   let cityListApi = `/api/city/list/filter?city=${queryListCity}&page=${cityListPage}&keyword=${fKeyword}&rating=${fRating}&price=${fPrice}&wifi=${fWifi}&vacancy=${fVaca}&drinks=${fDrinks}&quiet=${fQuiet}&comfort=${fComfort}&limited_time=${fLimted_time}&meal_selling=${fMeal_selling}`;
   if (cityListPage == null) {
@@ -26,9 +28,9 @@ async function cityListSearch() {
   const response = await fetch(cityListApi, { method: "GET" });
   const result = await response.json();
   const data = result.data;
-  if (result.city_tw) {
+  if (data) {
     listDescription.innerText ='';
-    listDescription.innerText = `"${result.city_tw}" 網友們推薦的咖啡廳清單 :共收錄 ${result.totalCount} 間店`;
+    listDescription.innerText = `"${result.city_tw}" 網友們推薦的咖啡廳清單 : 目前共有 ${result.totalCount} 間店`;
     let today = 0;
     switch (new Date().getDay()) {
       case 1:
@@ -150,7 +152,7 @@ async function cityListSearch() {
       let mrt = document.createElement("span");
       mrt.innerText = cafe.transport;
 
-      if (cafe.transport === null) {
+      if (cafe.transport === null||cafe.transport==="") {
         mrt = document.createElement("img");
         mrt.src = "../static/icons/help-circle_w_20.png";
       }
@@ -173,8 +175,8 @@ async function cityListSearch() {
       const limited_time_td = document.createElement("td");
       limited_time_td.classList.add("tb-limited_time");
       let limited_time = document.createElement("span");
-      limited_time.innerText = scoreRender(cafe.limited_time);
-      if (cafe.limited_time === null) {
+      limited_time.innerText = scoreRender(cafe.limited_time,'limited_time');
+      if (cafe.limited_time === null||cafe.limited_time ==="") {
         limited_time = document.createElement("img");
         limited_time.src = "../static/icons/help-circle_w_20.png";
       }
@@ -186,7 +188,7 @@ async function cityListSearch() {
       meal_selling_td.classList.add("tb-mealing");
       let meal_selling = document.createElement("span");
       meal_selling.innerText = scoreRender(Boolean(cafe.meal_selling));
-      if (cafe.meal_selling === null) {
+      if (cafe.meal_selling === null ||cafe.meal_selling==="") {
         meal_selling = document.createElement("img");
         meal_selling.src = "../static/icons/help-circle_w_20.png";
       }
@@ -214,16 +216,17 @@ async function cityListSearch() {
     }
   }
 
+  cityListPage = result["nextPage"]
 
-  if (result.nextPage !== null) {
-    cityListPage = result["nextPage"];
-  }
-
-  if (cityListTbody.innerHTML === "") {
-    const nodata = document.createElement("h3");
-    nodata.innerText = `沒有此城市的咖啡店`;
-    nodata.style.color = "#666666";
-    cityListPage.append(nodata);
+  if (data.length === 0) {
+  
+    
+    const tr = document.createElement("tr");
+    tr.classList.add("tr-box");
+    tr.innerText = `搜尋不到咖啡店`;
+    tr.style.color = "#666666";
+    tr.style.fontSize='1.5rem';
+    cityListTbody.append(tr);
   }
   isfetching = false;
 }

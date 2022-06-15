@@ -96,20 +96,7 @@
                    
                   
                 </div>
-                <div class="box">
-                    <span>有無限時 : </span>
-                    <input type="radio" name="limited_time" value="" style="display:none" checked>
-                    <div>
-                        <label for ="limited_time-yes">是 </label>  
-                        <input type="radio" name="limited_time" value="yes" id="limited_time-yes">
-                    </div>
-                    <div>
-                        <label for ="limited_time-no">否 </label>  
-                        <input type="radio" name="limited_time" value="no" id="limited_time-no">
-                    </div>
-           
-                 
-                </div>
+
               
                 <div class="box">
                     <span>可站立工作 : </span>
@@ -166,6 +153,25 @@
   
                 </div>
                 <div class="box">
+                    <span>有無限時 : </span>
+                    <input type="radio" name="limited_time" value="" style="display:none" checked>
+                    <div class="limited_time-div">
+                        <div>
+                            <label for ="limited_time-yes">是 </label>  
+                            <input type="radio" name="limited_time" value="yes" id="limited_time-yes">
+                        </div>
+                        <div>
+                            <label for ="limited_time-no">否 </label>  
+                            <input type="radio" name="limited_time" value="no" id="limited_time-no">
+                        </div>
+                        <div>
+                            <label for ="limited_time-maybe">看情況 </label>  
+                            <input type="radio" name="limited_time" value="maybe" id="limited_time-maybe">
+                        </div>
+                    </div>
+                 
+                </div>
+                <div class="box">
                     <span>寵物友善 : </span>
                     <input type="radio" name="animals" value="" style="display:none" checked>
                     <div>
@@ -204,7 +210,7 @@
                 </div>
                 <div class="box">
                     <span>電話 : </span>
-                    <input  type="text" id="phone"pattern="[0-9]{10}" minlength="10">
+                    <input  type="text" id="phone"pattern="(\+)?[0-9]{10,13}" minlength="10">
                 </div> 
                 <div class="box">
                     <span >經度 : </span>

@@ -166,7 +166,7 @@ footer {
   background-color: #353333;
 }
 
-footer div {
+footer .footer-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -184,16 +184,19 @@ footer div {
   margin-top: 50px;
   font-size: 1.25rem;
   color: white;
+  padding-bottom: 20px;
 }
 
-footer div .footer-head {
+footer .footer-container .footer-head {
   width: 700px;
   font-size: 2rem;
   font-family: "my Smooch",sans-serif;
   margin-top: 20px;
+  text-decoration: none;
+  color: white;
 }
 
-footer div ul {
+footer .footer-container ul {
   width: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -205,19 +208,19 @@ footer div ul {
           justify-content: center;
 }
 
-footer div ul li {
+footer .footer-container ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100px;
+  width: 120px;
   height: 50px;
-  margin: 10px;
+  margin: 20px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
-footer div ul li a {
+footer .footer-container ul li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -226,15 +229,15 @@ footer div ul li a {
           align-items: center;
   text-decoration: none;
   color: white;
-  width: 100px;
+  min-width: 100px;
 }
 
-footer div ul li a img {
+footer .footer-container ul li a img {
   width: 2rem;
   margin-right: 0.5rem;
 }
 
-footer div .reference {
+footer .footer-container .reference {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -245,17 +248,25 @@ footer div .reference {
       -ms-flex-align: center;
           align-items: center;
   font-size: 1rem;
-  height: 150px;
-  width: 400px;
+  height: 60px;
+  width: 430px;
   margin: auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 15px;
 }
 
-footer div .reference div {
-  width: 90%;
-  font-size: 1rem;
+footer .footer-container .reference div {
+  width: 100%;
+  font-size: 1.1rem;
+  text-align: left;
 }
 
-footer div .reference li {
+footer .footer-container .reference li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -263,11 +274,14 @@ footer div .reference li {
       justify-content: space-around;
 }
 
-footer div .reference li a {
+footer .footer-container .reference li a {
   color: white;
-  text-decoration: none;
   width: 150px;
-  text-align: center;
+  text-align: right;
+}
+
+footer .footer-container p {
+  font-size: 0.8rem;
 }
 
 @media screen and (max-width: 1200px) {

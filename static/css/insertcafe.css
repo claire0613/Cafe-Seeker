@@ -101,6 +101,7 @@ main content form input[type="text"] {
 main content form input[type="radio"] {
   width: 30px;
   height: 17px;
+  cursor: pointer;
 }
 
 main content form input[type="radio"]:checked {
@@ -113,6 +114,11 @@ main content form input[type="time"] {
   border-radius: 5px;
   border: 1px solid rgba(122, 58, 1, 0.804);
   text-align: center;
+  cursor: pointer;
+}
+
+main content form input[type="checkbox"] {
+  cursor: pointer;
 }
 
 main content form .box {
@@ -140,6 +146,8 @@ main content form .box .select select {
   border: 1px solid rgba(122, 58, 1, 0.804);
   border-radius: 5px;
   height: 35px;
+  cursor: pointer;
+  background-color: #ffffff;
 }
 
 main content form .box .socket-div {
@@ -150,6 +158,17 @@ main content form .box .socket-div {
 }
 
 main content form .box .socket-div div {
+  width: 100px;
+}
+
+main content form .box .limited_time-div {
+  width: 350px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main content form .box .limited_time-div div {
   width: 100px;
 }
 
@@ -228,8 +247,9 @@ main content form .box-time .time .day {
           align-items: center;
 }
 
-main content form .box-time .time.disabled {
+main content form .box-time .time .time-picker.disabled {
   cursor: not-allowed;
+  background-color: #f1dcc659;
 }
 
 main content form button {
