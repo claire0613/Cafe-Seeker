@@ -5,13 +5,14 @@ const keySearchApi = `api/search?keyword=${keyword}&page=${search_page}`;
 const searchWord = document.querySelector("#search-word");
 const searchTotal = document.querySelector("#search-total");
 const ITEM_PER_PAGE = 8;
-import { star } from "./datahelper.js";
+import {
+  star
+} from "./datahelper.js";
 let pagination = document.querySelector("#pagination");
 // let pageNavigation=document.querySelector('.page-navigation');
 
 function check_point(point) {
-  if (point - 5 == 0) {
-  }
+  if (point - 5 == 0) {}
 }
 
 async function keySearch() {
@@ -21,10 +22,12 @@ async function keySearch() {
     return;
   }
 
-  const response = await fetch(keySearchApi, { method: "GET" });
+  const response = await fetch(keySearchApi, {
+    method: "GET"
+  });
   const result = await response.json();
   const data = result.data;
-  console.log(data);
+
 
   searchTotal.innerText = `共找到 ${result.totalCount} 間咖啡廳`;
   for (let cafe of data) {
@@ -68,8 +71,11 @@ async function keySearch() {
     link.append(box);
     keySearchContent.append(link);
   }
+
   if (result.nextPage !== null) {
     getTotalPages(result.totalPage, search_page);
+  }else{
+    getTotalPages(result.totalPage, result.totalPage);
   }
 }
 
@@ -80,7 +86,6 @@ async function keySearch() {
 
 //計算總共頁數
 async function getTotalPages(totalPage, search_page) {
-  console.log(totalPage % ITEM_PER_PAGE);
   let totalPages = totalPage % ITEM_PER_PAGE;
   let nowpage = parseInt(search_page);
   let pageItemContent = "";
@@ -159,7 +164,7 @@ async function getTotalPages(totalPage, search_page) {
               <span>...</span>
           </li>`;
   } else {
-    for (let i = nowpage + 1; i < totalPage; i++) {
+    for (let i = nowpage + 1; i < totalPage+1; i++) {
       pageItemContent += `
                 <li class="page-item">
                   <a class="page-link" href="/search?page=${i}&keyword=${keyword}">${
@@ -171,14 +176,24 @@ async function getTotalPages(totalPage, search_page) {
     }
   }
 
-  pageItemContent += ` 
-        <li class="page-item">
-        <a class="page-link" href="/search?page=${
-          nowpage + 1
-        }&keyword=${keyword}" id="previous">
-        »
-        </a>
+
+  if(nowpage===totalPage){
+    pageItemContent += `
+        <li class="disabled">
+            <span>»</span>
         </li>`;
+  }else{
+    pageItemContent += ` 
+    <li class="page-item">
+    <a class="page-link" href="/search?page=${
+      nowpage + 1
+    }&keyword=${keyword}" id="previous">
+    »
+    </a>
+    </li>`;
+
+  }
+
   pagination.innerHTML = pageItemContent;
 }
 
