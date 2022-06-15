@@ -8,19 +8,19 @@ with adding a multi-condition query function.
 
 ## Main Function
 ### Search System:
--Using keywords and selecting multipule condition to meet a customer's requirement.
+- Using keywords and selecting multipule condition to meet a customer's requirement.
 ### Updated Ranking:
--The rank of cafes would autmatically be updated every three hours, like search ranking and saving ranking for cafes. 
+- The rank of cafes would autmatically be updated every three hours, like search ranking and saving ranking for cafes. 
 ### Upload and Message System：
--User can upload the photos for sharing and  leave, click the like button and delete the comment. 
+- User can upload the photos for sharing and  leave, click the like button and delete the comment. 
 ### Member System：
--Organize records about user's favorite cafes and uploaded photos for cafes, supporting to modify the username.
+- Organize records about user's favorite cafes and uploaded photos for cafes, supporting to modify the username.
 
 ## Demo
 
--Website URL : https://clairego.com/
+- Website URL : https://clairego.com/
 
--測試帳號
+- 測試帳號
 
 - 帳號 : test1@gmail.com
 - 密碼 : test1
