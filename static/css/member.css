@@ -1,15 +1,15 @@
 body {
-  position: relative;
+  height: 100%;
 }
 
 body .msg-page {
-  position: absolute;
+  position: fixed;
   z-index: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -134,7 +134,7 @@ main content .member-info-container .user-info {
 }
 
 main content .member-info-container .user-info :is(span, button) {
-  padding-left: 15px;
+  padding-left: 10px;
 }
 
 main content .member-info-container .user-info div {
@@ -145,7 +145,16 @@ main content .member-info-container .user-info input {
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 5px;
-  border: 1px solid #cccccc;
+  border: 1px solid #803804;
+  width: 200px;
+  height: 30px;
+}
+
+main content .member-info-container .user-info button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 main content .member-info-container .hide {
@@ -154,13 +163,6 @@ main content .member-info-container .hide {
 
 main content .member-info-container .modified-msg {
   color: red;
-}
-
-main content .member-info-container button {
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
 }
 
 main content .record {
@@ -212,7 +214,7 @@ main content .record .record-detail .favor-div {
       -ms-flex-align: center;
           align-items: center;
   overflow: auto;
-  height: 400px;
+  max-height: 400px;
   background-color: rgba(69, 67, 67, 0.221);
   padding: 10px;
   border-radius: 0 0 10px 10px;
@@ -220,7 +222,7 @@ main content .record .record-detail .favor-div {
 
 main content .record .record-detail .favor-div .favor-box {
   width: 150px;
-  height: 150px;
+  height: 160px;
   background: #fefefe;
   display: -webkit-box;
   display: -ms-flexbox;

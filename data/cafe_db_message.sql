@@ -36,7 +36,7 @@ CREATE TABLE `message` (
   KEY `cafe_id` (`cafe_id`),
   CONSTRAINT `message_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `message_ibfk_2` FOREIGN KEY (`cafe_id`) REFERENCES `cafes` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (7,4,2000,'test1','測試~~\n',1,0,'2022-06-05 04:41:58'),(34,4,1,'test1','測試~~\n',1,0,'2022-06-06 07:01:31'),(35,4,497,'test1','測試~~~',1,0,'2022-06-06 11:34:55'),(36,4,4,'test1','測試測試',1,1,'2022-06-06 12:20:55'),(37,5,4,'test2','哈囉\n',2,0,'2022-06-06 12:26:45');
+INSERT INTO `message` VALUES (2,4,8,'test1','這間店東西不錯喔~~',1,0,'2022-06-12 00:58:54'),(3,9,217,'test6','這間店推推~尤其是蛋糕特別不錯!',1,0,'2022-06-13 02:33:47'),(4,4,1,'test1','咖啡餐點都蠻不錯的咖啡館~\n好喜歡喝得到香蕉的香蕉拿鐵',1,1,'2022-06-13 04:04:21'),(9,4,7,'test1','自家烘焙手沖義式咖啡香氣逼人',1,1,'2022-06-13 04:22:23'),(10,4,8,'test1','這間店除了咖啡、茶、手工蛋糕、輕食，還有日本生活器皿與自然風格雜貨喔',2,1,'2022-06-13 04:33:42'),(11,4,243,'test1','是一間結合美髮沙龍、咖啡廳、酒吧的好地方',1,2,'2022-06-13 04:37:22'),(12,4,293,'test1','品嚐專業咖啡與文學書籍的好地方',1,0,'2022-06-13 04:45:39');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-06 12:34:49
+-- Dump completed on 2022-06-13 17:36:30

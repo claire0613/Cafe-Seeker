@@ -6,6 +6,7 @@ const userNameSave = document.querySelector(".username-save");
 const userNameEdit = document.querySelector(".username-edit");
 const userNameEditIcon = document.querySelector("#username-edit-icon");
 const userNameSaveIcon = document.querySelector("#username-save-icon");
+const userNameCancleIcon = document.querySelector("#username-cancle-icon");
 const modifiedMsg = document.querySelector("#modified-msg");
 const msgPage = document.querySelector(".msg-page");
 
@@ -298,12 +299,14 @@ async function createPhoto(data){
     
     const photoBox=document.createElement('div')
     photoBox.classList.add('photo-box')
-    const imgDiv = document.createElement("div");
-    imgDiv.classList.add("img-container");
+    const imgLink = document.createElement("a");
+    imgLink.href=`/shop/${photo.cafe_id}`
+    imgLink.classList.add("img-container");
+
     const img = document.createElement("img");
     let url = encodeURI(photo.photo_url);
     img.src = url;
-    imgDiv.append(img);
+    imgLink.append(img);
    
     const name=document.createElement('div')
     name.innerText=photo.cafe_name;
@@ -322,7 +325,7 @@ async function createPhoto(data){
     deleteBtn.value =photo.photo_id;
     deleteBtn.append(deleteicon);
 
-    photoBox.append(imgDiv,name,photoName,time,deleteBtn);
+    photoBox.append(imgLink,name,photoName,time,deleteBtn);
     photoDiv.append(photoBox)
 
 }
@@ -376,6 +379,11 @@ userNameSaveIcon.addEventListener('click',async(e)=>{
       
     },2000)
   }
+})
+
+userNameCancleIcon.addEventListener('click',()=>{
+  userNameSave.classList.remove('hide');
+  userNameEdit.classList.add('hide');
 })
 
 

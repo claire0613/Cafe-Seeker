@@ -15,8 +15,11 @@ import  {getValueColor} from './datahelper.js'
 priceRating.addEventListener('click',(e)=>{
     const value=document.querySelector('input[name="price-rating"]:checked').value
     const score=document.querySelector('.score-price')
-    score.innerText=`${value} 分`
-    score.style.color=getValueColor(value)
+    if(value !==''){
+        score.innerText=`${value} 分`
+        score.style.color=getValueColor(value)
+    }
+   
     const labels=document.querySelectorAll('label[tag="price-rating"]')
     for (let label of labels){
         label.classList.remove('checked')
@@ -74,8 +77,11 @@ wifiCheck.addEventListener('click',(e)=>{
 vacaRating.addEventListener('click',(e)=>{
     const value=document.querySelector('input[name="vaca-rating"]:checked').value
     const score=document.querySelector('.score-vaca')
-    score.innerText=`${value} 分`
-    score.style.color=getValueColor(value)
+    if(value !==''){
+        score.innerText=`${value} 分`
+        score.style.color=getValueColor(value)
+    }
+  
     const labels=document.querySelectorAll('label[tag="vaca-rating"]')
     for (let label of labels){
         label.classList.remove('checked')
@@ -89,8 +95,10 @@ vacaRating.addEventListener('click',(e)=>{
 quietRating.addEventListener('click',(e)=>{
     const value=document.querySelector('input[name="quiet-rating"]:checked').value
     const score=document.querySelector('.score-quiet')
-    score.innerText=`${value} 分`
-    score.style.color=getValueColor(value)
+    if(value !==''){
+        score.innerText=`${value} 分`
+        score.style.color=getValueColor(value)
+    }
     const labels=document.querySelectorAll('label[tag="quiet-rating"]')
     for (let label of labels){
         label.classList.remove('checked')
@@ -105,8 +113,10 @@ quietRating.addEventListener('click',(e)=>{
 comfortRating.addEventListener('click',(e)=>{
     const value=document.querySelector('input[name="comfort-rating"]:checked').value
     const score=document.querySelector('.score-comfort')
-    score.innerText=`${value} 分`
-    score.style.color=getValueColor(value)
+    if(value !==0){
+        score.innerText=`${value} 分`
+        score.style.color=getValueColor(value)
+    }
     const labels=document.querySelectorAll('label[tag="comfort-rating"]')
     for (let label of labels){
         label.classList.remove('checked')
@@ -120,8 +130,10 @@ comfortRating.addEventListener('click',(e)=>{
 drinksRating.addEventListener('click',(e)=>{
     const value=document.querySelector('input[name="drinks-rating"]:checked').value
     const score=document.querySelector('.score-drinks')
-    score.innerText=`${value} 分`;
-    score.style.color=getValueColor(value)
+    if(value !==0){
+        score.innerText=`${value} 分`
+        score.style.color=getValueColor(value)
+    }
     const labels=document.querySelectorAll('label[tag="drinks-rating"]')
     for (let label of labels){
         label.classList.remove('checked')
@@ -135,8 +147,10 @@ drinksRating.addEventListener('click',(e)=>{
 foodRating.addEventListener('click',(e)=>{
     const value=document.querySelector('input[name="food-rating"]:checked').value
     const score=document.querySelector('.score-food')
-    score.innerText=`${value} 分`;
-    score.style.color=getValueColor(value)
+    if(value !==''){
+        score.innerText=`${value} 分`
+        score.style.color=getValueColor(value)
+    }
     const labels=document.querySelectorAll('label[tag="food-rating"]')
     for (let label of labels){
         label.classList.remove('checked')
@@ -150,8 +164,10 @@ foodRating.addEventListener('click',(e)=>{
 viewRating.addEventListener('click',(e)=>{
     const value=document.querySelector('input[name="view-rating"]:checked').value
     const score=document.querySelector('.score-view')
-    score.innerText=`${value} 分`;
-    score.style.color=getValueColor(value)
+    if(value !==''){
+        score.innerText=`${value} 分`
+        score.style.color=getValueColor(value)
+    }
     const labels=document.querySelectorAll('label[tag="view-rating"]')
     for (let label of labels){
         label.classList.remove('checked')
@@ -165,8 +181,10 @@ viewRating.addEventListener('click',(e)=>{
 toiletsRating.addEventListener('click',(e)=>{
     const value=document.querySelector('input[name="toilets-rating"]:checked').value
     const score=document.querySelector('.score-toilets')
-    score.innerText=`${value} 分`
-    score.style.color=getValueColor(value)
+    if(value !==''){
+        score.innerText=`${value} 分`
+        score.style.color=getValueColor(value)
+    }
 
     const labels=document.querySelectorAll('label[tag="toilets-rating"]')
     for (let label of labels){

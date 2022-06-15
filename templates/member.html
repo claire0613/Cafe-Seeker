@@ -4,10 +4,10 @@
     <script src="https://kit.fontawesome.com/0b26f16c17.js" crossorigin="anonymous"></script>
     {% endblock %}
     {% block title %}
-    <title>Cafe-Seeker | 會員專區</title>
+    Cafe-Seeker | 會員專區
     {% endblock %}
     {% block main %}
-    <div class="msg-page hidden" ><div id="modified-msg"></div></div>
+    
     <main>
         <content>
             <section class="member-info-container">
@@ -21,11 +21,12 @@
                 <div class="user-info">
                     <div class="username-save ">使用者名稱:
                         <span class="username-auto"></span>
-                        <button id="username-edit-icon"><i class="fa-solid fa-pencil"></i></button>
+                        <button id="username-edit-icon"><i class="fa-solid fa-pencil fa-lg"></i></button>
                     </div>
                     <div class="username-edit hide"> 使用者名稱:  
                         <span><input type="text" id="newName" placeholder="輸入新名稱" /></span>
-                        <button id="username-save-icon"><i class="fa-solid fa-file-pen"></i></button>
+                        <button id="username-save-icon"><i class="fa-solid fa-file-pen fa-lg"></i></button>
+                        <button id="username-cancle-icon"><i class="fa-solid fa-right-from-bracket fa-lg"></i></button>
                     </div>
                     
                     <div class="user-email">帳號信箱:<span id ="email"></span></div>

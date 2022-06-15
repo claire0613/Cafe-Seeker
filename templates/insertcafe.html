@@ -6,7 +6,7 @@
     Cafe-Seeker | Create New Cafe
     {% endblock %}
     {% block main %}
-    <div class="msg-page hidden" ><div id="modified-msg"></div></div>
+   
     <main>
         <content>
             <div class="title">新增店家表單</div>
@@ -49,15 +49,16 @@
                 </div>
                 <div class="box">
                     <span>店名(必填)<p>(若有分店，請註明分店名):</p> </span>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name"placeholder="請輸入店名">
                 </div>
                 <div class="box">
                     <span >地址(必填) : </span>  
-                    <input type="text" name="address" id="address"required>
+                    <input type="text" name="address" id="address"required placeholder="請輸入店家地址">
                 </div>
                 
                <div class="box">
                     <span>有賣單品 : </span>
+                    <input type="radio" name="single-selling" value="" style="display:none" checked>
                     <div>
                         <label for ="single-selling-yes">是 </label>  
                         <input type="radio" name="single-selling" value="1" id="single-selling-yes">
@@ -70,6 +71,7 @@
                 </div>
                 <div class="box">
                     <span>有賣甜點 : </span>
+                    <input type="radio" name="dessert-selling" value="" style="display:none" checked>
                     <div>
                     <label for ="dessert-selling-yes">是 </label>  
                     <input type="radio" name="dessert-selling" value="1" id="dessert-selling-yes">
@@ -81,6 +83,7 @@
                 </div>
                 <div class="box">
                     <span>有賣正餐 : </span>
+                    <input type="radio" name="meal-selling" value="" style="display:none" checked>
                     <div>
                         <label for ="meal-selling-yes">是 </label>  
                         <input type="radio" name="meal-selling" value="1" id="meal-selling-yes">
@@ -93,22 +96,11 @@
                    
                   
                 </div>
-                <div class="box">
-                    <span>有無限時 : </span>
-                    <div>
-                        <label for ="limited_time-yes">是 </label>  
-                        <input type="radio" name="limited_time" value="yes" id="limited_time-yes">
-                    </div>
-                    <div>
-                        <label for ="limited_time-no">否 </label>  
-                        <input type="radio" name="limited_time" value="no" id="limited_time-no">
-                    </div>
-           
-                 
-                </div>
+
               
                 <div class="box">
                     <span>可站立工作 : </span>
+                    <input type="radio" name="standing-table" value="" style="display:none" checked>
                     <div>
                         <label for ="standing-table-yes">是 </label>  
                         <input type="radio" name="standing-table" value="1" id="standing-table-yes">
@@ -122,6 +114,7 @@
                 </div>
                 <div class="box">
                     <span>有音樂? : </span>
+                    <input type="radio" name="music" value="" style="display:none" checked>
                     <div>
                         <label for ="music-yes">是 </label>  
                         <input type="radio" name="music" value="1" id="music-yes">
@@ -135,6 +128,7 @@
                 </div>
                 <div class="box">
                     <span>僅收現金 : </span>
+                    <input type="radio" name="cashonly" value="" style="display:none" checked>
                     <div>
                         <label for ="cashonly-yes">是 </label>  
                         <input type="radio" name="cashonly" value="1" id="cashonly-yes">
@@ -147,6 +141,7 @@
                 </div>
                 <div class="box">
                     <span>室外座位 : </span>
+                    <input type="radio" name="outdoor-seating" value="" style="display:none" checked>
                     <div>
                         <label for ="outdoor_seating-yes">是 </label>  
                         <input type="radio" name="outdoor-seating" value="1" id="outdoor-seating-yes">
@@ -158,7 +153,27 @@
   
                 </div>
                 <div class="box">
+                    <span>有無限時 : </span>
+                    <input type="radio" name="limited_time" value="" style="display:none" checked>
+                    <div class="limited_time-div">
+                        <div>
+                            <label for ="limited_time-yes">是 </label>  
+                            <input type="radio" name="limited_time" value="yes" id="limited_time-yes">
+                        </div>
+                        <div>
+                            <label for ="limited_time-no">否 </label>  
+                            <input type="radio" name="limited_time" value="no" id="limited_time-no">
+                        </div>
+                        <div>
+                            <label for ="limited_time-maybe">看情況 </label>  
+                            <input type="radio" name="limited_time" value="maybe" id="limited_time-maybe">
+                        </div>
+                    </div>
+                 
+                </div>
+                <div class="box">
                     <span>寵物友善 : </span>
+                    <input type="radio" name="animals" value="" style="display:none" checked>
                     <div>
                         <label for ="animals-yes">是 </label>  
                         <input type="radio" name="animals" value="1" id="animals-yes">
@@ -171,6 +186,7 @@
                 </div>
                 <div class="box">
                     <span>插座多 : </span>
+                    <input type="radio" name="socket" value="" style="display:none" checked>
                     <div class="socket-div">
                         <div>
                             <label for ="socket-yes">是 </label>  
@@ -194,15 +210,15 @@
                 </div>
                 <div class="box">
                     <span>電話 : </span>
-                    <input  type="text" id="phone"pattern="[0-9]{10}">
+                    <input  type="text" id="phone"pattern="(\+)?[0-9]{10,13}" minlength="10">
                 </div> 
                 <div class="box">
                     <span >經度 : </span>
-                    <input  type="text" name="longitude"id="longitude"pattern="^(\+|-)?(?:180(?:(?:\.0{1,6}+)?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6}+)?))$">
+                    <input  type="text" name="longitude"id="longitude"pattern="^(\+|-)?(?:180(?:(?:\.0{1,6}+?:\.0)?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6}+?:\.0)?))$">
                 </div> 
                 <div class="box">
                     <span>緯度 : </span>
-                    <input  type="text" name="latitude"id="latitude"pattern="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$">
+                    <input  type="text" name="latitude"id="latitude"pattern="^(\+|-)?(?:90(?:(?:\.0{1,6}+?:\.0)?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6}+?:\.0)?))$">
                 </div> 
                 <div class="box web">
                     <span>官網 、 FB 或 IG <p>網址格式</p><p>http:// 或 https:// :</p></span>
@@ -223,41 +239,21 @@
                                 未營業
                             </label>
                         </div>
+                        <div class="day" id="friday">
+                            <div>週五</div>
+                            <input type="time" name="fri-start" id="fri-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="fri-end" id="fri-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
                         <div class="day" id="tuesday">
                             <div>週二</div>
                             <input type="time" name="tue-start" id="tue-start"class="time-picker">
                             <div>-</div>
                             <input type="time" name="tue-end" id="tue-end" class="time-picker">
-                            <label>
-                                <input type="checkbox" class="dayoff">
-                                未營業
-                            </label>
-                        </div>
-                        <div class="day" id="wednesday">
-                            <div>週三</div>
-                            <input type="time" name="wed-start" id="wed-start"class="time-picker">
-                            <div>-</div>
-                            <input type="time" name="wed-end" id="wed-end" class="time-picker">
-                            <label>
-                                <input type="checkbox" class="dayoff">
-                                未營業
-                            </label>
-                        </div>
-                        <div class="day" id="thursday">
-                            <div>週四</div>
-                            <input type="time" name="thu-start" id="thu-start"class="time-picker">
-                            <div>-</div>
-                            <input type="time" name="thu-end" id="thu-end" class="time-picker">
-                            <label>
-                                <input type="checkbox" class="dayoff">
-                                未營業
-                            </label>
-                        </div>
-                        <div class="day" id="saturday">
-                            <div>週五</div>
-                            <input type="time" name="fri-start" id="fri-start"class="time-picker">
-                            <div>-</div>
-                            <input type="time" name="fri-end" id="fri-end" class="time-picker">
                             <label>
                                 <input type="checkbox" class="dayoff">
                                 未營業
@@ -272,12 +268,33 @@
                                 <input type="checkbox" class="dayoff">
                                 未營業
                             </label>
+                            
+                        </div>
+                        <div class="day" id="wednesday">
+                            <div>週三</div>
+                            <input type="time" name="wed-start" id="wed-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="wed-end" id="wed-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
                         </div>
                         <div class="day" id="sunday ">
                             <div>週日</div>
                             <input type="time" name="sun-start" id="sat-start"class="time-picker">
                             <div>-</div>
                             <input type="time" name="sun-end" id="sun-end" class="time-picker">
+                            <label>
+                                <input type="checkbox" class="dayoff">
+                                未營業
+                            </label>
+                        </div>
+                        <div class="day" id="thursday">
+                            <div>週四</div>
+                            <input type="time" name="thu-start" id="thu-start"class="time-picker">
+                            <div>-</div>
+                            <input type="time" name="thu-end" id="thu-end" class="time-picker">
                             <label>
                                 <input type="checkbox" class="dayoff">
                                 未營業

@@ -4,8 +4,8 @@ sys.path.append("..")
 from flask import *
 from . import api
 from dotenv import load_dotenv
-from data.api_helper import city_cafe_filter,key_search,get_rank,area_from_city,check_website,check_float
-from model.models import City_ref, Photo, Score_rec, Rank, db, Cafes, Message, Message_like, Users, Cafes_like
+from data.api_helper import city_cafe_filter,key_search,get_rank,area_from_city,check_website,check_float,check_int
+from model.models import City_ref, Photo, Score_rec, Rank, db, Cafes, Message, Message_like, Users, Cafes_like,redis_db,DecimalEncoder
 from datetime import datetime
 load_dotenv()
 
@@ -80,15 +80,13 @@ def get_city_filter():
         result = city_cafe_filter(page=page, city=city, keyword=keyword, price=price, wifi=wifi, vacancy=vacancy, drinks=drinks, quiet=quiet, comfort=comfort,
                                   limited_time=limited_time, meal_selling=meal_selling, rating=rating)
 
-        if result:
-            surplus = result['all_count']
-            if surplus < 20:
-                next_page = None
-            else:
-                next_page = page+1
-            return jsonify({"city_tw": result['city_tw'], "nextPage": next_page, "data": result['cafe_list'], 'totalCount': result['total_count']})
+        surplus = result['all_count']
+        if surplus < 20:
+            next_page = None
         else:
-            return jsonify({"error": True, "message": 'NO DATA'})
+            next_page = page+1
+        return jsonify({"city_tw": result['city_tw'], "nextPage": next_page, "data": result['cafe_list'], 'totalCount': result['total_count']})
+
     except:
         return jsonify({"error": True, "message": "伺服器內部錯誤"})
 
@@ -167,20 +165,33 @@ def get_city_rank():
         city_search = City_ref.query.filter_by(city=city).first()
         city_id = city_search.city_id
         city_tw=city_search.city_tw
-        
-        search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
-        update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
-        search_list =get_rank(search_count,city_id)
-        
-        cafe_favor = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_favor_count.desc()).limit(8).all()
-        favor_list =get_rank(cafe_favor,city_id)
-        
-        cafe_msg = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_msg_count.desc()).limit(8).all()
-        msg_list =get_rank(cafe_msg,city_id)
-        
-        cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
-        rating_list=get_rank(cafe_rating,city_id)
-        return jsonify({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time})
+        try:
+            cache_fetch=redis_db.get(f'{city}')
+            if not cache_fetch:
+                search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
+                update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
+                search_list =get_rank(search_count,city_id)
+                cafe_favor = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_favor_count.desc()).limit(8).all()
+                favor_list =get_rank(cafe_favor,city_id)
+                cafe_msg = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_msg_count.desc()).limit(8).all()
+                msg_list =get_rank(cafe_msg,city_id)
+                cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
+                rating_list=get_rank(cafe_rating,city_id)
+                data=json.dumps({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time}, cls=DecimalEncoder,ensure_ascii=False)
+                redis_db.setex(f'{city}',200, data)
+            return jsonify(json.loads(cache_fetch)),200
+        except:
+            search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
+            update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
+            search_list =get_rank(search_count,city_id)
+            cafe_favor = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_favor_count.desc()).limit(8).all()
+            favor_list =get_rank(cafe_favor,city_id)
+            cafe_msg = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_msg_count.desc()).limit(8).all()
+            msg_list =get_rank(cafe_msg,city_id)
+            cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
+            rating_list=get_rank(cafe_rating,city_id)
+            print('no cache')
+            return jsonify({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time,'use':'fetch'})
     except:
             return jsonify({"error": True, "message": "伺服器內部錯誤"})
         
@@ -197,9 +208,9 @@ def post_cafe_insert():
         latitude=check_float(data['latitude'])
         longitude=check_float(data['longitude'])
 
-        single_selling,dessert_selling,meal_selling=int(data['single_selling']),int(data['dessert_selling']),int(data['meal_selling'])
-        limited_time,socket,staning_tables,music=data['limited_time'],data['socket'],int(data['standing_tables']),int(data['music'])
-        outdoor_seating,cash_only,animals=int(data['outdoor_seating']),int(data['cash_only']),int(data['animals'])
+        single_selling,dessert_selling,meal_selling=check_int(data['single_selling']),check_int(data['dessert_selling']),check_int(data['meal_selling'])
+        limited_time,socket,staning_tables,music=data['limited_time'],data['socket'],check_int(data['standing_tables']),check_int(data['music'])
+        outdoor_seating,cash_only,animals=check_int(data['outdoor_seating']),check_int(data['cash_only']),check_int(data['animals'])
         open_hours,website,mrt,phone=data['open_hours'],data['website'],data['mrt'],data['phone']
 
         if not exist:

@@ -10,7 +10,7 @@ async function renderInit() {
   const response = await fetch(`/api/city/rank?city=${city}`);
   const result = await response.json();
   const cityName = document.querySelector(".city-name");
-  cityName.innerText=result.city_name+'地區';
+  cityName.innerText=`"${result.city_name}地區"  最新排行榜`;
   const updateTime = document.querySelector("#update-time");
   updateTime.innerText='最新更新時間'+result.update_time;
   const search_list = result.search_count;

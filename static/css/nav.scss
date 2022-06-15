@@ -132,7 +132,7 @@ header{
 footer{
    
     background-color: #353333;
-    div{
+    .footer-container{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -141,11 +141,14 @@ footer{
         margin-top: 50px;
         font-size: 1.25rem;
         color:white;
+        padding-bottom: 20px;
         .footer-head{
             width: 700px;
             font-size: 2rem;
             font-family: "my Smooch",sans-serif;
             margin-top: 20px;
+            text-decoration: none;
+            color:white;
 
         }
         ul{
@@ -153,21 +156,19 @@ footer{
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            // margin-top: 20px;
-            
-        
+  
             li{
                 display: flex;
-                width: 100px;
+                width: 120px;
                 height: 50px;
-                margin: 10px;
+                margin: 20px;
                 justify-content: center;
                 a {
                     display: flex;
                     align-items: center;
                     text-decoration: none;
                     color: white;
-                    width: 100px;
+                    min-width: 100px;
                     img{
                         width: 2rem;
                         margin-right: 0.5rem;
@@ -182,27 +183,33 @@ footer{
         justify-content: center;
         align-items: center;
         font-size: 1rem;
-        height: 150px;
-        width: 400px;
+        height: 60px;
+        width: 430px;
         margin: auto;
+        flex-wrap:wrap ;
+        flex-direction: row;
+        margin-bottom: 15px;
         div{
-            width: 90%;
-            font-size: 1rem;
+            width: 100%;
+            font-size: 1.1rem;
+            text-align: left;   
+            
         }
         li{
             display: flex;
             justify-content: space-around;
             a{  
-            
                 color: white;
-                text-decoration: none;
                 width: 150px;
-                text-align: center;
+                text-align: right;
             }
         }
+     
 
     }
-
+    p{
+        font-size: 0.8rem;
+    }
     }
     
    

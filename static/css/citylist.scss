@@ -49,7 +49,7 @@ main{
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                   
+                    cursor: pointer;
                 }
 
 
@@ -69,16 +69,35 @@ main{
                 .btn{
                     border:none;
                     background: #9c641ba8;
-                    font-size: large;
+                    font-size: 1.5rem;
                     padding: 5px;
-                    border-radius: 5px;
-                    min-width: 50px;
+                    border-radius: 5px 0px 0px 5px;
+                    min-width: 100px;
                     font-family: 'Times New Roman', Times, serif;
-                    
+                    cursor: pointer;
                     img{
                         width: 30px;
                         height: 30px;
                         color: rgb(91, 57, 2);
+                        
+                    }
+                }
+
+                .reset{
+                    border:none;
+                    background: #f7b6b6a8;
+                    font-size: 1.5rem;
+                    padding: 5px;
+                    border-radius: 0px 5px 5px 0px;
+                    min-width: 100px;
+                    font-family: 'Times New Roman', Times, serif;
+                   
+                    cursor: pointer;
+                    
+                    img{
+                        width: 30px;
+                        height: 30px;
+                        // color: rgb(27, 135, 139);
                         
                     }
                 }
@@ -92,6 +111,7 @@ main{
                     font-size: 1.25rem;
                     border-radius: 5px ;
                     padding-left: 15px;
+                    cursor: pointer;
                 
             }
 

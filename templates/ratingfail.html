@@ -1,5 +1,30 @@
 {% extends "basic.html" %}
     {% block CSS %}
+    <style>
+        main{width: 1200px;margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;padding-top:100px; }
+        
+        section{
+            display: flex;
+           
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 500px;
+            font-weight: bold;
+            color: #5f4203;
+            border: 3px solid #5f4203;
+            height: 200px;
+            background-color: rgb(243, 219, 182);
+            border-radius: 10%;
+        }
+  
+ 
+      
+    </style>
     
     {% endblock %}
     {% block title %}
@@ -8,7 +33,7 @@
     {% block main %}
     <main>
         <section>
-            <h>評分提交失敗 / 伺服器異常，請重新評比一次喔!</h>
+            <div style="color:#815801;font-size:2.5rem;padding-bottom:20px;">評分提交失敗 / 伺服器異常，請重新評比一次喔!</div>
             <a id="link">backe to previous cafe page.</a>
         </section>
     </main>

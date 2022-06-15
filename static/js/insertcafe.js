@@ -12,6 +12,9 @@ async function insertInit(){
 
 }
 insertInit()
+
+
+
 insertForm.addEventListener('submit',async(e)=>{
     e.preventDefault();
     modifiedMsg.innerHTML='';
@@ -21,18 +24,18 @@ insertForm.addEventListener('submit',async(e)=>{
         const cityId=document.querySelector('#city').value
         const name=document.querySelector('input[name="name"]').value
         const address=document.querySelector('#address').value
-        const singleSelling=document.querySelector('input[name="single-selling"]').value
-        const dessertSelling=document.querySelector('input[name="dessert-selling"]').value
-        const mealSelling=document.querySelector('input[name="meal-selling"]').value
-        const limitedTime=document.querySelector('input[name="limited_time"]').value
-        const socket=document.querySelector('input[name="socket"]').value
-        const standingTables=document.querySelector('input[name="standing-table"]').value
-        const music=document.querySelector('input[name="music"]').value
+        const singleSelling=document.querySelector('input[name="single-selling"]:checked').value
+        const dessertSelling=document.querySelector('input[name="dessert-selling"]:checked').value
+        const mealSelling=document.querySelector('input[name="meal-selling"]:checked').value
+        const limitedTime=document.querySelector('input[name="limited_time"]:checked').value
+        const socket=document.querySelector('input[name="socket"]:checked').value
+        const standingTables=document.querySelector('input[name="standing-table"]:checked').value
+        const music=document.querySelector('input[name="music"]:checked').value
 
-        const cashOnly=document.querySelector('input[name="cashonly"]').value
+        const cashOnly=document.querySelector('input[name="cashonly"]:checked').value
 
-        const outdoorSeating=document.querySelector('input[name="outdoor-seating"]').value
-        const animals=document.querySelector('input[name="animals"]').value
+        const outdoorSeating=document.querySelector('input[name="outdoor-seating"]:checked').value
+        const animals=document.querySelector('input[name="animals"]:checked').value
 
         const monStart=document.querySelector('input[name="mon-start"]').value
         const monEnd=document.querySelector('input[name="mon-end"]').value
@@ -51,7 +54,7 @@ insertForm.addEventListener('submit',async(e)=>{
       
         const openHours={
             'mon':hourHelper(monStart,monEnd),
-            'tud':hourHelper(tueStart,tueEnd),
+            'tue':hourHelper(tueStart,tueEnd),
             'wed':hourHelper(wedStart,wedEnd),
             'thu':hourHelper(thuStart,thuEnd),
             'fri':hourHelper(friStart,friEnd),
@@ -70,6 +73,7 @@ insertForm.addEventListener('submit',async(e)=>{
             'outdoor_seating':outdoorSeating,'cash_only':cashOnly,'animals':animals,'open_hours':openHours,
             'phone':phone,'website':website,'mrt':mrt,'address':address
         }
+        console.log(data)
         const response=await fetch('api/shop/insert',{
             method: "POST",
             body: JSON.stringify(data),
@@ -83,8 +87,9 @@ insertForm.addEventListener('submit',async(e)=>{
             modifiedMsg.innerHTML="新增成功，準備跳轉到店家頁面!"
             setTimeout(()=>{
               msgPage.classList.add('hidden')
+              location.replace(`/shop/${result.cafe_id}`)
             },2000)
-            location.replace(`/shop/${result.cafe_id}`)
+            
 
         }else if(result.message ==="店家已經重複請再次確認"){
             

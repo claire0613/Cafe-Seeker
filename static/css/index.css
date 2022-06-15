@@ -107,6 +107,7 @@ main section.background .description form .ul li {
   padding-top: 5px;
   padding-left: 5px;
   padding-bottom: 5px;
+  cursor: pointer;
 }
 
 main section.background .description form .btn {
@@ -117,6 +118,7 @@ main section.background .description form .btn {
   border: none;
   border-radius: 0 5px 5px 0;
   font-size: large;
+  cursor: pointer;
 }
 
 main section.background .back-img {
@@ -226,6 +228,7 @@ main .load-more {
   text-align: center;
   width: 1200px;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 main .load-more.hide {
