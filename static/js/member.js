@@ -23,7 +23,10 @@ let publicFavorScroll = true;
 let publicFavorPage=0;
 let publicPhotoScroll = true;
 let publicPhotoPage=0;
+msgPage.classList.remove('hidden')
+modifiedMsg.innerHTML="Loading ..."
 async function getMemberInfo() {
+
   favorDiv.innerText='';
   photoDiv.innerText='';
   publicFavorPage=0
@@ -32,7 +35,10 @@ async function getMemberInfo() {
   const result = await response.json();
 
   if (result.data) {
-    
+    setTimeout(()=>{
+      msgPage.classList.add('hidden')
+      
+    },1500)
     userPhoto.src =  result.data.avatar;
     userNameAuto.innerHTML = result.data.username;
     userEmail.innerHTML = result.data.email;
@@ -44,6 +50,7 @@ async function getMemberInfo() {
       
       let next_page = result["nextPage"];
       publicFavorPage = next_page;
+      publicFavorScroll = true;
       renderCafe(result.data)
      
     })
@@ -51,6 +58,7 @@ async function getMemberInfo() {
       
       let next_page = result["nextPage"];
       publicPhotoPage = next_page;
+      publicPhotoScroll = true;
       renderPhoto(result.data)
   
     })
@@ -106,7 +114,11 @@ photoUserUpload.addEventListener('change',async(e)=>{
 async function cafeFavorDelete(e){
  
   const cafe_id=this.value
-  console.log('cafe',cafe_id)
+
+
+        
+        
+ 
   const cafeFavorApi = `/api/shop/favor`;
   const response=await fetch(cafeFavorApi,{
     method: "DELETE",
@@ -118,8 +130,10 @@ async function cafeFavorDelete(e){
   const result=await response.json();
   if(result){
     
-    getMemberInfo();
-    
+    const target=e.target;
+    let favorDelbox=target.parentElement.parentElement
+    favorDelbox.style.display="none"
+
   }
    
   
@@ -139,7 +153,9 @@ async function photoDelete(e){
   const result=await response.json();
   if(result){
      
-    getMemberInfo();
+    const target=e.target;
+    let photDelbox=target.parentElement.parentElement
+    photDelbox.style.display="none"
     
   }
    
@@ -175,9 +191,12 @@ async function renderCafe(data) {
      
       favor.addEventListener("click", cafeFavorDelete);
     });
+    
     favorDiv.addEventListener("scroll", function () { 
 //註冊滑動載入事件
-      if (this.scrollHeight - this.scrollTop <= this.clientHeight) {
+
+      if (this.scrollHeight - this.scrollTop -5<= this.clientHeight) {
+        
         if (publicFavorScroll && publicFavorPage) {
           publicFavorScroll = false;
           let promise = mebCafeFavorFetch(publicFavorPage);
@@ -220,7 +239,7 @@ async function createCafe(data){
     }else{
       let comment=document.createElement('div')
       comment.classList.add('comment')
-      comment.innerText='no picture'
+      
       imgLink.append(comment);
     }
     imgLink.append(img);
@@ -268,7 +287,8 @@ async function renderPhoto(data) {
   });
   photoDiv.addEventListener("scroll", function () { 
 //註冊滑動載入事件
-    if (this.scrollHeight - this.scrollTop <= this.clientHeight) {
+
+    if (this.scrollHeight - this.scrollTop -5<= this.clientHeight) {
      
       if (publicPhotoScroll && publicPhotoPage) {
        

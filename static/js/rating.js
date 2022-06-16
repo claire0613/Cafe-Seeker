@@ -145,9 +145,12 @@ drinksRating.addEventListener('click',(e)=>{
    
 })
 foodRating.addEventListener('click',(e)=>{
+    
     const value=document.querySelector('input[name="food-rating"]:checked').value
     const score=document.querySelector('.score-food')
+    console.log(value)
     if(value !==''){
+        
         score.innerText=`${value} 分`
         score.style.color=getValueColor(value)
     }
