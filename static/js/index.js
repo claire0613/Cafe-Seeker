@@ -1,9 +1,11 @@
 const loadmore = document.querySelector(".load-more");
 const content = document.querySelector("content");
 const keywordform = document.querySelector("#keywordform");
-
+const modifiedMsg = document.querySelector("#modified-msg");
+const msgPage = document.querySelector(".msg-page");
 let page = 0;
-
+msgPage.classList.remove('hidden')
+modifiedMsg.innerHTML="Loading ..."
 
 async function cityLoad() {
   
@@ -20,7 +22,12 @@ async function cityLoad() {
   const data = result.data;
   if(result.data){
     
- 
+    if(page===0){
+      setTimeout(()=>{
+        msgPage.classList.add('hidden')
+        
+      },1700)
+    }
     
     for (let city of data) {
       let box = document.createElement("div");
