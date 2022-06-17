@@ -107,10 +107,10 @@ def city_cafe_filter(page, keyword, city, rating, price, wifi, vacancy, drinks, 
         elif limited_time =='0':
             result=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
                             where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
-                            and comfort >={comfort} and quiet >={quiet} and limited_time ='no' LIMIT {page},{limit} )").all()          
+                            and comfort >={comfort} and quiet >={quiet} and limited_time ='no' LIMIT {page},{limit} ").all()          
             total=db.session.execute(f"select id,name,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
                             where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
-                            and comfort >={comfort} and quiet >={quiet} and limited_time ='no')").all()                
+                            and comfort >={comfort} and quiet >={quiet} and limited_time ='no'").all()                
         elif(meal_selling == '1' or  meal_selling == '0')  and limited_time=='0' :
             result=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
                             where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\

@@ -220,11 +220,7 @@ async function cityListSearch() {
       link.append(tr);
       cityListTbody.append(link);
     }
-  }
-
-  cityListPage = result["nextPage"]
-
-  if (data.length === 0) {
+  }  else{
   
     cityListTbody.innerText = "";
     const tr = document.createElement("tr");
@@ -234,6 +230,10 @@ async function cityListSearch() {
     tr.style.fontSize='1.5rem';
     cityListTbody.append(tr);
   }
+
+  cityListPage = result["nextPage"]
+
+
   isfetching = false;
 }
 
