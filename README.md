@@ -27,7 +27,7 @@ with adding a multi-condition query function.
 ## Main Function
 ### Search System:
 - By MySQL Inedex and FullIndex, users can input keywords and select multipule conditions to meet a customer's requirement.
-### Updated Ranking:
+### Ranking:
 - The rank of cafes would autmatically be updated every three hours, like search ranking and saving ranking for cafes.
 - Use Redis as Cache to get faster data.
 ### Upload and Message System：
@@ -75,13 +75,13 @@ with adding a multi-condition query function.
 
 ### Front-End Tech Stack
 - JavaScript 
-- Html
+- HTML
 - CSS / SCSS
 
 #### NetWork 
 - NGINX 
   - Domain name system
-  - support Http & Https
+  - Support Http & Https
 
 #### Version Cotrol
 - Git/GitHub
