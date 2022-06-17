@@ -20,15 +20,15 @@ with adding a multi-condition query function.
 
 ### Rank & Shop Page:
 - Users can find the latest popular cafes or the most people inquired cafes through the Rank.
-- In the cafe's pages, user can 
+- In the cafe's pages, user can see what 
 ![image](https://github.com/claire0613/gif/blob/main/shop.gif)
 
 
 ## Main Function
 ### Search System:
-- By MySQL Inedex and FullIndex, users can input keywords and select multipule conditions to meet a customer's requirement.
+- By MySQL Inedex and FullIndex, users can input keywords and select multiple conditions to meet a customer's requirement.
 ### Ranking:
-- The rank of cafes would autmatically be updated every three hours, like search ranking and saving ranking for cafes.
+- The rank of cafes would automatically be updated every three hours, like search ranking and saving ranking for cafes.
 - Use Redis as Cache to get faster data.
 ### Upload and Message System：
 - Uplaod photos to Amazon S3 hosting with AWS Cloudfront.
