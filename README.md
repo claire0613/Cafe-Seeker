@@ -54,7 +54,7 @@ with adding a multi-condition query function.
 ### Backend Tech Stack
 
 - Language / Web Framwork 
-    Python / Flask
+  - Python / Flask
 
 - Authentication
   - JSON Web Token (JWT)
