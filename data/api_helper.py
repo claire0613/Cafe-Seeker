@@ -28,22 +28,22 @@ def key_search(page, keyword=None):
         if key_city:
             city_id = key_city.city_id
             result=db.session.execute(f"select c.id,c.name,c.area,c.wifi,c.drinks,p.photo_url from cafes as c left join photo as p on p.cafe_id=c.id WHERE c.city_id={city_id} \
-                            and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE )or name like '{keyword}%') \
+                            and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) \
                             GROUP By c.id LIMIT {page},{limit}").all()
             
             all_count = len(result)
             total = db.session.execute(f"select c.id,c.name,c.area,c.wifi,c.drinks,p.photo_url from cafes as c left join photo as p on p.cafe_id=c.id WHERE c.city_id={city_id} \
-                            and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE )or name like '{keyword}%') GROUP By c.id ").all()
+                            and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) GROUP By c.id ").all()
             total_count=len(total)
 
         else:
             result=db.session.execute(f"select c.id,c.name,c.area,c.wifi,c.drinks,p.photo_url from cafes as c left \
                         join photo as p on p.cafe_id=c.id WHERE  \
-                        (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE )or name like '{keyword}%') GROUP By c.id LIMIT {page},{limit}").all()
+                        MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE )GROUP By c.id LIMIT {page},{limit}").all()
             all_count = len(result)
             total = db.session.execute(f"select c.id,c.name,c.area,c.wifi,c.drinks,p.photo_url from cafes as c left \
                         join photo as p on p.cafe_id=c.id WHERE  \
-                        (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE )or name like '{keyword}%') GROUP By c.id ").all()
+                        MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) GROUP By c.id ").all()
             total_count=len(total)
 
     answer = key_search_detail(result)
@@ -91,46 +91,46 @@ def city_cafe_filter(page, keyword, city, rating, price, wifi, vacancy, drinks, 
     if keyword:
         if  (meal_selling == '1' or  meal_selling == '0')  and limited_time=='1' :
             result=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
                             and comfort >={comfort} and quiet >={quiet} and (limited_time ='yes' or limited_time ='maybe') and  meal_selling = {meal_selling}LIMIT {page},{limit}").all()
             total=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE )or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
                             and comfort >={comfort} and quiet >={quiet} and (limited_time ='yes' or limited_time ='maybe') and meal_selling = {meal_selling}").all()
           
         elif limited_time =='1':
                 result=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
-                            and comfort >={comfort} and quiet >={quiet} and (limited_time ='yes' or limited_time ='maybe') LIMIT {page},{limit} )").all()          
-                total=db.session.execute(f"select id,name,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
-                            and comfort >={comfort} and quiet >={quiet} and (limited_time ='yes' or limited_time ='maybe')").all()  
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            and comfort >={comfort} and quiet >={quiet} and (limited_time ='yes' or limited_time ='maybe') LIMIT {page},{limit}").all()          
+                total=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            and comfort >={comfort} and quiet >={quiet} and (limited_time ='yes' or limited_time ='maybe') ").all()  
         elif limited_time =='0':
             result=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
-                            and comfort >={comfort} and quiet >={quiet} and limited_time ='no' LIMIT {page},{limit} )").all()          
-            total=db.session.execute(f"select id,name,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%' ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
-                            and comfort >={comfort} and quiet >={quiet} and limited_time ='no')").all()                
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            and comfort >={comfort} and quiet >={quiet} and limited_time ='no' LIMIT {page},{limit} ").all()          
+            total=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            and comfort >={comfort} and quiet >={quiet} and limited_time ='no'").all()                
         elif(meal_selling == '1' or  meal_selling == '0')  and limited_time=='0' :
             result=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
                             and comfort >={comfort} and quiet >={quiet} and limited_time ='no' and  meal_selling = {meal_selling}LIMIT {page},{limit}").all() 
             total=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
                             and comfort >={comfort} and quiet >={quiet} and limited_time ='no' and  meal_selling = {meal_selling}").all()
         elif (meal_selling == '1' or  meal_selling == '0') :
             result=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
                             and comfort >={comfort} and quiet >={quiet}  and  meal_selling = {meal_selling} LIMIT {page},{limit}").all()
             total=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
                             and comfort >={comfort} and quiet >={quiet}  and  meal_selling = {meal_selling}").all() 
         else:
             result=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
                             and comfort >={comfort} and quiet >={quiet} LIMIT {page},{limit}").all()  
             total=db.session.execute(f"select id,name,rating,price,wifi,vacancy,drinks,quiet,comfort,limited_time,meal_selling,open_hours,transport from cafes\
-                            where city_id={city_id} and (MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) or name like '{keyword}%') and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
+                            where city_id={city_id} and MATCH (name,address) AGAINST('{keyword}*'IN BOOLEAN MODE ) and rating >={rating} and price>={price} and wifi>={wifi} and vacancy>={vacancy} and drinks>={drinks}\
                             and comfort >={comfort} and quiet >={quiet}").all()
     else:
         if  (meal_selling == '1' or  meal_selling == '0')  and limited_time=='1' :

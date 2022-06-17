@@ -27,7 +27,7 @@ def get_member_cafe_favor():
             cafe_id_list=[]
             result_list=[]
             next_page=0
-            cafe_favor=Cafes_like.query.filter_by(user_id=user_id).offset(m_cafe_page*6).limit(6).all()
+            cafe_favor=Cafes_like.query.filter_by(user_id=user_id).offset(m_cafe_page*10).limit(10).all()
            
             for cafe in cafe_favor:
                 cafe_id_list.append(cafe.cafe_id)
@@ -58,7 +58,7 @@ def get_member_photo():
             user=jwt.decode(token_cookie,os.getenv("SECRET_KEY"),algorithms=['HS256'])
             user_id = user["id"]
             result_list=[]
-            photo_list=Photo.query.filter_by(user_id=user_id).offset(m_photo_page*6).limit(6).all()
+            photo_list=Photo.query.filter_by(user_id=user_id).offset(m_photo_page*10).limit(10).all()
             
             for photo in photo_list:
                 result=photo.as_dict()

@@ -38,6 +38,9 @@ const phoneSpan = document.querySelector("#phone-span");
 const imgDiv = document.querySelector(".image");
 const msgDiv = document.querySelector(".msg");
 
+
+
+
 import { getValueColor, scoreRender } from "./datahelper.js";
 async function shopInit() {
   const shopApi = `/api/shop/${cafe_id}`;
@@ -197,6 +200,7 @@ async function shopInit() {
       imgDiv.innerText = "";
       for (let i = imgUrl.length - 1; i >= 0; i--) {
         let container = document.createElement("div");
+        
         container.classList.add("img-container");
         let img = document.createElement("img");
         imgUrl[i] = encodeURI(imgUrl[i]);
@@ -318,7 +322,8 @@ ratingUserBtn.addEventListener("click", async (e) => {
 
 const photoUploadApi = `/api/photo/upload`;
 const photoBtn = document.querySelector("#upload-input");
-
+const msgPage = document.querySelector(".msg-page");
+const modifiedMsg = document.querySelector("#modified-msg");
 async function initPhoto() {
   const response = await fetch(photoUploadApi + `?cafe_id=${cafe_id}`, {
     method: "GET",
@@ -338,8 +343,10 @@ async function initPhoto() {
       container.append(img);
       imgDiv.append(container);
     }
+    
     photoMsg.innerText = "上傳成功";
     photoMsg.style.color = "blue";
+    msgPage.classList.add('hidden')
     setTimeout(() => {
       photoMsg.innerHTML = "";
     }, 2500);
@@ -361,16 +368,18 @@ photoBtn.addEventListener("change", (e) => {
           method: "POST",
           body: formData,
         };
-
+        msgPage.classList.remove('hidden')
+        modifiedMsg.innerHTML="上傳中..."
         fetch(photoUploadApi, option)
           .then((photores) => photores.json())
           .then((uploadResult) => {
             const photoMsg = document.querySelector("#photo-msg");
             if (uploadResult.data) {
-         
+            
               initPhoto();
+              
             } else {
-             
+              msgPage.classList.add('hidden')
               photoMsg.innerText = "上傳失敗";
               photoMsg.style.color = "red";
               setTimeout(() => {

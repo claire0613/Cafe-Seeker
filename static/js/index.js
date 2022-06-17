@@ -1,11 +1,16 @@
 const loadmore = document.querySelector(".load-more");
 const content = document.querySelector("content");
 const keywordform = document.querySelector("#keywordform");
+const modifiedMsg = document.querySelector("#modified-msg");
+const msgPage = document.querySelector(".msg-page");
 let page = 0;
-
+msgPage.classList.remove('hidden')
+modifiedMsg.innerHTML="Loading ..."
 
 async function cityLoad() {
   
+
+ 
   let cityBlockApi = `api/city?page=${page}`;
   if (page == null) {
     return;
@@ -15,35 +20,46 @@ async function cityLoad() {
   });
   const result = await response.json();
   const data = result.data;
-  for (let city of data) {
-    let box = document.createElement("div");
-    box.classList.add("city-box");
-    let name = document.createElement("div");
-    name.classList.add("cityname");
-    name.innerText = city.city_tw;
-    let nav = document.createElement("div");
-    nav.classList.add("navigation");
-
-    let cityLink = document.createElement("a");
-    cityLink.href = `/rank/${city.city}`;
-
-    let cityLinkImg = document.createElement("img");
-    cityLinkImg.src = "../static/icons/ranking.png";
-
-    let cityList = document.createElement("a");
-    cityList.href = `/${city.city}/list`;
-
-    let cityListImg = document.createElement("img");
-    cityListImg.src = "../static/icons/list.svg";
-
-    cityLink.append(cityLinkImg, (cityLinkImg.innerText = "排名"));
-    cityList.append(cityListImg, (cityListImg.innerText = "清單"));
-
-    nav.append(cityLink, cityList);
-    box.append(name, nav);
-    content.append(box);
+  if(result.data){
+    
+    if(page===0){
+      setTimeout(()=>{
+        msgPage.classList.add('hidden')
+        
+      },1700)
+    }
+    
+    for (let city of data) {
+      let box = document.createElement("div");
+      box.classList.add("city-box");
+      let name = document.createElement("div");
+      name.classList.add("cityname");
+      name.innerText = city.city_tw;
+      let nav = document.createElement("div");
+      nav.classList.add("navigation");
+  
+      let cityLink = document.createElement("a");
+      cityLink.href = `/rank/${city.city}`;
+  
+      let cityLinkImg = document.createElement("img");
+      cityLinkImg.src = "../static/icons/ranking.png";
+  
+      let cityList = document.createElement("a");
+      cityList.href = `/${city.city}/list`;
+  
+      let cityListImg = document.createElement("img");
+      cityListImg.src = "../static/icons/list.svg";
+  
+      cityLink.append(cityLinkImg, (cityLinkImg.innerText = "排名"));
+      cityList.append(cityListImg, (cityListImg.innerText = "清單"));
+  
+      nav.append(cityLink, cityList);
+      box.append(name, nav);
+      content.append(box);
+    }
+    page = result.nextPage;
   }
-  page = result.nextPage;
+
 
 }
 

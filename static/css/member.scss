@@ -151,7 +151,7 @@ main{
                     justify-items: center;
                     align-items: center;
                     overflow: auto;
-                    max-height: 400px;
+                    height: 350px;
                     background-color: rgba(69, 67, 67, 0.221);
                     padding: 10px;
                     border-radius: 0 0 10px 10px;
@@ -215,7 +215,7 @@ main{
                     justify-items: center;
                     align-items: center;
                     overflow: auto;
-                    height: 400px;
+                    height: 350px;
                     background-color: rgba(69, 67, 67, 0.221);
                     padding: 10px;
                     border-radius: 0 0 10px 10px;
@@ -227,10 +227,11 @@ main{
                         display: flex;
                         flex-direction: column;
                         position: relative;
-                       
                         margin: 5px;
                         border-radius: 5%;
                         text-decoration: none;
+                        padding-bottom: 20px;
+
                         .img-container{
                          
                             border-radius: 5% 5% 0 0;

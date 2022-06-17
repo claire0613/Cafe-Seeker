@@ -99,13 +99,13 @@ async function signin(e){
          //如果有成功登入，回到原本頁面並將「註冊｜登入」按鈕改為「登出」按鈕
         .then(result=>{
             if (result.ok){
-
+                history.go(-1);
                 signinCheck();
                 signinupBtn.classList.remove('show');
                 signoutBtn.classList.add('show');
                 memberPage.classList.add('show');
                 e.target.value='';
-                history.go(-1);
+                
             
             }
       

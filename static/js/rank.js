@@ -3,10 +3,13 @@ const searchDiv = document.querySelector(".search-div");
 const favorDiv = document.querySelector(".favor-div");
 const ratingDiv = document.querySelector(".rating-div");
 const msgDiv = document.querySelector(".msg-div");
-
+const modifiedMsg = document.querySelector("#modified-msg");
+const msgPage = document.querySelector(".msg-page");
 import { star } from "./datahelper.js";
 
 async function renderInit() {
+  msgPage.classList.remove('hidden')
+  modifiedMsg.innerHTML="Loading ..."
   const response = await fetch(`/api/city/rank?city=${city}`);
   const result = await response.json();
   const cityName = document.querySelector(".city-name");
@@ -14,6 +17,10 @@ async function renderInit() {
   const updateTime = document.querySelector("#update-time");
   updateTime.innerText='最新更新時間'+result.update_time;
   const search_list = result.search_count;
+  setTimeout(()=>{
+    msgPage.classList.add('hidden')
+    
+  },1700)
   //熱門搜尋店家
   for (let cafe of search_list) {
     let box = document.createElement("div");
