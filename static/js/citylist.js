@@ -33,8 +33,8 @@ async function cityListSearch() {
   const response = await fetch(cityListApi, { method: "GET" });
   const result = await response.json();
   const data = result.data;
-  if (data) {
-    cityListTbody.innerText = "";
+  if (data.length!==0) {
+    cityListTbody.removeChild(loading)
     listDescription.innerText ='';
     listDescription.innerText = `"${result.city_tw}" 網友們推薦的咖啡廳清單 : 目前共有 ${result.totalCount} 間店`;
     let today = 0;
