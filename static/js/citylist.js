@@ -226,7 +226,7 @@ async function cityListSearch() {
 
   if (data.length === 0) {
   
-    
+    cityListTbody.innerText = "";
     const tr = document.createElement("tr");
     tr.classList.add("tr-box");
     tr.innerText = `搜尋不到咖啡店`;
