@@ -5,6 +5,13 @@ const keySearchApi = `api/search?keyword=${keyword}&page=${search_page}`;
 const searchWord = document.querySelector("#search-word");
 const searchTotal = document.querySelector("#search-total");
 const ITEM_PER_PAGE = 8;
+const modifiedMsg = document.querySelector("#modified-msg");
+const msgPage = document.querySelector(".msg-page");
+
+msgPage.classList.remove('hidden')
+modifiedMsg.innerHTML="Loading ..."
+
+
 import {
   star
 } from "./datahelper.js";
@@ -27,6 +34,12 @@ async function keySearch() {
   });
   const result = await response.json();
   const data = result.data;
+  if(data){
+    setTimeout(()=>{
+      msgPage.classList.add('hidden')
+      
+    },1000)
+  }
 
 
   searchTotal.innerText = `共找到 ${result.totalCount} 間咖啡廳`;

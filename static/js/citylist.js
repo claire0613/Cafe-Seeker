@@ -18,8 +18,13 @@ let fMeal_selling = "";
 let isfetching = false;
 
 async function cityListSearch() {
-  console.log(cityListPage)
-  console.log(fQuiet)
+  const loading = document.createElement("tr");
+  loading.classList.add("tr-box");
+  loading.innerText = `Loading ...`;
+  loading.style.color = "#666666";
+  loading.style.fontSize='1.5rem';
+  cityListTbody.append(loading);
+  
   isfetching = true;
   let cityListApi = `/api/city/list/filter?city=${queryListCity}&page=${cityListPage}&keyword=${fKeyword}&rating=${fRating}&price=${fPrice}&wifi=${fWifi}&vacancy=${fVaca}&drinks=${fDrinks}&quiet=${fQuiet}&comfort=${fComfort}&limited_time=${fLimted_time}&meal_selling=${fMeal_selling}`;
   if (cityListPage == null) {
@@ -29,6 +34,7 @@ async function cityListSearch() {
   const result = await response.json();
   const data = result.data;
   if (data) {
+    cityListTbody.innerText = "";
     listDescription.innerText ='';
     listDescription.innerText = `"${result.city_tw}" 網友們推薦的咖啡廳清單 : 目前共有 ${result.totalCount} 間店`;
     let today = 0;
