@@ -5,25 +5,39 @@
 This project is a cafe list website that integrates the data of "Cafe Noamd" and "Cafe and Cowork"
 with adding a multi-condition query function.
 
-
-## Main Function
-### Search System:
-- Using keywords and selecting multipule condition to meet a customer's requirement.
-### Updated Ranking:
-- The rank of cafes would autmatically be updated every three hours, like search ranking and saving ranking for cafes. 
-### Upload and Message System：
-- User can upload the photos for sharing and  leave, click the like button and delete the comment. 
-### Member System：
-- Organize records about user's favorite cafes and uploaded photos for cafes, supporting to modify the username.
-
-## Demo
-
 - Website URL : https://clairego.com/
 
 - 測試帳號
 
 - 帳號 : test1@gmail.com
 - 密碼 : test1
+
+
+## Demo
+### Search System:
+- Using keywords and selecting multipule condition to meet a customer's requirement.
+![image](https://github.com/claire0613/gif/blob/main/city_list.gif)
+
+### Rank & Shop Page:
+- Users can find the latest popular cafes or the most people inquired cafes through the Rank.
+- In the cafe's pages, user can 
+![image](https://github.com/claire0613/gif/blob/main/shop.gif)
+
+
+## Main Function
+### Search System:
+- By MySQL Inedex and FullIndex, users can input keywords and select multipule conditions to meet a customer's requirement.
+### Updated Ranking:
+- The rank of cafes would autmatically be updated every three hours, like search ranking and saving ranking for cafes.
+- Use Redis as Cache to get faster data.
+### Upload and Message System：
+- Uplaod photos to Amazon S3 hosting with AWS Cloudfront.
+- Users can upload the photos for sharing and  leave, delete the comment on the page of cafe's shop. 
+### Member System：
+- Using Json Web Token to authenticate users.
+- Organize records about user's favorite cafes and uploaded photos for cafes, supporting to modify the username.
+
+
 
 ## Server Architecture
 

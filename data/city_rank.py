@@ -27,7 +27,7 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_size': 10,
     'max_overflow': 5,
 }
-app
+
 
 
 

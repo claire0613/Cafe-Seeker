@@ -38,6 +38,9 @@ const phoneSpan = document.querySelector("#phone-span");
 const imgDiv = document.querySelector(".image");
 const msgDiv = document.querySelector(".msg");
 
+
+
+
 import { getValueColor, scoreRender } from "./datahelper.js";
 async function shopInit() {
   const shopApi = `/api/shop/${cafe_id}`;
