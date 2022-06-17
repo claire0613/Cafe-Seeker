@@ -41,7 +41,7 @@ with adding a multi-condition query function.
 
 ## Server Architecture
 
-![image](https://user-images.githubusercontent.com/93002296/173863774-3c766ea4-d983-4122-aa59-62fad41866c5.png)
+![image](https://user-images.githubusercontent.com/93002296/174286883-cb22332b-d4ba-46cb-bb78-b223e843da4e.png)
 
 
 ## MySQL EER Diagram
