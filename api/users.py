@@ -13,9 +13,10 @@ load_dotenv()
 from data.api_helper import updated_name_pwd
 
 
+
 @api.route('/user', methods=['GET'])
 def get_user():
-
+  
     try:
         # 有登入
         token_cookie = request.cookies.get('user_cookie')
@@ -23,7 +24,7 @@ def get_user():
             user = jwt.decode(token_cookie, os.getenv(
                 "SECRET_KEY"), algorithms=['HS256'])
             data = {"data": user}
-            return jsonify(data)
+            return jsonify(data),200
         
         #  token 超時 or 未登入
         else:
@@ -31,7 +32,7 @@ def get_user():
             return jsonify(data)
 
     except:
-        return jsonify({"error": True, "message": "伺服器內部錯誤"})
+        return jsonify({"error": True, "message": "伺服器內部錯誤"}),500
 
 # 註冊
 @api.route('/user', methods=['POST'])
@@ -75,7 +76,6 @@ def login():
             #驗證密碼
             verify_pwd= user_detail.verify_password(password)
             if verify_pwd:
-                print(os.getenv("SECRET_KEY"))
                 token = jwt.encode({
                     "id": user_detail.user_id,
                     "username": user_detail.username,

@@ -26,7 +26,7 @@ async function cityLoad() {
       setTimeout(()=>{
         msgPage.classList.add('hidden')
         
-      },1700)
+      },1000)
     }
     
     for (let city of data) {
@@ -74,7 +74,7 @@ function keyFormSubmit(e) {
   e.preventDefault();
   let inputKeyword = document.querySelector('input[name="keyword"]').value;
 
-  location.replace(`/search?page=0&keyword=${inputKeyword}`);
+  location.replace(`/keyword?page=0&keyword=${inputKeyword}`);
 }
 
 keywordform.addEventListener("submit", keyFormSubmit);

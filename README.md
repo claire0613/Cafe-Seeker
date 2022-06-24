@@ -1,93 +1,79 @@
 # Cafe-Seeker
 
-本專案是整合"CafeNoamd" & "Cafe and Cowork"的資料並且加入多條件查詢功能的咖啡廳清單網站。
+本專案是整合"Cafe Nomad" & "Cafe and Cowork"的資料並且加入多條件查詢功能的咖啡廳清單網站。
 
-This project is a cafe list website that integrates the data of "Cafe Noamd" and "Cafe and Cowork"
-with adding a multi-condition query function.
+This project is a cafe list website that integrates the data of "Cafe Nomad" and "Cafe and Cowork"
+by adding a multi-condition query function.
 
-- Website URL : https://clairego.com/
-
-- 測試帳號
-
-- 帳號 : test1@gmail.com
-- 密碼 : test1
-
-
-## Demo
-### Search System:
-- Using keywords and selecting multipule condition to meet a customer's requirement.
-![image](https://github.com/claire0613/gif/blob/main/city_list.gif)
-
-### Rank & Shop Page:
-- Users can find the latest popular cafes or the most people inquired cafes through the Rank.
-- In the cafe's pages, user can see what 
-![image](https://github.com/claire0613/gif/blob/main/shop.gif)
-
-
-## Main Function
-### Search System:
-- By MySQL Inedex and FullIndex, users can input keywords and select multiple conditions to meet a customer's requirement.
-### Ranking:
-- The rank of cafes would automatically be updated every three hours, like search ranking and saving ranking for cafes.
-- Use Redis as Cache to get faster data.
-### Upload and Message System：
-- Uplaod photos to Amazon S3 hosting with AWS Cloudfront.
-- Users can upload the photos for sharing and  leave, delete the comment on the page of cafe's shop. 
-### Member System：
-- Using Json Web Token to authenticate users.
-- Organize records about user's favorite cafes and uploaded photos for cafes, supporting to modify the username.
-
-
-
-## Server Architecture
-
-![image](https://user-images.githubusercontent.com/93002296/174286883-cb22332b-d4ba-46cb-bb78-b223e843da4e.png)
-
-
-## MySQL EER Diagram
-![image](https://user-images.githubusercontent.com/93002296/173243687-e0ae566c-0ae7-4780-b9d7-4ffb029bc4a7.png)
-
-
-
+- Website URL: https://clairego.com/
+-  Test account (測試帳號)
+  - email: test1@gmail.com
+  - password: test1
 
 ##  Technique
-### Backend Tech Stack
+- Develop with **Python** using **Flask** framework and deploy it to **AWS EC2** with **Docker**.
+- Use **AJAX & Web Crawler** to insert data in **AWS RDS**, then **normalize MySQL in 3NF**, using **Index & Full-Text Index** to facilitate query efficiencies.
+- Use **Redis in AWS ElastiCache** as caches to store rank information for quickly getting data.
+- Apply  **AWS S3 Hosting with AWS CloudFront CDN service**  to store uploaded photos and  speed up their performance. 
+- Set **Crontab**  to update the ranking data automatically every three hours.
+- Utilize **AWS ELB** for distributing network incoming traffic to automatically handle many workloads. 
+- Design API with **REST** architectural style.
+- Use **JSON Web Token** to authenticate users.
 
-- Language / Web Framwork 
+### Server Architecture
+![image](https://user-images.githubusercontent.com/93002296/175466168-6ff6c88c-d589-4fc8-9c9a-4b766091f9d1.png)
+### MySQL EER Diagram
+![image](https://user-images.githubusercontent.com/93002296/173243687-e0ae566c-0ae7-4780-b9d7-4ffb029bc4a7.png)
+### Back-End Tech Stack
+- Language / Web Framework 
   - Python / Flask
-
 - Authentication
   - JSON Web Token (JWT)
   - werkzeug.security (Encode & Verify Password)
-
 - Database
     - MySQL
     - Redis
-    
 - Cloud Service (AWS)
     - EC2
     - RDS
     - S3, CloudFront
     - ElastiCache
-
+    - ELB
 - Tool
-    - Docker (deploying web) 
+    - Docker
 
 ### Front-End Tech Stack
 - JavaScript 
 - HTML
 - CSS / SCSS
 
-#### NetWork 
+### Network 
 - NGINX 
   - Domain name system
-  - Support Http & Https
+  - Support HTTP & HTTPS
 
-#### Version Cotrol
+### Version Control
 - Git/GitHub
 
-## Contact
+## Demo / Main Function
+### Search System:
+- Using keywords and selecting multiple conditions to meet a customer's requirement.
+![image](https://github.com/claire0613/gif/blob/main/city_list.gif)
 
+### Rank System:
+- Users can find the latest popular cafes or the most inquired-for cafes through the Rank.
+![image](https://github.com/claire0613/gif/blob/main/rank.gif)  
+
+### Shop Page:
+- On the cafe's page, users can see the shop's detailed information and save a favor, 
+  leave, delete comments, or upload photos of this shop.
+![image](https://github.com/claire0613/gif/blob/main/shop.gif)
+
+### Member System：
+- Organize records about users' favorite cafes and photos uploaded for cafes, supporting to modify the username.
+![image](https://github.com/claire0613/gif/blob/main/member.gif)
+
+## Contact
 - 📞 Claire Liang
 - 📧 claire0711@gmail.com
 

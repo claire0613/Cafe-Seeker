@@ -6,43 +6,30 @@ load_dotenv()
 from flask import Flask  
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import expression
-
-from env import DB_USER,DB_PASSWORD,DB_HOST,DB_NAME
 from sqlalchemy import Index,text,or_
 from sqlalchemy.dialects.mysql import DOUBLE
 from werkzeug.security import generate_password_hash,check_password_hash
 import redis
 import json
 from decimal import *
+import configs
+from configs import REDIS_HOST
 
 
 
-redis_host = os.getenv("REDIS_HOST")
-redis_db=redis.Redis(host=redis_host,port=6379,decode_responses=True)
-# cache = Cache(config={"CACHE_TYPE": "redis", "CACHE_REDIS_HOST": redis_host,'CACHE_REDIS_PORT': 6379,"CACHE_DEFAULT_TIMEOUT":2000})
 
 app=Flask(__name__)
 # 設定資料庫位置，並建立 app
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:3306/{DB_NAME}"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
-    "pool_pre_ping": True,
-    "pool_recycle": 300,
-    'pool_timeout': 900,
-    'pool_size': 10,
-    'max_overflow': 5,
-}
-app
-
+app.config.from_object(configs)
 
 
 db = SQLAlchemy(app)
 
 class Redis_set:
     def __init__(self):
-        self.redis_set = redis.Redis(host=redis_host,port=6379,decode_responses=True)
+        self.redis_set = redis.Redis(host=REDIS_HOST,port=6379,decode_responses=True)
 
-redis_set = Redis_set()
+redis_db = Redis_set()
 
 
 class Cafes(db.Model):

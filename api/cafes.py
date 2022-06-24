@@ -9,8 +9,9 @@ from model.models import City_ref, Photo, Score_rec, Rank, db, Cafes, Message, M
 from datetime import datetime
 load_dotenv()
 
-
+#首頁 城市api
 @api.route('/city', methods=['GET'])
+
 def get_city():
     try:
         page = int(request.args.get('page'))
@@ -35,8 +36,8 @@ def get_city():
     except:
         return jsonify({"error": True, "message": "伺服器內部錯誤"})
 
-
-@api.route('/search', methods=['GET'])
+#首頁 keyword api
+@api.route('/keyword', methods=['GET'])
 def get_shop_key():
     try:
         page = int(request.args.get('page'))
@@ -89,6 +90,49 @@ def get_city_filter():
 
     except:
         return jsonify({"error": True, "message": "伺服器內部錯誤"})
+
+
+@api.route('/city/rank', methods=['GET'])
+def get_city_rank():
+    try:
+    
+        city=request.args.get('city')
+        city_search = City_ref.query.filter_by(city=city).first()
+        city_id = city_search.city_id
+        city_tw=city_search.city_tw
+        try:
+            cache_fetch=redis_db.get(f'{city}')
+            if not cache_fetch:
+                search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
+                update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
+                search_list =get_rank(search_count,city_id)
+                cafe_favor = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_favor_count.desc()).limit(8).all()
+                favor_list =get_rank(cafe_favor,city_id)
+                cafe_msg = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_msg_count.desc()).limit(8).all()
+                msg_list =get_rank(cafe_msg,city_id)
+                cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
+                rating_list=get_rank(cafe_rating,city_id)
+                data=json.dumps({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time}, cls=DecimalEncoder,ensure_ascii=False)
+                redis_db.setex(f'{city}',200, data)
+            return jsonify(json.loads(cache_fetch)),200
+        except:
+            search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
+            update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
+            search_list =get_rank(search_count,city_id)
+            cafe_favor = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_favor_count.desc()).limit(8).all()
+            favor_list =get_rank(cafe_favor,city_id)
+            cafe_msg = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_msg_count.desc()).limit(8).all()
+            msg_list =get_rank(cafe_msg,city_id)
+            cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
+            rating_list=get_rank(cafe_rating,city_id)
+            
+            return jsonify({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time,'use':'fetch'})
+    except:
+            return jsonify({"error": True, "message": "伺服器內部錯誤"})
+
+
+
+
 
 
 
@@ -144,60 +188,11 @@ def get_shop(cafe_id):
         return jsonify({"error": True, "message": "伺服器內部錯誤"})
 
 
-@api.route('/shop/view/<cafe_id>', methods=['POST'])
-def post_shop_browse(cafe_id):
-    try:
-
-        cafe = Cafes.query.filter_by(id=cafe_id).first()
-        add = cafe.search_count+1
-        cafe.search_count = add
-        cafe.update()
-        return jsonify({"data": True, "now_search_count": add})
-    except:
-        return jsonify({"error": True, "message": "伺服器內部錯誤"})
 
 
-@api.route('/city/rank', methods=['GET'])
-def get_city_rank():
-    try:
-    
-        city=request.args.get('city')
-        city_search = City_ref.query.filter_by(city=city).first()
-        city_id = city_search.city_id
-        city_tw=city_search.city_tw
-        try:
-            cache_fetch=redis_db.get(f'{city}')
-            if not cache_fetch:
-                search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
-                update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
-                search_list =get_rank(search_count,city_id)
-                cafe_favor = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_favor_count.desc()).limit(8).all()
-                favor_list =get_rank(cafe_favor,city_id)
-                cafe_msg = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_msg_count.desc()).limit(8).all()
-                msg_list =get_rank(cafe_msg,city_id)
-                cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
-                rating_list=get_rank(cafe_rating,city_id)
-                data=json.dumps({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time}, cls=DecimalEncoder,ensure_ascii=False)
-                redis_db.setex(f'{city}',200, data)
-            return jsonify(json.loads(cache_fetch)),200
-        except:
-            search_count = Rank.query.filter_by(city_id=city_id).order_by(Rank.search_count.desc()).limit(8).all()
-            update_time=datetime.strftime(search_count[0].update_time, "%Y-%m-%d %H:%M")
-            search_list =get_rank(search_count,city_id)
-            cafe_favor = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_favor_count.desc()).limit(8).all()
-            favor_list =get_rank(cafe_favor,city_id)
-            cafe_msg = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_msg_count.desc()).limit(8).all()
-            msg_list =get_rank(cafe_msg,city_id)
-            cafe_rating = Rank.query.filter_by(city_id=city_id).order_by(Rank.cafe_rating_count.desc()).limit(8).all()
-            rating_list=get_rank(cafe_rating,city_id)
-            
-            return jsonify({"data": True, "search_count": search_list, "cafe_favor": favor_list, "cafe_msg": msg_list, "cafe_rating": rating_list,'city_name':city_tw,'update_time':update_time,'use':'fetch'})
-    except:
-            return jsonify({"error": True, "message": "伺服器內部錯誤"})
-        
-        
-@api.route('/shop/insert', methods=['POST'])
-def post_cafe_insert():
+
+@api.route('/shop', methods=['POST'])
+def post_shop():
     try:
         data=request.json
         cafe_name=data['name']
@@ -230,6 +225,24 @@ def post_cafe_insert():
             return jsonify({"error": True, "message":"店家已經重複請再次確認"})
     except:
             return jsonify({"error": True, "message": "伺服器內部錯誤"})
+
+@api.route('/shop/view/<cafe_id>', methods=['POST'])
+def post_shop_browse(cafe_id):
+    try:
+
+        cafe = Cafes.query.filter_by(id=cafe_id).first()
+        add = cafe.search_count+1
+        cafe.search_count = add
+        cafe.update()
+        return jsonify({"data": True, "now_search_count": add})
+    except:
+        return jsonify({"error": True, "message": "伺服器內部錯誤"})
+
+
+
+        
+        
+
 
 
 
