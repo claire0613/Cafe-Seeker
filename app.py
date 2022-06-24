@@ -1,6 +1,6 @@
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
-from env import DB_USER,DB_PASSWORD,DB_HOST,DB_NAME,SECRET_KEY
+# from env import DB_USER,DB_PASSWORD,DB_HOST,DB_NAME,SECRET_KEY
 from model.models import db
 from api.cafes import api
 from api.users import api
@@ -9,33 +9,18 @@ from api.photo import api
 from api.message import api
 from api.favor import api
 from api.member import api
-
+import configs
 app=Flask(__name__)
+
+#config for flask object
+app.config.from_object(configs)
+
+
 app.register_blueprint(api, url_prefix="/api")
 
 # register blueprint
 
-
-
-
-
-
 # 設定資料庫位置，並建立 app
-
-app.config["JSON_AS_ASCII"] = False
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.config["JSON_SORT_KEYS"]=False
-app.config["SECRET_KEY"] = SECRET_KEY
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:3306/{DB_NAME}"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
-    "pool_pre_ping": True,
-    "pool_recycle": 60,
-    'pool_timeout': 180,
-    'pool_size': 20,
-    'max_overflow': 40,
-}
-
 
 
 db.init_app(app)
@@ -68,9 +53,9 @@ def city(city):
 def city_list(city):
     return render_template("citylist.html")
 
-@app.route("/search",methods=['GET'])
-def search():
-    return render_template("search.html")
+@app.route("/keyword",methods=['GET'])
+def keyword():
+    return render_template("keyword.html")
 
 
 @app.route('/login')

@@ -74,7 +74,7 @@ insertForm.addEventListener('submit',async(e)=>{
             'phone':phone,'website':website,'mrt':mrt,'address':address
         }
         console.log(data)
-        const response=await fetch('api/shop/insert',{
+        const response=await fetch('api/shop',{
             method: "POST",
             body: JSON.stringify(data),
             headers: new Headers({

@@ -125,10 +125,8 @@ class Cafes(db.Model):
     instagram=db.Column(db.Text)
     telephone=db.Column(db.String(100))
     website=db.Column(db.Text)
-  
     search_count= db.Column(db.Integer, server_default=text("0"), nullable=False)
     cafe_nomad_id=db.Column(db.String(255),unique=True)
-    
     db_cafes_score_rec = db.relationship("Score_rec", backref="cafes")
     db_cafes_cafes_like = db.relationship("Cafes_like", backref="cafes")
 
@@ -269,7 +267,7 @@ for cafe in cafes:
         view=Rank(cafe_id=cafe.id,search_count=cafe.search_count,cafe_favor_count=cafe_favor,cafe_msg_count=cafe_msg,city_id=cafe.city_id)
         view.insert()
 time=datetime.datetime.now()+ datetime.timedelta(hours=8)
-print(time)
+
     
     
     

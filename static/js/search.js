@@ -1,7 +1,7 @@
 let search_page = document.URL.split("&")[0].split("=").at(-1);
 const keyword = document.URL.split("=").at(-1);
 const keySearchContent = document.querySelector("content");
-const keySearchApi = `api/search?keyword=${keyword}&page=${search_page}`;
+const keySearchApi = `api/keyword?keyword=${keyword}&page=${search_page}`;
 const searchWord = document.querySelector("#search-word");
 const searchTotal = document.querySelector("#search-total");
 const ITEM_PER_PAGE = 8;
@@ -115,7 +115,7 @@ async function getTotalPages(totalPage, search_page) {
   } else {
     pageItemContent += `
         <li class="page-item">
-            <a class="page-link" href="/search?page=${prePage}&keyword=${keyword}" id="previous">
+            <a class="page-link" href="/keyword?page=${prePage}&keyword=${keyword}" id="previous">
             «
             </a>
         </li>`;
@@ -125,7 +125,7 @@ async function getTotalPages(totalPage, search_page) {
     for (let i = 0; i < 2; i++) {
       pageItemContent += `
               <li class="page-item">
-                <a class="page-link" href="/search?page=${i}&keyword=${keyword}">${
+                <a class="page-link" href="/keyword?page=${i}&keyword=${keyword}">${
         i + 1
       }</a>
               </li>
@@ -138,7 +138,7 @@ async function getTotalPages(totalPage, search_page) {
     for (let i = nowpage - 3; i < nowpage; i++) {
       pageItemContent += `
                 <li class="page-item">
-                <a class="page-link" href="/search?page=${i}&keyword=${keyword}">${
+                <a class="page-link" href="/keyword?page=${i}&keyword=${keyword}">${
         i + 1
       }</a>
                 </li>
@@ -148,7 +148,7 @@ async function getTotalPages(totalPage, search_page) {
     for (let i = 0; i < nowpage; i++) {
       pageItemContent += `
                 <li class="page-item">
-                <a class="page-link" href="/search?page=${i}&keyword=${keyword}">${
+                <a class="page-link" href="/keyword?page=${i}&keyword=${keyword}">${
         i + 1
       }</a>
                 </li>
@@ -166,7 +166,7 @@ async function getTotalPages(totalPage, search_page) {
     for (let i = nowpage + 1; i < nowpage + 4; i++) {
       pageItemContent += `
                 <li class="page-item">
-                  <a class="page-link" href="/search?page=${i}&keyword=${keyword}">${
+                  <a class="page-link" href="/keyword?page=${i}&keyword=${keyword}">${
         i + 1
       }</a>
                 </li>
@@ -180,7 +180,7 @@ async function getTotalPages(totalPage, search_page) {
     for (let i = nowpage + 1; i < totalPage+1; i++) {
       pageItemContent += `
                 <li class="page-item">
-                  <a class="page-link" href="/search?page=${i}&keyword=${keyword}">${
+                  <a class="page-link" href="/keyword?page=${i}&keyword=${keyword}">${
         i + 1
       }</a>
                 </li>
@@ -198,7 +198,7 @@ async function getTotalPages(totalPage, search_page) {
   }else{
     pageItemContent += ` 
     <li class="page-item">
-    <a class="page-link" href="/search?page=${
+    <a class="page-link" href="/keyword?page=${
       nowpage + 1
     }&keyword=${keyword}" id="previous">
     »
