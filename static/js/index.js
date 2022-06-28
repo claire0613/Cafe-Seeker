@@ -94,7 +94,7 @@ const keySearchApi = `api/search?keyword=${keyword}&page=${keypage}`;
 // });
 async function get_keyword(keyword, keypage) {
   try {
-    let response = await fetch(`/api/search?keyword=${keyword}&page=${keypage}`);
+    let response = await fetch(`/api/keyword?keyword=${keyword}&page=${keypage}`);
     let data = await response.json();
     return data
   } catch (message) {
