@@ -6,7 +6,7 @@ async function insertInit(){
     const userRes=await fetch(userApi)
     const userResponse=await userRes.json()
     if (!userResponse.data){
-        location.replace('/login')
+        location.assign('/login')
     }
 
 
@@ -87,7 +87,7 @@ insertForm.addEventListener('submit',async(e)=>{
             modifiedMsg.innerHTML="新增成功，準備跳轉到店家頁面!"
             setTimeout(()=>{
               msgPage.classList.add('hidden')
-              location.replace(`/shop/${result.cafe_id}`)
+              location.assign(`/shop/${result.cafe_id}`)
             },2000)
             
 
@@ -114,7 +114,7 @@ insertForm.addEventListener('submit',async(e)=>{
 
 
     }else{
-        location.replace('/')
+        location.assign('/')
     }
     
 })

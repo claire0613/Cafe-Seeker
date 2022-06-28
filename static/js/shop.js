@@ -210,7 +210,7 @@ async function shopInit() {
       }
     }
   }else{
-      location.replace('/404')
+      locatio.assign('/404')
   }
 
   //上傳照片check是否登入
@@ -221,7 +221,7 @@ async function shopInit() {
     photoBtnCover.classList.add("hidden");
     photoBtnCoverFake.classList.remove("hidden");
     photoBtnCoverFake.addEventListener("click", () => {
-      location.replace("/login");
+      locatio.assign("/login");
     });
   } else {
     photoBtnCover.classList.remove("hidden");
@@ -292,7 +292,7 @@ async function favorCafe(e) {
         }
       });
   } else {
-    location.replace("/login");
+    location.assign("/login");
   }
 }
 
@@ -314,9 +314,9 @@ ratingUserBtn.addEventListener("click", async (e) => {
   const response = await fetch(userApi, { method: "GET" });
   const result = await response.json();
   if (result.data) {
-    location.replace(`/rating/${cafe_id}`);
+    location.assign(`/rating/${cafe_id}`);
   } else {
-    location.replace("/login");
+    location.assign("/login");
   }
 });
 
@@ -390,7 +390,7 @@ photoBtn.addEventListener("change", (e) => {
         e.target.value = "";
       } else {
         
-        location.replace("/login");
+        location.assign("/login");
       }
     });
 });
@@ -423,7 +423,7 @@ msgForm.addEventListener("submit", (e) => {
           });
         document.querySelector("#message").value = "";
       } else {
-        location.replace("/login");
+        location.assign("/login");
       }
     });
 });
@@ -485,7 +485,7 @@ function favorMsg(e) {
             }
           });
       } else {
-        location.replace("/login");
+        location.assign("/login");
       }
     });
 }

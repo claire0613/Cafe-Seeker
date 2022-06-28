@@ -51,10 +51,10 @@ memberPage.addEventListener("click",async(e)=>{
     const promise=await response.json();
     const result =await promise;
     if (result.data){
-        location.replace('/member')
+        location.assign('/member')
             
         }else{
-            location.replace('/login');
+            location.assign('/login');
         }
 });
 
@@ -64,10 +64,10 @@ storeInsertBtn.addEventListener("click",async(e)=>{
     const promise=await response.json();
     const result =await promise;
     if (result.data){
-        location.replace('/insertcafe')
+        location.assign('/insertcafe')
             
         }else{
-            location.replace('/login');
+            location.assign('/login');
         }
 });
 
