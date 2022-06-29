@@ -1,30 +1,18 @@
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
-# from env import DB_USER,DB_PASSWORD,DB_HOST,DB_NAME,SECRET_KEY
 from model.models import db
-from api.cafes import api
-from api.users import api
-from api.rating import api
-from api.photo import api
-from api.message import api
-from api.favor import api
-from api.member import api
+from controller import api
 import configs
 app=Flask(__name__)
 
-#config for flask object
 app.config.from_object(configs)
-
-
-app.register_blueprint(api, url_prefix="/api")
-
-# register blueprint
-
-# 設定資料庫位置，並建立 app
-
 
 db.init_app(app)
 
+# register blueprint
+app.register_blueprint(api, url_prefix="/api")
+
+#main route
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -86,4 +74,4 @@ def teardown_request(exception):
     db.session.remove()
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0',port=5000)
+	app.run(host='0.0.0.0',port=5000,debug=True)

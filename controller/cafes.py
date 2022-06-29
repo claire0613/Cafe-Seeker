@@ -5,7 +5,7 @@ from flask import *
 from . import api
 from dotenv import load_dotenv
 from data.api_helper import city_cafe_filter,key_search,get_rank,area_from_city,check_website,check_float,check_int
-from model.models import City_ref, Photo, Score_rec, Rank, db, Cafes, Message, Message_like, Users, Cafes_like,redis_db,DecimalEncoder
+from model.models import City_ref, Photo, Score_rec, Rank, Cafes, Message, Message_like, Users,redis_db,DecimalEncoder
 from datetime import datetime
 load_dotenv()
 

@@ -80,7 +80,7 @@ function keyFormSubmit(e) {
 keywordform.addEventListener("submit", keyFormSubmit);
 
 
-///
+
 
 let keypage = 0;
 let keyword = '';
@@ -88,10 +88,7 @@ let search_times = 0;
 let public_name_scroll = true;
 let public_keyword_page = 0;
 const keySearchApi = `api/search?keyword=${keyword}&page=${keypage}`;
-// keywordform.addEventListener("input", function(){
-//     let value = this.value;
 
-// });
 async function get_keyword(keyword, keypage) {
   try {
     let response = await fetch(`/api/keyword?keyword=${keyword}&page=${keypage}`);
@@ -103,19 +100,37 @@ async function get_keyword(keyword, keypage) {
   }
 };
 
+function debounce(func, delay){
+  // timeout 初始值
+  let timeout = null;
+  return function(){
+    let context = this;  // 指向 myDebounce 這個 input
+    let args = arguments;  // KeyboardEvent
+    clearTimeout(timeout)
+
+    timeout = setTimeout(function(){
+      func.apply(context, args)
+    }, delay)
+  }
+
+}
+
+
 let key_input = document.querySelector('input[name="keyword"]')
 
-key_input.addEventListener("input", function () {
+key_input.addEventListener("input", debounce(function (e) {
+  console.log(e.target.value)
   //註冊搜尋keywordinput
   let value = this.value;
   if (value.length === 0) {
     let input_area = document.querySelector("#keywordform");
-
     if (document.querySelector(".search-result")) {
       input_area.removeChild(document.querySelector(".search-result"))
     };
     public_name_scroll = true;
     public_keyword_page = 0;
+    
+
   } else {
 
     public_name_scroll = true;
@@ -130,7 +145,10 @@ key_input.addEventListener("input", function () {
 
     });
   }
-})
+},500))
+
+
+
 
 
 

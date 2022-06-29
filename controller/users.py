@@ -1,6 +1,6 @@
 from . import api
 
-from flask import Blueprint, session, request, jsonify, make_response
+from flask import Blueprint, session, request, jsonify, make_response,current_app
 
 import os
 from datetime import datetime, timedelta

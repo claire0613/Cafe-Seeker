@@ -6,6 +6,8 @@ import jwt,re,sys,os
 sys.path.append("..")
 from dotenv import load_dotenv
 load_dotenv()
+
+
 def rating_avg(data):
     result_list=[]
     for i in data:
