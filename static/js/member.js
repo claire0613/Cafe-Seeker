@@ -66,7 +66,7 @@ async function getMemberInfo() {
 
     
   } else {
-    location.replace("/");
+    location.assign("/");
   }
 }
 //初始畫面

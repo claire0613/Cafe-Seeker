@@ -5,8 +5,8 @@ from flask import *
 from . import api
 from dotenv import load_dotenv
 from data.api_helper import city_cafe_filter,key_search,get_rank,area_from_city,check_website,check_float,check_int
-from model.models import City_ref, Photo, Score_rec, Rank, db, Cafes, Message, Message_like, Users, Cafes_like,redis_db,DecimalEncoder
-from datetime import datetime
+from model.models import City_ref, Photo, Score_rec, Rank, Cafes, Message, Message_like, Users,redis_db,DecimalEncoder
+from datetime import datetime,timezone, timedelta
 load_dotenv()
 
 #首頁 城市api
@@ -163,6 +163,7 @@ def get_shop(cafe_id):
                     user_id=msg_dict.get('user_id')).first().avatar
                 msg_dict['create_time'] = datetime.strftime(
                     msg.create_time, "%Y-%m-%d %H:%M")
+                    
                 if token_cookie:
                     user = jwt.decode(token_cookie, os.getenv(
                         "SECRET_KEY"), algorithms=['HS256'])
@@ -176,6 +177,7 @@ def get_shop(cafe_id):
                         is_favor = False
                     msg_dict['is_favor'] = is_favor
                     msg_dict['now_user'] = user_id
+                    
 
                 msg_t.append(msg_dict)
 

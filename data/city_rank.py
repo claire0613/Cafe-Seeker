@@ -4,7 +4,6 @@ from flask import Flask
 from sqlalchemy import Index,text,or_
 from sqlalchemy.dialects.mysql import DOUBLE
 from sqlalchemy import Index,text,or_
-# from model.models import Cafes, Score_rec,Cafes_like,Message,Rank
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os

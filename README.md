@@ -11,10 +11,10 @@ by adding a multi-condition query function.
   - password: test1
 
 ##  Technique
-- Develop with **Python** using **Flask** framework and deploy it to **AWS EC2** with **Docker**.
-- Use **AJAX & Web Crawler** to insert data in **AWS RDS**, then **normalize MySQL in 3NF**, using **Index & Full-Text Index** to facilitate query efficiencies.
+- Develop with **Python** using **Flask** framework and deploy it to **AWS EC2** by **Docker**.
+- Use **AJAX & Web Crawler** to integrate **two Data Sources** in **AWS RDS**, then **normalize MySQL in 3NF**, using **Index** & **Full-Text Index** to facilitate query efficiencies.
 - Use **Redis in AWS ElastiCache** as caches to store rank information for quickly getting data.
-- Apply  **AWS S3 Hosting with AWS CloudFront CDN service**  to store uploaded photos and  speed up their performance. 
+- Apply **AWS S3 Hosting with AWS CloudFront CDN service**  to store uploaded photos and  speed up their performance. 
 - Set **Crontab**  to update the ranking data automatically every three hours.
 - Utilize **AWS ELB** for distributing network incoming traffic to automatically handle many workloads. 
 - Design API with **REST** architectural style.

@@ -2,7 +2,7 @@ from . import api
 from model.models import City_ref, Message_like, db,Cafes,Message
 from flask import *
 from sqlalchemy.sql import func
-import jwt,re,sys,os
+import jwt,re,sys,os,datetime
 sys.path.append("..")
 from dotenv import load_dotenv
 load_dotenv()
@@ -22,10 +22,8 @@ def post_message():
 			floor=1
 			if query_floor:
 				floor=len(query_floor)+1
-	
-			msg_insert=Message(user_id=user_id,cafe_id=cafe_id,user_name=user_name,msg_content=message,floor=floor)
+			msg_insert=Message(user_id=user_id,cafe_id=cafe_id,user_name=user_name,msg_content=message,floor=floor,create_time=datetime.datetime.now()+ datetime.timedelta(hours=8))
 			msg_insert.insert()
-			
 			return jsonify({'data':True})
 			
        
@@ -115,24 +113,24 @@ def delete_msg_favor():
 	except:
 		return {"error": True, "message": "伺服器內部錯誤"}, 500
 
-# @api.route('/message/favor',methods=['GET'])
-# def get_msg_favor():
-# 	try:
-# 		cafe_id=request.args.get('cafe_id')
-# 		token_cookie=request.cookies.get('user_cookie')
-# 		if token_cookie:
-# 			user=jwt.decode(token_cookie,os.getenv("SECRET_KEY"),algorithms=['HS256'])
-# 			user_id = user["id"]
+@api.route('/message/favor',methods=['GET'])
+def get_msg_favor():
+	try:
+		cafe_id=request.args.get('cafe_id')
+		token_cookie=request.cookies.get('user_cookie')
+		if token_cookie:
+			user=jwt.decode(token_cookie,os.getenv("SECRET_KEY"),algorithms=['HS256'])
+			user_id = user["id"]
 			
-# 			msg_id=request.args.get('msg_id')
-# 			msg_like=Message_like.query.filter_by(msg_id=msg_id,user_id=user_id).first()
-# 			#m已經存在msg_like table
-# 			if msg_like:
-# 					return jsonify({ "data": True })
-# 			else:
+			msg_id=request.args.get('msg_id')
+			msg_like=Message_like.query.filter_by(msg_id=msg_id,user_id=user_id).first()
+			#m已經存在msg_like table
+			if msg_like:
+					return jsonify({ "data": True })
+			else:
 				
-# 					return jsonify({ "data": False })
-# 		else:
-# 			return jsonify({ "error": True, "message": "未登入系統，拒絕存取" })
-# 	except:
-# 		return {"error": True, "message": "伺服器內部錯誤"}, 500
+					return jsonify({ "data": False })
+		else:
+			return jsonify({ "error": True, "message": "未登入系統，拒絕存取" })
+	except:
+		return {"error": True, "message": "伺服器內部錯誤"}, 500
