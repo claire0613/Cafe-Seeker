@@ -119,7 +119,7 @@ function debounce(func, delay){
 let key_input = document.querySelector('input[name="keyword"]')
 
 key_input.addEventListener("input", debounce(function (e) {
-  console.log(e.target.value)
+
   //註冊搜尋keywordinput
   let value = this.value;
   if (value.length === 0) {
@@ -145,7 +145,7 @@ key_input.addEventListener("input", debounce(function (e) {
 
     });
   }
-},500))
+},300))
 
 
 
@@ -214,7 +214,7 @@ function click_name(result) {
   let clikc_name = document.querySelector("#result_name");
   let input_result = document.querySelector('input[name="keyword"]');
   input_result.value = result.textContent;
-  console.log(result.textContent)
+
   if (document.querySelector(".search-result")) {
     input_area.removeChild(document.querySelector(".search-result"))
   };
