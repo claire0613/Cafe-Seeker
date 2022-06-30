@@ -6,7 +6,6 @@ import configs
 app=Flask(__name__)
 
 app.config.from_object(configs)
-
 db.init_app(app)
 
 # register blueprint

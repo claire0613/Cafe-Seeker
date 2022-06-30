@@ -2,7 +2,7 @@ from . import api
 from model.models import City_ref, Message_like, db,Cafes,Message
 from flask import *
 from sqlalchemy.sql import func
-import jwt,re,sys,os
+import jwt,re,sys,os,datetime
 sys.path.append("..")
 from dotenv import load_dotenv
 load_dotenv()
@@ -22,10 +22,8 @@ def post_message():
 			floor=1
 			if query_floor:
 				floor=len(query_floor)+1
-	
-			msg_insert=Message(user_id=user_id,cafe_id=cafe_id,user_name=user_name,msg_content=message,floor=floor)
+			msg_insert=Message(user_id=user_id,cafe_id=cafe_id,user_name=user_name,msg_content=message,floor=floor,create_time=datetime.datetime.now()+ datetime.timedelta(hours=8))
 			msg_insert.insert()
-			
 			return jsonify({'data':True})
 			
        

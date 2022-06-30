@@ -6,8 +6,6 @@ import jwt,re,sys,os
 sys.path.append("..")
 from dotenv import load_dotenv
 load_dotenv()
-
-
 def rating_avg(data):
     result_list=[]
     for i in data:
@@ -16,6 +14,28 @@ def rating_avg(data):
     if result_list :
         return round(sum(result_list)/len(result_list),1)
     return 0.0
+    
+@api.route('/rating/<scr_id>', methods=['GET'])
+def get_rating(scr_id):
+    try:
+        token_cookie=request.cookies.get('user_cookie')
+        if token_cookie:
+            user=jwt.decode(token_cookie,os.getenv("SECRET_KEY"),algorithms=['HS256'])
+            user_id = user["id"]
+            scr_id=scr_id
+            order=Score_rec.query.filter_by(scr_id=scr_id).first()
+            cafe_name=Cafes.query.filter_by(id=order.cafe_id).first().name
+            result={
+            'price':order.price,'wifi':order.wifi,'vacancy':order.vacancy,
+            'quiet':order.quiet,'comfort':order.comfort,'drinks':order.drinks,'food':order.food,
+            'view':order.view,'toilets':order.toilets,'speed':order.speed,'cafe_name':cafe_name,
+            'cafe_id':order.cafe_id
+            }
+
+        return jsonify({'data':result})
+    except:
+        return jsonify({"error": True, "message": "伺服器內部錯誤"})    
+    
     
 #insert rating 分數
 @api.route('/rating/<cafe_id>', methods=['POST'])

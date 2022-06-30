@@ -73,7 +73,7 @@ insertForm.addEventListener('submit',async(e)=>{
             'outdoor_seating':outdoorSeating,'cash_only':cashOnly,'animals':animals,'open_hours':openHours,
             'phone':phone,'website':website,'mrt':mrt,'address':address
         }
-        console.log(data)
+        
         const response=await fetch('api/shop',{
             method: "POST",
             body: JSON.stringify(data),

@@ -50,6 +50,7 @@
                 const ratingApi=`/api/rating/${src_id}`
                 const ratingres=await fetch(ratingApi,{method:'GET'});
                 const ratingResult=await ratingres.json();
+                console.log(ratingResult.data)
                 if(ratingResult.data){
                     
                     link.href=`/shop/${ratingResult.data.cafe_id}`
@@ -58,7 +59,7 @@
               
                 }
             }else{
-                location.replace('/login');
+                location.assign('/login');
             }
         }
         Init();

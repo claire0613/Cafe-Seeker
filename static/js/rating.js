@@ -149,7 +149,7 @@ foodRating.addEventListener('click',(e)=>{
     
     const value=document.querySelector('input[name="food-rating"]:checked').value
     const score=document.querySelector('.score-food')
-    console.log(value)
+  
     if(value !==''){
 
         score.innerText=`${value} 分`
@@ -247,7 +247,7 @@ async function insertScore(e){
     const response=await fetch(userApi,{method:'GET'});
     const result= await response.json();
     if (result.data){
-        console.log(result.data)
+       
         let price=checkInt(this.querySelector('input[name="price-rating"]:checked').value)
         let wifi=checkInt(this.querySelector('input[name="wifi-rating"]:checked').value)
         let vacancy=checkInt(this.querySelector('input[name="vaca-rating"]:checked').value)
