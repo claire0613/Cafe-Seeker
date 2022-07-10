@@ -53,7 +53,7 @@ by adding a multi-condition query function.
   - Support HTTP & HTTPS
 
 ### Version Control
-- Git/GitHub
+- Git / GitHub
 
 ## Demo / Main Function
 ### Search System:
