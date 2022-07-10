@@ -282,6 +282,7 @@ for cafe in cafes:
         view.insert()
 time=datetime.datetime.now()+ datetime.timedelta(hours=8)
 
+
     
     
     

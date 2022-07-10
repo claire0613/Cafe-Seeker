@@ -33,7 +33,7 @@ def get_member_cafe_favor():
                 cafe_id_list.append(cafe.cafe_id)
             
             for item in cafe_id_list:
-                data= db.session.execute(f"select c.id,c.name,c.area,c.wifi,c.drinks,p.photo_url from cafes as c left join photo as p on p.cafe_id=c.id \
+                data= db.session.execute(f"select c.id,c.name,c.area,r.wifi,r.drinks,p.photo_url from cafes as c left join photo as p on p.cafe_id=c.id left join rating as r on c.id=r.cafe_id  \
                                             WHERE c.id={item} GROUP By c.id ").first()
                 result_list.append(data)
             answer=key_search_detail(result_list)
