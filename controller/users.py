@@ -83,10 +83,11 @@ def login():
                     "avatar":user_detail.avatar,
                     "exp": datetime.utcnow() + timedelta(days=1)
                 }, os.getenv("SECRET_KEY"), algorithm='HS256')
-                message = {"ok": True}
+                message = {"ok": True,"access_token":token}
                 
                 response = make_response(jsonify(message))
                 response.set_cookie(key='user_cookie', value=token)
+        
                 return response
             else:
              message = {

@@ -48,9 +48,6 @@ class Users(db.Model):
     def as_dict(self):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns} 
         
-    
-
-    
     @classmethod    
     def search_by_id(cls,search_id):
         return cls.query.filter_by(user_id=search_id).first()
@@ -69,7 +66,6 @@ class Users(db.Model):
     def update(self):
         db.session.commit()
 Index('email_name_index',Users.email,Users.username)
-
 class City_ref(db.Model):
     __tablename__='city_ref'
     
@@ -85,6 +81,7 @@ class City_ref(db.Model):
         
     def as_dict(self):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns} 
+        
 class Cafes(db.Model):
     __tablename__='cafes'
     id=db.Column(db.Integer,primary_key=True,autoincrement=True)
@@ -96,19 +93,6 @@ class Cafes(db.Model):
     google_maps=db.Column(db.Text)
     latitude=db.Column(DOUBLE())
     longitude=db.Column(DOUBLE())
-    open_hours=db.Column(db.JSON)
-    open_time=db.Column(db.String(255))
-    rating=db.Column(db.Float)
-    wifi=db.Column(db.Float)
-    speed=db.Column(db.Float)
-    vacancy=db.Column(db.Float)
-    comfort=db.Column(db.Float)
-    quiet=db.Column(db.Float)
-    food=db.Column(db.Float)
-    drinks=db.Column(db.Float)
-    price=db.Column(db.Float)
-    view=db.Column(db.Float)
-    toilets=db.Column(db.Float)
     socket=db.Column(db.String(10))
     limited_time=db.Column(db.String(10))
     music=db.Column(db.Boolean)
@@ -124,8 +108,10 @@ class Cafes(db.Model):
     instagram=db.Column(db.Text)
     telephone=db.Column(db.String(100))
     website=db.Column(db.Text)
+  
     search_count= db.Column(db.Integer, server_default=text("0"), nullable=False)
     cafe_nomad_id=db.Column(db.String(255),unique=True)
+    
     db_cafes_score_rec = db.relationship("Score_rec", backref="cafes")
     db_cafes_cafes_like = db.relationship("Cafes_like", backref="cafes")
 
@@ -152,6 +138,8 @@ class Cafes(db.Model):
     
     def update(self):
         db.session.commit()
+        
+        
 
 class Score_rec(db.Model):
     __tablename__='score_rec'
@@ -204,7 +192,7 @@ class Rank(db.Model):
     
     def as_dict(self):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
- 
+    
 class Cafes_like(db.Model):
     __tablename__ = 'cafes_like'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -243,7 +231,34 @@ class Message(db.Model):
         db.session.commit()
     def as_dict(self):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
+class Rating(db.Model):
+    __tablename__='rating'
+    cafe_id=db.Column(db.Integer,db.ForeignKey('cafes.id', ondelete='CASCADE'),primary_key=True,nullable=False)
+    rating=db.Column(db.Float,server_default=text("0.0"))
+    wifi=db.Column(db.Float,server_default=text("0.0"))
+    speed=db.Column(db.Float)
+    vacancy=db.Column(db.Float,server_default=text("0.0"))
+    comfort=db.Column(db.Float,server_default=text("0.0"))
+    quiet=db.Column(db.Float,server_default=text("0.0"))
+    food=db.Column(db.Float,server_default=text("0.0"))
+    drinks=db.Column(db.Float,server_default=text("0.0"))
+    price=db.Column(db.Float,server_default=text("0.0"))
+    view=db.Column(db.Float,server_default=text("0.0"))
+    toilets=db.Column(db.Float,server_default=text("0.0"))
+
+    def as_dict(self):
+        return{c.name: getattr(self, c.name) for c in self.__table__.columns}
     
+    @classmethod
+    def search_id(cls,cafe_id):
+        return cls.query.filter_by(cafe_id=cafe_id).first()
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+    def update(self):
+        db.session.commit()
+       
 cafes=Cafes().search_all()
 for cafe in cafes:
     update=Rank.query.filter_by(cafe_id=cafe.id).first()
@@ -266,6 +281,7 @@ for cafe in cafes:
         view=Rank(cafe_id=cafe.id,search_count=cafe.search_count,cafe_favor_count=cafe_favor,cafe_msg_count=cafe_msg,city_id=cafe.city_id)
         view.insert()
 time=datetime.datetime.now()+ datetime.timedelta(hours=8)
+
 
     
     

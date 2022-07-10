@@ -43,19 +43,6 @@ class Cafes(db.Model):
     google_maps=db.Column(db.Text)
     latitude=db.Column(DOUBLE())
     longitude=db.Column(DOUBLE())
-    open_hours=db.Column(db.JSON)
-    open_time=db.Column(db.String(255))
-    rating=db.Column(db.Float)
-    wifi=db.Column(db.Float)
-    speed=db.Column(db.Float)
-    vacancy=db.Column(db.Float)
-    comfort=db.Column(db.Float)
-    quiet=db.Column(db.Float)
-    food=db.Column(db.Float)
-    drinks=db.Column(db.Float)
-    price=db.Column(db.Float)
-    view=db.Column(db.Float)
-    toilets=db.Column(db.Float)
     socket=db.Column(db.String(10))
     limited_time=db.Column(db.String(10))
     music=db.Column(db.Boolean)
@@ -123,8 +110,34 @@ class Score_rec(db.Model):
     toilets=db.Column(db.Float)
     create_time = db.Column(db.DateTime, server_default=text('NOW()'))
     
+    def as_dict(self):
+        return{c.name: getattr(self, c.name) for c in self.__table__.columns}
     
-    
+    @classmethod
+    def search_id(cls,cafe_id):
+        return cls.query.filter_by(cafe_id=cafe_id).first()
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+    def update(self):
+        db.session.commit()
+        
+class Rating(db.Model):
+    __tablename__='rating'
+    cafe_id=db.Column(db.Integer,db.ForeignKey('cafes.id', ondelete='CASCADE'),primary_key=True,nullable=False)
+    rating=db.Column(db.Float,server_default=text("0.0"))
+    wifi=db.Column(db.Float,server_default=text("0.0"))
+    speed=db.Column(db.Float)
+    vacancy=db.Column(db.Float,server_default=text("0.0"))
+    comfort=db.Column(db.Float,server_default=text("0.0"))
+    quiet=db.Column(db.Float,server_default=text("0.0"))
+    food=db.Column(db.Float,server_default=text("0.0"))
+    drinks=db.Column(db.Float,server_default=text("0.0"))
+    price=db.Column(db.Float,server_default=text("0.0"))
+    view=db.Column(db.Float,server_default=text("0.0"))
+    toilets=db.Column(db.Float,server_default=text("0.0"))
+
     def as_dict(self):
         return{c.name: getattr(self, c.name) for c in self.__table__.columns}
     
@@ -138,6 +151,32 @@ class Score_rec(db.Model):
     def update(self):
         db.session.commit()
     
+class Open_hours(db.Model):
+    __tablename__='open_hours'
+    cafe_id=db.Column(db.Integer,db.ForeignKey('cafes.id', ondelete='CASCADE'),primary_key=True,nullable=False)
+    mon=db.Column(db.String(255))
+    tue=db.Column(db.String(255))
+    wed=db.Column(db.String(255))
+    thu=db.Column(db.String(255))
+    fri=db.Column(db.String(255))
+    sat=db.Column(db.String(255))
+    sun=db.Column(db.String(255))
+    create_time = db.Column(db.DateTime, server_default=text('NOW()'))
+    def as_dict(self):
+        return{c.name: getattr(self, c.name) for c in self.__table__.columns}
+    
+    @classmethod
+    def search_id(cls,cafe_id):
+        return cls.query.filter_by(cafe_id=cafe_id).first()
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+    def update(self):
+        db.session.commit()
+    
+
+
 
 class Users(db.Model):
     __tablename__='users'
@@ -283,35 +322,7 @@ class Message_like(db.Model):
     
 
 Index('message_like_user_index', Message_like.msg_id, Message_like.user_id)
-class Update_detail(db.Model):
-    __tablename__='update_detail'
-    upd_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
-    user_id=db.Column(db.Integer, db.ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
-    socket=db.Column(db.String(10))
-    limited_time=db.Column(db.String(10))
-    music=db.Column(db.Boolean)
-    smoking=db.Column(db.Boolean)
-    standing_tables=db.Column(db.Boolean)
-    outdoor_seating=db.Column(db.Boolean)
-    cash_only=db.Column(db.Boolean)
-    animals=db.Column(db.Boolean)
-    single_selling=db.Column(db.Boolean)
-    dessert_selling=db.Column(db.Boolean)
-    meal_selling=db.Column(db.Boolean)
-    facebook=db.Column(db.Text)
-    instagram=db.Column(db.Text)
-    telephone=db.Column(db.String(100))
-    website=db.Column(db.Text)
-    review=db.Column(db.JSON)
-    status=db.Column(db.Boolean)
-    create_time = db.Column(db.DateTime, server_default=text('NOW()'))
-    
-    def insert(self):
-        db.session.add(self)
-        db.session.commit()
-    def as_dict(self):
-        return{c.name: getattr(self, c.name) for c in self.__table__.columns}
-    
+
     
 class Rank(db.Model):
     __tablename__='rank'

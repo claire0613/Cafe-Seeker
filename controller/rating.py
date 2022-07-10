@@ -1,19 +1,12 @@
 from . import api
-from model.models import City_ref, db,Cafes,Score_rec
+from model.models import City_ref, db,Cafes,Score_rec,Rating
 from flask import *
-from sqlalchemy.sql import func
+from data.api_helper import rating_avg,check_num
 import jwt,re,sys,os
 sys.path.append("..")
 from dotenv import load_dotenv
 load_dotenv()
-def rating_avg(data):
-    result_list=[]
-    for i in data:
-        if i and i !=0.0:
-            result_list.append(i)
-    if result_list :
-        return round(sum(result_list)/len(result_list),1)
-    return 0.0
+
     
 @api.route('/rating/<scr_id>', methods=['GET'])
 def get_rating(scr_id):
@@ -53,31 +46,29 @@ def post_rating(cafe_id):
             rating=Score_rec(user_id=user_id,cafe_id=cafe_id,wifi=wifi_rating,\
                     speed=speed_rating,vacancy=vaca_rating,comfort=comfort_rating,quiet=quiet_rating,\
                     food=food_rating,drinks=drinks_rating,price=price_rating,view=view_rating,toilets=toilets_rating)
-            
-            
             rating.insert()
+         
+          
+            rating_query=Rating.query.filter_by(cafe_id=cafe_id).first()
             update=db.session.execute(f'SELECT avg(price), avg(wifi),avg(vacancy) ,avg(quiet),avg(comfort),avg(drinks),avg(food),avg(view),avg(toilets),avg(speed) FROM `score_rec` where cafe_id={cafe_id}').first()
-            cafe=Cafes.query.filter_by(id=cafe_id).first()
-       
             update_data={
-            'price':update[0],'wifi':update[1],'vacancy':update[2],
-            'quiet':update[3],'comfort':update[4],'drinks':update[5],'food':update[6],
-            'view':update[7],'toilets':update[8],'speed':update[9]
+            'price':check_num(update[0]),'wifi':check_num(update[1]),'vacancy':check_num(update[2]),
+            'quiet':check_num(update[3]),'comfort':check_num(update[4]),'drinks':check_num(update[5]),'food':check_num(update[6]),
+            'view':check_num(update[7]),'toilets':check_num(update[8]),'speed':check_num(update[9])
             }
+            rating_query.price=update_data['price']
+            rating_query.wifi=update_data['wifi']
+            rating_query.vacancy=update_data['vacancy']
+            rating_query.quiet=update_data['quiet']
+            rating_query.comfort=update_data['comfort']
+            rating_query.drinks=update_data['drinks']
+            rating_query.food=update_data['food']
+            rating_query.view=update_data['view']
+            rating_query.toilets=update_data['toilets']
+            rating_query.speed=update_data['speed']
+            rating_query.rating=rating_avg([update_data['price'],update_data['wifi'],update_data['vacancy'],update_data['comfort'],update_data['drinks']])
             
-            cafe.price=update_data['price']
-            cafe.wifi=update_data['wifi']
-            cafe.vacancy=update_data['vacancy']
-            cafe.quiet=update_data['quiet']
-            cafe.comfort=update_data['comfort']
-            cafe.drinks=update_data['drinks']
-            cafe.food=update_data['food']
-            cafe.view=update_data['view']
-            cafe.toilets=update_data['toilets']
-            cafe.speed=update_data['speed']
-            cafe.rating=rating_avg([update_data['price'],update_data['wifi'],update_data['vacancy'],update_data['comfort'],update_data['drinks']])
-            
-            cafe.update()
+            rating_query.update()
             order=db.session.query(Score_rec).order_by(Score_rec.create_time.desc()).filter_by(user_id=user_id,cafe_id=cafe_id).first()
           
             return jsonify({'data':True,'number':order.scr_id})

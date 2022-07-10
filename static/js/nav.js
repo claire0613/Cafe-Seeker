@@ -36,6 +36,7 @@ function signout(){
         method: 'DELETE'
     })
     .then(() => {
+        localStorage.removeItem('JWT')
         location.reload();
 
     })

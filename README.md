@@ -13,9 +13,9 @@ by adding a multi-condition query function.
 ##  Technique
 - Develop with **Python** using **Flask** framework and deploy it to **AWS EC2** by **Docker**.
 - Use **AJAX & Web Crawler** to integrate **two Data Sources** in **AWS RDS**, then **normalize MySQL in 3NF**, using **Index** & **Full-Text Index** to facilitate query efficiencies.
-- Use **Redis in AWS ElastiCache** as caches to store rank information for quickly getting data.
+- Use **Redis in AWS ElastiCache** as caches to store the popular board information for quickly getting data.
 - Apply **AWS S3 Hosting with AWS CloudFront CDN service**  to store uploaded photos and  speed up their performance. 
-- Set **Crontab**  to update the ranking data automatically every three hours.
+- Set **Crontab**  to update the popular board automatically every three hours.
 - Utilize **AWS ELB** for distributing network incoming traffic to automatically handle many workloads. 
 - Design API with **REST** architectural style.
 - Use **JSON Web Token** to authenticate users.
@@ -23,7 +23,7 @@ by adding a multi-condition query function.
 ### Server Architecture
 ![image](https://user-images.githubusercontent.com/93002296/175466168-6ff6c88c-d589-4fc8-9c9a-4b766091f9d1.png)
 ### MySQL EER Diagram
-![image](https://user-images.githubusercontent.com/93002296/173243687-e0ae566c-0ae7-4780-b9d7-4ffb029bc4a7.png)
+![image](https://user-images.githubusercontent.com/93002296/178151667-41c11d27-0cce-4585-a482-408666560cb8.png)
 ### Back-End Tech Stack
 - Language / Web Framework 
   - Python / Flask
@@ -60,8 +60,8 @@ by adding a multi-condition query function.
 - Using keywords and selecting multiple conditions to meet a customer's requirement.
 ![image](https://github.com/claire0613/gif/blob/main/city_list.gif)
 
-### Rank System:
-- Users can find the latest popular cafes or the most inquired-for cafes through the Rank.
+### Popular board:
+- Users can find the latest popular cafes or the most inquired-for cafes through the board.
 ![image](https://github.com/claire0613/gif/blob/main/rank.gif)  
 
 ### Shop Page:
