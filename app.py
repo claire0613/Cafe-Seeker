@@ -1,4 +1,3 @@
-from tkinter.tix import Tree
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
 from model.models import db
