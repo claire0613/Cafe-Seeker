@@ -167,8 +167,8 @@ async function cityListSearch() {
       const open_td = document.createElement("td");
       open_td.classList.add("tb-open");
       let open = document.createElement("span");
-      let day = JSON.parse(cafe.open_hours);
-      day = JSON.parse(day);
+      let day = cafe.open_hours;
+
       if (day !== null) {
         open.innerText = day[today];
       } else {

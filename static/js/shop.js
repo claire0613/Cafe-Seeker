@@ -48,26 +48,27 @@ async function shopInit() {
   const result = await response.json();
 
   if (result.data) {
+    const rating_his = result.rating_his;
     const data = result.data;
     shopName.innerText = data.name;
-    wifiSpan.innerText = scoreRender(data.wifi);
-    wifiSpan.style.color = getValueColor(data.wifi);
-    vacaSpan.innerText = scoreRender(data.vacancy);
-    vacaSpan.style.color = getValueColor(data.vacancy);
-    priceSpan.innerText = scoreRender(data.price);
-    priceSpan.style.color = getValueColor(data.price);
-    quietSpan.innerText = scoreRender(data.quiet);
-    quietSpan.style.color = getValueColor(data.quiet);
-    comfortSpan.innerText = scoreRender(data.comfort);
-    comfortSpan.style.color = getValueColor(data.comfort);
-    foodSpan.innerText = scoreRender(data.food);
-    foodSpan.style.color = getValueColor(data.food);
-    drinksSpan.innerText = scoreRender(data.drinks);
-    drinksSpan.style.color = getValueColor(data.drinks);
-    viewSpan.innerText = scoreRender(data.view);
-    viewSpan.style.color = getValueColor(data.view);
-    toiletsSpan.innerText = scoreRender(data.toilets);
-    toiletsSpan.style.color = getValueColor(data.toilets);
+    wifiSpan.innerText = scoreRender(rating_his.wifi);
+    wifiSpan.style.color = getValueColor(rating_his.wifi);
+    vacaSpan.innerText = scoreRender(rating_his.vacancy);
+    vacaSpan.style.color = getValueColor(rating_his.vacancy);
+    priceSpan.innerText = scoreRender(rating_his.price);
+    priceSpan.style.color = getValueColor(rating_his.price);
+    quietSpan.innerText = scoreRender(rating_his.quiet);
+    quietSpan.style.color = getValueColor(rating_his.quiet);
+    comfortSpan.innerText = scoreRender(rating_his.comfort);
+    comfortSpan.style.color = getValueColor(rating_his.comfort);
+    foodSpan.innerText = scoreRender(rating_his.food);
+    foodSpan.style.color = getValueColor(rating_his.food);
+    drinksSpan.innerText = scoreRender(rating_his.drinks);
+    drinksSpan.style.color = getValueColor(rating_his.drinks);
+    viewSpan.innerText = scoreRender(rating_his.view);
+    viewSpan.style.color = getValueColor(rating_his.view);
+    toiletsSpan.innerText = scoreRender(rating_his.toilets);
+    toiletsSpan.style.color = getValueColor(rating_his.toilets);
     if (result.score_count === 0) {
       scoreCount.innerText = `目前無人評分`;
     } else {
@@ -77,7 +78,7 @@ async function shopInit() {
     if (data.speed != 0 && data.speed) {
       speedSpan.innerText = data.speed.toFixed(1);
     }
-
+    
     singleSelling.innerText = scoreRender(data.single_selling);
     singleSelling.style.color = getValueColor(data.single_selling);
     limitedTime.innerText = scoreRender(data.limited_time,'limited_time');
@@ -98,9 +99,8 @@ async function shopInit() {
     cashSpan.style.color = getValueColor(data.cash_only);
     animalsSpan.innerText = scoreRender(data.animals);
     animalsSpan.style.color = getValueColor(data.animals);
-    if (data.open_hours) {
-      const open_Hr = JSON.parse(data.open_hours);
-     
+    if (result.open_hours) {
+      const open_Hr = result.open_hours;
       monSpan.innerText = open_Hr.mon;
       tueSpan.innerText = open_Hr.tue;
       wedSpan.innerText = open_Hr.wed;
@@ -210,7 +210,7 @@ async function shopInit() {
       }
     }
   }else{
-      locatio.assign('/404')
+      // location.assign('/404')
   }
 
   //上傳照片check是否登入

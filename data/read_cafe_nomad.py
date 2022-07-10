@@ -3,7 +3,8 @@ import urllib.request as req
 import json
 import sys
 sys.path.append("..")
-from model.models import Cafes, City_ref,Score_rec,db
+from model.models import Cafes, City_ref,Score_rec,db,Rating
+from api_helper import rating_avg
 def main():
 
     url="https://cafenomad.tw/api/v1.2/cafes"
@@ -31,14 +32,14 @@ def main():
                 exist.longitude=check_coordinate(result.get("longitude"))
                 exist.latitude=check_coordinate(result.get("latitude"))
                 exist.transport=check_data_str(exist.transport,result.get('mrt'))
-                exist.open_time=result.get("open_time")
+                # exist.open_time=result.get("open_time")
                 
-                exist.wifi=check_score_f(exist.wifi,result.get('wifi'))
-                exist.vacancy=check_score_f(exist.vacancy,result.get('seat'))
-                exist.quiet=check_score_f(exist.quiet,result.get('quiet'))
-                exist.food=check_score_f(exist.food,result.get('tasty'))
-                exist.drinks=check_score_f(exist.drinks,result.get('tasty'))
-                exist.price=check_score_f(exist.quiet,result.get('cheap'))
+                # exist.wifi=check_score_f(exist.wifi,result.get('wifi'))
+                # exist.vacancy=check_score_f(exist.vacancy,result.get('seat'))
+                # exist.quiet=check_score_f(exist.quiet,result.get('quiet'))
+                # exist.food=check_score_f(exist.food,result.get('tasty'))
+                # exist.drinks=check_score_f(exist.drinks,result.get('tasty'))
+                # exist.price=check_score_f(exist.quiet,result.get('cheap'))
                 
                 exist.socket=check_data_str(exist.socket,result.get('socket'))
                 exist.music=check_music(exist.music,result.get('music'))
@@ -52,16 +53,7 @@ def main():
                 cafe.update()
                 if query_id:
                     cafe_id=query_id[-1].id
-                #     cafe_scr=Score_rec().search_id(cafe_id=cafe_id)
-                #     if cafe_scr:
-                    
-                #         cafe_scr.wifi=check_score_js(check_j_l(cafe_scr.wifi),result.get('wifi'))
-                #         cafe_scr.vacancy=check_score_js(check_j_l(cafe_scr.vacancy),result.get('seat'))
-                #         cafe_scr.quiet=check_score_js(check_j_l(cafe_scr.quiet),result.get('quiet'))
-                #         cafe_scr.food_rec=check_score_js(check_j_l(cafe_scr.food),result.get('tasty'))
-                #         cafe_scr.drinks_rec=check_score_js(check_j_l(cafe_scr.drinks),result.get('tasty'))
-                #         cafe_scr.price=check_score_js(check_j_l(cafe_scr.price),result.get('cheap'))
-                #         cafe_scr.update()
+           
                     record=Score_rec(user_id=3,cafe_id=cafe_id,wifi=int_nomad(result.get('wifi')),\
                     vacancy=int_nomad(result.get('seat')),comfort=int_nomad(result.get('music')),quiet=int_nomad(result.get('quiet')),\
                     food=int_nomad(result.get('tasty')),drinks=int_nomad(result.get('tasty')),price=int_nomad(result.get('cheap')))
@@ -74,9 +66,8 @@ def main():
                 if latitude and longitude:
                     city_id=City_ref.query.filter_by(city=result.get("city")).first().city_id
                     insert_data=Cafes(name=result.get("name"),area=result.get("city"),city_id=city_id,address=result.get("address"),\
-                        transport=result.get("mrt"),latitude=latitude,longitude=longitude,open_time=result.get("open_time"),wifi=result.get('wifi'),speed=0,\
-                        vacancy=result.get("seat"),comfort=result.get('music'),quiet=result.get("quiet"),food=result.get("tasty"),drinks=result.get("tasty"),price=result.get("cheap"),\
-                        view=0,toilets=0,socket=result.get('socket'),limited_time=result.get('limited_time'),\
+                        transport=result.get("mrt"),latitude=latitude,longitude=longitude,\
+                        socket=result.get('socket'),limited_time=result.get('limited_time'),\
                         music=check_music_i(result.get('music')),standing_tables=check_standing_desk_i(result.get('standing_desk')),facebook=check_url(result.get('url'),'fb'),\
                         instagram=check_url(result.get('url'),'ig'),website=check_url(result.get('url'),'web'),\
                         cafe_nomad_id=result.get('id'))
@@ -84,15 +75,36 @@ def main():
                     query_id=cafe.search_by_name(result.get("name"))
                     if query_id:
                         cafe_id=query_id[-1].id
-                    #     record=Score_rec(cafe_id=cafe_id,wifi=listing_nomad(result.get('wifi')),\
-                    #         speed=json.dumps([]),vacancy=listing_nomad(result.get('seat')),comfort=listing_nomad(result.get('music')),quiet=listing_nomad(result.get('quiet')),\
-                    #         food=listing_nomad(result.get('tasty')),drinks=listing_nomad(result.get('tasty')),price=listing_nomad(result.get('cheap')),\
-                    #         view=json.dumps([]),toilets=json.dumps([]))
-                    #     record.insert()
+        
                         record=Score_rec(user_id=3,cafe_id=cafe_id,wifi=int_nomad(result.get('wifi')),\
                         vacancy=int_nomad(result.get('seat')),comfort=int_nomad(result.get('music')),quiet=int_nomad(result.get('quiet')),\
                         food=int_nomad(result.get('tasty')),drinks=int_nomad(result.get('tasty')),price=int_nomad(result.get('cheap')))
-                        record.insert()            
+                        record.insert()
+                        rating_query=Rating.query.filter_by(cafe_id=cafe_id).first()
+                
+                        if not rating_query:
+                            rating_new=Rating(cafe_id=cafe_id,wifi=result.get('wifi'),speed=0,\
+                            vacancy=result.get("seat"),comfort=result.get('music'),quiet=result.get("quiet"),food=result.get("tasty"),drinks=result.get("tasty"),price=result.get("cheap"))
+                            rating_new.insert()
+                        else:
+                            update=db.session.execute(f'SELECT avg(price), avg(wifi),avg(vacancy) ,avg(quiet),avg(comfort),avg(drinks),avg(food),avg(view),avg(toilets),avg(speed) FROM `score_rec` where cafe_id={id}').first()
+                            update_data={
+                            'price':update[0],'wifi':update[1],'vacancy':update[2],
+                            'quiet':update[3],'comfort':update[4],'drinks':update[5],'food':update[6],
+                            'view':update[7],'toilets':update[8],'speed':update[9]
+                            }
+                            rating_query.price=update_data['price']
+                            rating_query.wifi=update_data['wifi']
+                            rating_query.vacancy=update_data['vacancy']
+                            rating_query.quiet=update_data['quiet']
+                            rating_query.comfort=update_data['comfort']
+                            rating_query.drinks=update_data['drinks']
+                            rating_query.food=update_data['food']
+                            rating_query.view=update_data['view']
+                            rating_query.toilets=update_data['toilets']
+                            rating_query.speed=update_data['speed']
+                            rating_query.rating=rating_avg([update_data['price'],update_data['wifi'],update_data['vacancy'],update_data['comfort'],update_data['drinks']])
+                            rating_query.update()       
 
 def listing_nomad(data):
     if data!=0:

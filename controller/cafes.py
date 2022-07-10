@@ -4,8 +4,8 @@ sys.path.append("..")
 from flask import *
 from . import api
 from dotenv import load_dotenv
-from data.api_helper import city_cafe_filter,key_search,get_rank,area_from_city,check_website,check_float,check_int
-from model.models import City_ref, Photo, Score_rec, Rank, Cafes, Message, Message_like, Users,redis_db,DecimalEncoder
+from data.api_helper import city_cafe_filter,key_search,get_rank,area_from_city,check_website,check_float,check_int,rating_avg
+from model.models import City_ref, Open_hours, Photo, Rating, Score_rec, Rank, Cafes, Message, Message_like, Users,redis_db,DecimalEncoder,db
 from datetime import datetime,timezone, timedelta
 load_dotenv()
 
@@ -151,6 +151,10 @@ def get_shop(cafe_id):
             token_cookie = request.cookies.get('user_cookie')
 
             score_count = Score_rec.query.filter_by(cafe_id=cafe_id).count()
+            hours=Open_hours.query.filter_by(cafe_id=cafe_id).first().as_dict()
+            rating_his=Rating.query.filter_by(cafe_id=cafe_id).first().as_dict()
+        
+         
             if token_cookie:
                 is_login = True
             else:
@@ -177,12 +181,11 @@ def get_shop(cafe_id):
                         is_favor = False
                     msg_dict['is_favor'] = is_favor
                     msg_dict['now_user'] = user_id
-                    
-
+                
                 msg_t.append(msg_dict)
 
             result = result.as_dict()
-            return jsonify({"data": result, "photo_url": photo_t, 'message': msg_t, 'is_login': is_login, 'score_count': score_count})
+            return jsonify({"data": result,"rating_his":rating_his, "photo_url": photo_t, 'message': msg_t,'open_hours':hours, 'is_login': is_login, 'score_count': score_count})
 
         else:
             return jsonify({"error": True, "message": 'no Cafe'})
@@ -212,14 +215,20 @@ def post_shop():
 
         if not exist:
             result=Cafes(name=cafe_name,area=area,city_id=city_id,address=address,\
-                rating=0.0,wifi=0.0,speed=0.0,vacancy=0.0,comfort=0.0,quiet=0.0,food=0.0,drinks=0.0,price=0.0,view=0.0,toilets=0.0,\
                 transport=mrt,latitude=latitude,longitude=longitude,socket=socket,limited_time=limited_time,\
                 music=music, single_selling= single_selling,dessert_selling=dessert_selling,standing_tables=staning_tables,\
-                outdoor_seating=outdoor_seating,meal_selling=meal_selling,open_hours=json.dumps(open_hours, ensure_ascii=False),\
+                outdoor_seating=outdoor_seating,meal_selling=meal_selling,\
                 cash_only=cash_only,animals=animals,facebook=check_website(website,'fb'),\
                 instagram=check_website(website,'ig'),telephone=phone,website=website)
             result.insert()
-            cafe_id=Cafes.query.filter_by(name=cafe_name).first().id
+            cafe_id=Cafes.query.filter_by(name=cafe_name).first().id  
+            hour=Open_hours(cafe_id=cafe_id,mon=open_hours['mon'],tue=open_hours['tue'],wed=open_hours['wed'],thu=open_hours['thu'],fri=open_hours['fri'],sat=open_hours['sat'],sun=open_hours['sun'])
+            hour.insert()
+            rating_new=Rating(cafe_id=cafe_id)
+            rating_new.insert()
+            
+            
+            
             
  
             return jsonify({"ok": True,'cafe_id':cafe_id})

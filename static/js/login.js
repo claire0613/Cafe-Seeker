@@ -106,12 +106,11 @@ async function signin(e){
          //如果有成功登入，回到原本頁面並將「註冊｜登入」按鈕改為「登出」按鈕
         .then(result=>{
             if (result.ok){
-                // history.back();
-                console.log(history.back())
+                
+                localStorage.setItem('JWT',result.access_token)
                 signinCheck();
-                // signinupBtn.classList.remove('show');
-                // signoutBtn.classList.add('show');
-                // memberPage.classList.add('show');
+                history.back()
+
                 e.target.value='';
                 
             
