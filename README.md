@@ -14,7 +14,7 @@ by adding a multi-condition query function.
 - Develop with **Python** using **Flask** framework and deploy it to **AWS EC2** by **Docker** in public subnet.
 - Use **AJAX & Web Crawler** to integrate **two Data Sources**  with **AWS RDS** in private subnet, then **normalize MySQL in 3NF**, using **Index** & **Full-Text Index** to facilitate query efficiencies.
 - Use **Redis in AWS ElastiCache** as caches to store the popular board information for quickly getting data.
-- Apply **AWS S3 Hosting with AWS CloudFront CDN service**  to store uploaded photos and  speed up their performance. 
+- Apply **AWS S3 hosting with AWS CloudFront CDN service**  to store uploaded photos and  speed up their performance. 
 - Set **Crontab**  to update the popular board automatically every three hours.
 - Utilize **AWS ELB** for distributing network incoming traffic to automatically handle many workloads. 
 - Design API with **REST** architectural style.
