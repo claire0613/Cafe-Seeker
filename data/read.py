@@ -11,14 +11,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def md_in_dir(dir):
+def md_in_dir(dire):
     #input 資料夾路徑下 return 此目錄下的所有檔案list
     filenames=[]
-    for filename in os.listdir(dir):
+    for filename in os.listdir(dire):
         if filename.endswith('.md'):
-            filenames.append(os.path.join(dir,filename))
-           
-            
+            filenames.append(os.path.join(dire,filename))
+
     return filenames
 def listing(data):
     if data:
@@ -172,7 +171,6 @@ def parseFile(filename,dir_f):
                             photo=Photo(user_id=2,cafe_id=id,photo_url=os.getenv("CDN_URL")+f"cafe-seeker/{dir_f}/{filename[7:-3]}/{img}",photo_name=img)
                             photo.insert()
                     
- 
             return data
 
 
@@ -186,9 +184,9 @@ def read_md_and_insert_db(dir,dir_f):
     
 city=['taipei', 'keelung', 'taoyuan', 'hsinchu','miaoli','taichung','Nantou','changhua','yunlin','chiayi', 'Tainan','kaohsiung','pingtung', 'yilan','hualien', 'penghu', 'taitung', 'lienchiang','Kinmen']
 city_tw=['台北','基隆','桃園','新竹','苗栗','台中','南投','彰化','雲林','嘉義','台南','高雄','屏東','宜蘭','花蓮','澎湖','台東','連江','金門',]
-# for i in range (len(city)):
-#     city_insert=City_ref(city=city[i].lower(),city_id=i+1,city_tw=city_tw[i])
-#     city_insert.insert()
+for i in range (len(city)):
+    city_insert=City_ref(city=city[i].lower(),city_id=i+1,city_tw=city_tw[i])
+    city_insert.insert()
     
     
     

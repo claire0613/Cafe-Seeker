@@ -149,11 +149,9 @@ def get_shop(cafe_id):
             msg_list = Message.query.order_by(
                 Message.create_time).filter_by(cafe_id=cafe_id).all()
             token_cookie = request.cookies.get('user_cookie')
-
             score_count = Score_rec.query.filter_by(cafe_id=cafe_id).count()
             hours=Open_hours.query.filter_by(cafe_id=cafe_id).first().as_dict()
             rating_his=Rating.query.filter_by(cafe_id=cafe_id).first().as_dict()
-        
          
             if token_cookie:
                 is_login = True
@@ -227,10 +225,6 @@ def post_shop():
             rating_new=Rating(cafe_id=cafe_id)
             rating_new.insert()
             
-            
-            
-            
- 
             return jsonify({"ok": True,'cafe_id':cafe_id})
         else:
             return jsonify({"error": True, "message":"店家已經重複請再次確認"})
@@ -240,7 +234,6 @@ def post_shop():
 @api.route('/shop/view/<cafe_id>', methods=['POST'])
 def post_shop_browse(cafe_id):
     try:
-
         cafe = Cafes.query.filter_by(id=cafe_id).first()
         add = cafe.search_count+1
         cafe.search_count = add
